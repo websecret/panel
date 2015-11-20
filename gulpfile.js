@@ -24,14 +24,14 @@ elixir(function(mix) {
     mix.scripts([
         bower_components + 'jquery/dist/jquery.js',
         bower_components + 'bootstrap/dist/js/bootstrap.js',
-        bower_components + 'jQuery.mmenu/dist/core/js/jquery.mmenu.min.all.js',
         bower_components + 'jquery-ui/jquery-ui.js',
         bower_components + 'PACE/pace.js',
         bower_components + 'chosen/chosen.jquery.min.js',
         bower_components + 'select2/dist/js/select2.full.js',
         bower_components + 'nestable2/jquery.nestable.js',
         bower_components + 'gritter/js/jquery.gritter.js',
-        resources_assets + 'js/core.min.js',
+        resources_assets + 'js/jquery.mmenu.min.js',
+        resources_assets + 'js/core.js',
     ], './public/js/vendor.js');
     mix.copy([
         bower_components + 'bootstrap/dist/fonts',
