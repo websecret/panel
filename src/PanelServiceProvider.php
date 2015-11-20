@@ -11,10 +11,10 @@ class PanelServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../views', 'panel');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'panel');
 
         $this->publishes([
-            __DIR__.'/../views' => base_path('resources/views/panel'),
+            __DIR__.'/../resources/views' => base_path('resources/views/panel'),
         ]);
 
         $this->publishes([

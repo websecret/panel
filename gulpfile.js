@@ -31,6 +31,7 @@ elixir(function(mix) {
         bower_components + 'select2/dist/js/select2.full.js',
         bower_components + 'nestable2/jquery.nestable.js',
         bower_components + 'gritter/js/jquery.gritter.js',
+        resources_assets + 'js/core.min.js',
     ], './public/js/vendor.js');
     mix.copy([
         bower_components + 'bootstrap/dist/fonts',
