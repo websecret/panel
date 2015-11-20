@@ -17,20 +17,24 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
     "autosize": "~3.0.14",
+    "bootstrap-datepicker": "~1.5.0",
+    "bootstrap-daterangepicker": "~2.1.13",
+    "bootstrap-timepicker": "~0.5.1",
     "chosen": "~1.4.2",
     "d3": "~3.5.9",
     "datatables": "DataTables#~1.10.10",
-    "bootstrap-datepicker": "~1.5.0",
-    "bootstrap-daterangepicker": "~2.1.13",
-    "x-editable": "~1.5.1",
     "Flot": "flot#~0.8.3",
     "gritter": "~1.8.1",
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4",
+    "jQuery.mmenu": "mmenu#~5.5.3",
     "nestable2": "~1.2.3",
     "PACE": "pace#~1.0.2",
     "select2": "~4.0.0",
-    "bootstrap-timepicker": "~0.5.1",
-    "jquery-ui": "~1.11.4"
+    "x-editable": "~1.5.1"
+  },
+  "resolutions": {
+    "jquery": "~2.1.4"
   }
 }
