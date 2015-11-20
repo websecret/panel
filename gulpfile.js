@@ -22,9 +22,9 @@ elixir(function(mix) {
         bower_components + 'gritter/css/jquery.gritter.css',
     ], './public/css/vendor.css');
     mix.scripts([
+        bower_components + 'jquery/dist/jquery.js',
         bower_components + 'bootstrap/dist/js/bootstrap.js',
         bower_components + 'jQuery.mmenu/dist/core/js/jquery.mmenu.min.all.js',
-        bower_components + 'jquery/dist/jquery.js',
         bower_components + 'jquery-ui/jquery-ui.js',
         bower_components + 'PACE/pace.js',
         bower_components + 'chosen/chosen.jquery.min.js',
