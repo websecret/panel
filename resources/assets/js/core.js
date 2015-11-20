@@ -3,10 +3,6 @@ $.panelIconOpened = 'icon-arrow-up';
 $.panelIconClosed = 'icon-arrow-down';
 
 $(document).ready(function($){
-	
-	if($('#clock').length) {
-		startTime();
-	}
 			
 	$('ul.nav-sidebar').find('a').each(function(){
 		$(this).parent().addClass('active');
