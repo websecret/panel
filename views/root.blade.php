@@ -7,7 +7,7 @@
 
     <title>Real Admin - Bootstrap Admin Template</title>
 
-    <link href="{{ asset('websecret/panel/css/vendor.css') }}" rel="stylesheet" id="bootstrap-style">
+    <link href="{{ asset('assets/panel/css/vendor.css') }}" rel="stylesheet" id="bootstrap-style">
 </head>
 <body >
 <div id="theme-settings" class="hidden-sm hidden-xs">
@@ -1176,7 +1176,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script src="{{ asset('websecret/panel/js/vendor.js') }}"></script>
+<script src="{{ asset('assets/panel/js/vendor.js') }}"></script>
 
 </body>
 </html>								
