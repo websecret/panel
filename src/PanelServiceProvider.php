@@ -11,14 +11,14 @@ class PanelServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'panel');
+        $this->loadViewsFrom(__DIR__.'/../views', 'panel');
 
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/websecret/panel'),
+            __DIR__.'/../views' => base_path('resources/views/websecret/panel'),
         ]);
 
         $this->publishes([
-            __DIR__.'/public' => public_path('websecret/panel'),
+            __DIR__.'/../public' => public_path('websecret/panel'),
         ], 'public');
     }
 
