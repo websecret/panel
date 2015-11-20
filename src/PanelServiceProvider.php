@@ -18,7 +18,7 @@ class PanelServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__.'/../public' => public_path('websecret/panel'),
+            __DIR__.'/../public' => public_path('assets/panel'),
         ], 'public');
     }
 
