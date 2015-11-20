@@ -5,7 +5,7 @@ elixir(function(mix) {
     var resources_assets = './resources/assets/';
     mix.styles([
         bower_components + 'bootstrap/dist/css/bootstrap.css',
-        bower_components + 'jQuery.mmenu/dist/core/css/jquery.mmenu.all.css',
+        resources_assets + 'css/jquery.mmenu.css',
         resources_assets + 'css/climacons-font.css',
         resources_assets + 'css/filetypes.css',
         resources_assets + 'css/font-awesome.css',
