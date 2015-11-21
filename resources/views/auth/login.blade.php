@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('panel.layouts.auth')
 
 @section('auth')
     <div class="login-box col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
@@ -21,8 +21,8 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <a href="/">Зарегистрироваться</a>
-                    </div><!--/col-->
-                </div><!--/row-->
+                    </div>
+                </div>
             </fieldset>
         </form>
     </div>
