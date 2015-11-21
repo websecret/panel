@@ -21,8 +21,8 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <a href="/">Зарегистрироваться</a>
-                    </div><!--/col-->
-                </div><!--/row-->
+                    </div>
+                </div>
             </fieldset>
         </form>
     </div>

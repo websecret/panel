@@ -27,8 +27,8 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <a href="/">Войти</a>
-                    </div><!--/col-->
-                </div><!--/row-->
+                    </div>
+                </div>
             </fieldset>
         </form>
     </div>

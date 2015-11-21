@@ -13,7 +13,7 @@
     <ul class="nav navbar-nav navbar-right visible-md visible-lg">
         <li><button class="btn btn-default">Preview</button></li>
         <li><button class="btn btn-success">Launch</button></li>
-        <li><span class="timer"><i class="icon-clock"></i> <span id="clock"><!-- JavaScript clock will be displayed here, if you want to remove clock delete parent <li> --></span></span></li>
+        <li><span class="timer"><i class="icon-clock"></i> <span id="clock"></span></span></li>
         <li class="dropdown visible-md visible-lg">
             <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/ico/flags/USA.png" style="height:18px; margin-top:-4px;"></a>
             <ul class="dropdown-menu">
