@@ -32,7 +32,7 @@ elixir(function(mix) {
         bower_components + 'select2/dist/js/select2.full.js',
         bower_components + 'nestable2/jquery.nestable.js',
         bower_components + 'gritter/js/jquery.gritter.js',
-        bower_components + 'Caret.js/dist/js/jquery.caret.js',
+        bower_components + 'Caret.js/dist/jquery.caret.js',
         bower_components + 'At.js/dist/js/jquery.atwho.js',
         bower_components + 'bootbox.js/bootbox.js',
         bower_components + 'jquery.inputmask/dist/jquery.inputmask.bundle.js',
