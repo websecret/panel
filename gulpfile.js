@@ -3,8 +3,8 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     var bower_components = './bower_components/';
     var resources_assets = './resources/assets/';
-    mix.styles([
-        bower_components + 'bootstrap/dist/css/bootstrap.css',
+    mix.less([
+        bower_components + 'bootstrap/less/bootstrap.less',
         resources_assets + 'css/jquery.mmenu.css',
         resources_assets + 'css/climacons-font.css',
         resources_assets + 'css/filetypes.css',
@@ -20,6 +20,8 @@ elixir(function(mix) {
         bower_components + 'select2/dist/css/select2.css',
         bower_components + 'nestable2/jquery.nestable.css',
         bower_components + 'gritter/css/jquery.gritter.css',
+        bower_components + 'At.js/dist/css/jquery.atwho.css',
+        resources_assets + 'less/helpers.less',
     ], './public/css/vendor.css');
     mix.scripts([
         bower_components + 'jquery/dist/jquery.js',
@@ -30,8 +32,13 @@ elixir(function(mix) {
         bower_components + 'select2/dist/js/select2.full.js',
         bower_components + 'nestable2/jquery.nestable.js',
         bower_components + 'gritter/js/jquery.gritter.js',
+        bower_components + 'Caret.js/dist/js/jquery.caret.js',
+        bower_components + 'At.js/dist/js/jquery.atwho.js',
+        bower_components + 'bootbox.js/bootbox.js',
+        bower_components + 'jquery.inputmask/dist/jquery.inputmask.bundle.js',
         resources_assets + 'js/jquery.mmenu.min.js',
         resources_assets + 'js/core.js',
+        resources_assets + 'js/helpers.js',
     ], './public/js/vendor.js');
     mix.copy([
         bower_components + 'bootstrap/dist/fonts',
