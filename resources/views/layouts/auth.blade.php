@@ -1,7 +1,6 @@
-@extends('root')
+@extends('panel.root')
 
-@section('body_class')login
-@stop
+@section('body_class', 'login')
 
 @section('root')
     <div class="container">
