@@ -1,13 +1,13 @@
-@extends('root')
+@extends('panel.root')
 
 @section('root')
-    @include('partials.navbar')
+    @include('panel.partials.navbar')
 
-    @include('partials.sidebar')
+    @include('panel.partials.sidebar')
 
     <div class="main">
         @yield('main')
     </div>
 
-    @include('partials.footer')
+    @include('panel.partials.footer')
 @stop
