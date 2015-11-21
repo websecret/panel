@@ -1,4 +1,4 @@
-@extends('panel.root')
+@extends('panel::root')
 
 @section('body_class', 'login')
 

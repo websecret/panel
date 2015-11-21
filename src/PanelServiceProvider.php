@@ -14,7 +14,7 @@ class PanelServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'panel');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/panel'),
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/panel'),
         ]);
 
         $this->publishes([

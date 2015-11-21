@@ -7,14 +7,14 @@
 
     <title>@yield('title')</title>
 
-    @include('panel.partials.styles')
+    @include('panel::partials.styles')
 </head>
 
 <body class="@yield('body_class')">
 
 @yield('root')
 
-@include('panel.partials.scripts')
+@include('panel::partials.scripts')
 
 </body>
 </html>								
