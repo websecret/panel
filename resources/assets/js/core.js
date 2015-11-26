@@ -3,6 +3,14 @@ $.panelIconOpened = 'icon-arrow-up';
 $.panelIconClosed = 'icon-arrow-down';
 
 $(document).ready(function($){
+
+	$('ul.nav-sidebar').find('a').each(function(){
+		if ($(this).parent().hasClass('active')) {
+			$(this).parents('ul').add(this).each(function(){
+				$(this).show().parent().addClass('opened');
+			});
+		}
+	});
 	
 	$('.nav-sidebar').on('click', 'a', function(e){
 				
