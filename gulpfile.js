@@ -47,6 +47,7 @@ elixir(function(mix) {
         bower_components + 'bootbox.js/bootbox.js',
         bower_components + 'autosize/dist/autosize.js',
         bower_components + 'd3/d3.js',
+        bower_components + 'datatables/media/js/jquery.dataTables.min.js',
         bower_components + 'datatables/media/js/dataTables.bootstrap.js',
         bower_components + 'jquery.inputmask/dist/jquery.inputmask.bundle.js',
         bower_components + 'Flot/jquery.flot.js',
