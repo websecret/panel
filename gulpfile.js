@@ -36,6 +36,7 @@ elixir(function(mix) {
         bower_components + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
         bower_components + 'bootstrap-datepicker/dist/locales/*.js',
         bower_components + 'bootstrap-daterangepicker/daterangepicker.js',
+        bower_components + 'moment/min/moment-with-locales.js',
         bower_components + 'bootstrap-timepicker/js/bootstrap-timepicker.js',
         bower_components + 'nestable2/jquery.nestable.js',
         bower_components + 'gritter/js/jquery.gritter.js',
