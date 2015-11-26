@@ -5,6 +5,17 @@ elixir(function(mix) {
     var resources_assets = './resources/assets/';
     mix.less([
         bower_components + 'bootstrap/less/bootstrap.less',
+        bower_components + 'PACE/themes/purple/pace-theme-flash.css',
+        bower_components + 'chosen/chosen.min.css',
+        bower_components + 'select2/dist/css/select2.css',
+        bower_components + 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
+        bower_components + 'bootstrap-daterangepicker/daterangepicker.css',
+        bower_components + 'bootstrap-timepicker/less/timepicker.less',
+        bower_components + 'nestable2/jquery.nestable.css',
+        bower_components + 'gritter/css/jquery.gritter.css',
+        bower_components + 'At.js/dist/css/jquery.atwho.css',
+        bower_components + 'datatables/media/css/dataTables.bootstrap.css',
+        bower_components + 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css',
         resources_assets + 'css/jquery.mmenu.css',
         resources_assets + 'css/climacons-font.css',
         resources_assets + 'css/filetypes.css',
@@ -15,15 +26,6 @@ elixir(function(mix) {
         resources_assets + 'css/social.css',
         resources_assets + 'css/style.css',
         resources_assets + 'css/add-ons.css',
-        bower_components + 'PACE/themes/purple/pace-theme-flash.css',
-        bower_components + 'chosen/chosen.min.css',
-        bower_components + 'select2/dist/css/select2.css',
-        bower_components + 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
-        bower_components + 'bootstrap-daterangepicker/daterangepicker.css',
-        bower_components + 'bootstrap-timepicker/less/timepicker.less',
-        bower_components + 'nestable2/jquery.nestable.css',
-        bower_components + 'gritter/css/jquery.gritter.css',
-        bower_components + 'At.js/dist/css/jquery.atwho.css',
         resources_assets + 'less/helpers.less'
     ], './public/css/panel.css');
     mix.scripts([
@@ -43,7 +45,12 @@ elixir(function(mix) {
         bower_components + 'Caret.js/dist/jquery.caret.js',
         bower_components + 'At.js/dist/js/jquery.atwho.js',
         bower_components + 'bootbox.js/bootbox.js',
+        bower_components + 'autosize/dist/autosize.js',
+        bower_components + 'd3/d3.js',
+        bower_components + 'datatables/media/js/dataTables.bootstrap.js',
         bower_components + 'jquery.inputmask/dist/jquery.inputmask.bundle.js',
+        bower_components + 'Flot/jquery.flot.js',
+        bower_components + 'x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js',
         resources_assets + 'js/jquery.mmenu.min.js',
         resources_assets + 'js/core.js',
         resources_assets + 'js/helpers.js'
