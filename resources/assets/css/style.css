@@ -2251,7 +2251,7 @@ fieldset[disabled] .form-control {
   text-align: center;
 }
 select {
-  background: #f8f9fa url("../img/select.png") no-repeat !important;
+  background: #f8f9fa url("../images/select.png") no-repeat !important;
   background-size: 24px 20px !important;
   background-position: right center !important;
   -webkit-border-radius: 2px !important;
