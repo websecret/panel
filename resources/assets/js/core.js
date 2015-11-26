@@ -17,6 +17,8 @@ $(document).ready(function($){
 		if (!$(this).parent().hasClass('hover')) {
 			if ($(this).parent().find('ul').size() != 0) {
 
+                e.preventDefault();
+
 				if ($(this).parent().hasClass('opened')) {
 					$(this).parent().removeClass('opened');
 				} else {
@@ -39,7 +41,9 @@ $(document).ready(function($){
 							$(this).removeClass('opened');
 						});
 					});
-				} 
+				}
+
+                return false;
 
 			} else {
 
