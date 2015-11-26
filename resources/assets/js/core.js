@@ -105,8 +105,6 @@ $(document).ready(function($){
 	widthFunctions();
 	dropSidebarShadow();
 	init();
-	
-	$(".sidebar").mmenu();
 		
 });
 

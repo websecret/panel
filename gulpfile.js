@@ -16,7 +16,6 @@ elixir(function(mix) {
         bower_components + 'At.js/dist/css/jquery.atwho.css',
         bower_components + 'datatables/media/css/dataTables.bootstrap.css',
         bower_components + 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css',
-        resources_assets + 'css/jquery.mmenu.css',
         resources_assets + 'css/climacons-font.css',
         resources_assets + 'css/filetypes.css',
         resources_assets + 'css/font-awesome.css',
@@ -52,7 +51,6 @@ elixir(function(mix) {
         bower_components + 'jquery.inputmask/dist/jquery.inputmask.bundle.js',
         bower_components + 'Flot/jquery.flot.js',
         bower_components + 'x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js',
-        resources_assets + 'js/jquery.mmenu.min.js',
         resources_assets + 'js/core.js',
         resources_assets + 'js/helpers.js'
     ], './public/js/panel.js');
