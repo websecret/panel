@@ -15,11 +15,11 @@ class PanelServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/panel'),
-        ]);
+        ], 'views');
 
         $this->publishes([
             __DIR__.'/../public' => public_path('assets/panel'),
-        ], 'public');
+        ], 'assets');
     }
 
     public function register()

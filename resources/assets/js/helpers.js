@@ -21,7 +21,8 @@ $(document).ready(function () {
             maxDepth: 1
         }).on('change', updateOrder);
 
-        phoneMask();
+        initPhoneMask();
+        initMask();
         initChosen();
         initDatepicker();
         initTimepicker();
@@ -33,15 +34,22 @@ $(document).ready(function () {
         });
     }
 
-    function phoneMask() {
+    function initPhoneMask() {
         $('.js_panel-input-phone').inputmask('+375 (99) 999-99-99');
+    }
+
+    function initMask() {
+        $('.js_panel-input-mask').each(function() {
+           $(this).inputmask($(this).data('mask'));
+        });
     }
 
 
     init();
 
     function refresh() {
-        phoneMask();
+        initPhoneMask();
+        initMask();
         initChosen();
         initDatepicker();
         initTimepicker();
@@ -68,7 +76,7 @@ $(document).ready(function () {
     }
 
     function initChosen() {
-        $(".chosen-select").chosen({
+        $(".js_panel-input-chosen").chosen({
             no_results_text: "Ничего не найдено по запросу",
             placeholder_text_multiple: "Выберите из вариантов",
             search_contains: true

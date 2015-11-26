@@ -18,11 +18,14 @@ elixir(function(mix) {
         bower_components + 'PACE/themes/purple/pace-theme-flash.css',
         bower_components + 'chosen/chosen.min.css',
         bower_components + 'select2/dist/css/select2.css',
+        bower_components + 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
+        bower_components + 'bootstrap-daterangepicker/daterangepicker.css',
+        bower_components + 'bootstrap-timepicker/less/timepicker.less',
         bower_components + 'nestable2/jquery.nestable.css',
         bower_components + 'gritter/css/jquery.gritter.css',
         bower_components + 'At.js/dist/css/jquery.atwho.css',
-        resources_assets + 'less/helpers.less',
-    ], './public/css/vendor.css');
+        resources_assets + 'less/helpers.less'
+    ], './public/css/panel.css');
     mix.scripts([
         bower_components + 'jquery/dist/jquery.js',
         bower_components + 'bootstrap/dist/js/bootstrap.js',
@@ -30,6 +33,10 @@ elixir(function(mix) {
         bower_components + 'PACE/pace.js',
         bower_components + 'chosen/chosen.jquery.min.js',
         bower_components + 'select2/dist/js/select2.full.js',
+        bower_components + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
+        bower_components + 'bootstrap-datepicker/dist/locales/*.js',
+        bower_components + 'bootstrap-daterangepicker/daterangepicker.js',
+        bower_components + 'bootstrap-timepicker/js/bootstrap-timepicker.js',
         bower_components + 'nestable2/jquery.nestable.js',
         bower_components + 'gritter/js/jquery.gritter.js',
         bower_components + 'Caret.js/dist/jquery.caret.js',
@@ -38,14 +45,14 @@ elixir(function(mix) {
         bower_components + 'jquery.inputmask/dist/jquery.inputmask.bundle.js',
         resources_assets + 'js/jquery.mmenu.min.js',
         resources_assets + 'js/core.js',
-        resources_assets + 'js/helpers.js',
-    ], './public/js/vendor.js');
+        resources_assets + 'js/helpers.js'
+    ], './public/js/panel.js');
     mix.copy([
         bower_components + 'bootstrap/dist/fonts',
-        resources_assets + 'fonts',
+        resources_assets + 'fonts'
     ], './public/fonts');
     mix.copy([
         bower_components + 'gritter/images',
-        resources_assets + 'images',
+        resources_assets + 'images'
     ], './public/images');
 });
