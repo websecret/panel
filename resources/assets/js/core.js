@@ -33,6 +33,8 @@ $(document).ready(function($){
 					if (!$(this).parent().hasClass('opened')) {
 						$(this).slideUp();
 					}
+
+
 				});
 
 				if (!$(this).parent().parent().parent().hasClass('opened')) {
