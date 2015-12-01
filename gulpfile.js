@@ -32,6 +32,7 @@ elixir(function(mix) {
         bower_components + 'bootstrap/dist/js/bootstrap.js',
         bower_components + 'jquery-ui/jquery-ui.js',
         bower_components + 'PACE/pace.js',
+        bower_components + 'jquery-form/jquery.form.js',
         bower_components + 'moment/min/moment-with-locales.js',
         bower_components + 'chosen/chosen.jquery.min.js',
         bower_components + 'select2/dist/js/select2.full.js',
