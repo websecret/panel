@@ -63,6 +63,8 @@ Classes
  `.js_panel_input-chosen` - use it on selects to init [chosen](https://harvesthq.github.io/chosen/)
  
  `.js_panel_input-redactor` - use it to init [redactor.js](https://imperavi.com/redactor/) wysiwyg
+ 
+ `.js_panel_datatable` - use it to init [Datatables](https://www.datatables.net/). Use `data-datatable-order` ('asc', 'desc', false) on `thead th` to set column order. Use `data-datatable-search` (true, false) on `thead th` to set column searching. 
 
 Functions
 ---------

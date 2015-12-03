@@ -22,6 +22,7 @@ $(document).ready(function () {
         }).on('change', updateOrder);
 
         initRedactor();
+        initDatatable();
         initPhoneMask();
         initMask();
         initChosen();
@@ -50,6 +51,7 @@ $(document).ready(function () {
 
     function refresh() {
         initRedactor();
+        initDatatable();
         initPhoneMask();
         initMask();
         initChosen();
@@ -68,6 +70,51 @@ $(document).ready(function () {
             linkNofollow: true,
             lang: 'ru',
             plugins: ['table']
+        });
+    }
+
+
+    function initDatatable() {
+        $('.js_panel_datatable').each(function () {
+            var $table = $(this);
+
+            var order = [];
+            var disabledSearch = [];
+            var columnDefs = [];
+            $table.find('thead th').each(function () {
+                var cellOrder = $(this).data('datatable-order');
+                if (cellOrder !== false) {
+                    order.push([$(this).index(), cellOrder]);
+                } else {
+                    columnDefs.push({orderable: false, targets: $(this).index()});
+                }
+                var cellSearch = $(this).data('datatable-search');
+                if (cellSearch === false) {
+                    disabledSearch.push($(this).index());
+                }
+            });
+
+            $table.find('tfoot th').each(function () {
+                if (disabledSearch.indexOf($(this).index()) === -1) {
+                    var title = $table.find('thead th:eq(' + $(this).index() + ')').text();
+                    $(this).html('<input type="text" placeholder="Search ' + title + '" class="form-control input-sm" />');
+                }
+            });
+
+            var datatable = $table.DataTable({
+                order: order,
+                columnDefs: columnDefs,
+                bFilter: false,
+            });
+
+            datatable.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
         });
     }
 
