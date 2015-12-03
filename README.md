@@ -48,7 +48,7 @@ Helpers.js
 
 Classes
 -------
-`.js_panel_form-ajax` - forms will be submited by AJAX. U can use `.js_form-ajax-redirect` to redirect on repsonse data.link page
+`.js_panel_form-ajax` - forms will be submited by AJAX. U can use `.js_panel_form-ajax-redirect` to redirect on repsonse data.link page
 
 `.js_panel_delete-table-row` - attach prompt (y/n) popup on delete action
 
