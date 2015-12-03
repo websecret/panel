@@ -63,12 +63,11 @@ $(document).ready(function () {
 
 
     function initRedactor() {
-        alert('asd');
         $('.js_panel_input-redactor').redactor({
             buttonSource: true,
             linkNofollow: true,
             lang: 'ru',
-            plugins: ['table', 'fontsize', 'fontfamily', 'fontcolor']
+            plugins: ['table']
         });
     }
 
