@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.js_panel_ajax-content', ajaxContent);
     $(document).on('submit', '.js_panel_form-ajax', submitFormAjax);
-    $(document).on('click', '.js_panel_delete-table-row', deleteTableRow);
+    $(document).on('click', '.js_panel_delete', deleteElement);
     $(document).on('change', '.js_panel_image-upload', uploadImage);
     $(document).on('click', '.js_panel_image-remove', removeImage);
     $(document).on('change', '.js_panel_ajax-row :input', changeAjaxRowInput);
@@ -223,7 +223,7 @@ $(document).ready(function () {
         return false;
     }
 
-    function deleteTableRow(e) {
+    function deleteElement(e) {
         e.preventDefault();
         var $link = $(this);
         var url = $link.attr('href');
@@ -237,8 +237,14 @@ $(document).ready(function () {
                         dataType: 'JSON',
                         success: function (data) {
                             if (data.result == 'success') {
-                                var $tr = $link.closest('tr');
-                                $tr.remove();
+                                if($link.hasClass('js_panel_delete-table-row')) {
+                                    var $element = $link.closest('tr');
+                                } else if($link.data('delete')) {
+                                    var $element = data('delete');
+                                } else {
+                                    var $element = $link.parent();
+                                }
+                                $element.remove();
                                 showNotification('Удаление прошло успешно', '', 'success');
                             }
                         }

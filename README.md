@@ -50,7 +50,7 @@ Classes
 -------
 `.js_panel_form-ajax` - forms will be submited by AJAX. U can use `.js_panel_form-ajax-redirect` to redirect on repsonse data.link page
 
-`.js_panel_delete-table-row` - attach prompt (y/n) popup on delete action
+`.js_panel_delete` - attach prompt (y/n) popup on delete action. U can use `js_panel_delete-table-row` or `data-delete`. Default deleting parent element
 
 `.js_panel_input-date`  - use for init [bootsrap datepicker](https://bootstrap-datepicker.readthedocs.org/) on input 
 
