@@ -52,15 +52,17 @@ Classes
 
 `.js_panel_delete-table-row` - attach prompt (y/n) popup on delete action
 
-`.js_panel-input-date`  - use for init [bootsrap datepicker](https://bootstrap-datepicker.readthedocs.org/) on input 
+`.js_panel_input-date`  - use for init [bootsrap datepicker](https://bootstrap-datepicker.readthedocs.org/) on input 
 
-`.js_panel-input-time` - use for init [bootstrap timicker](http://jdewit.github.io/bootstrap-timepicker/) on input 
+`.js_panel_input-time` - use for init [bootstrap timicker](http://jdewit.github.io/bootstrap-timepicker/) on input 
  
- `.js_panel-input-mask` - use for init mask on input via input `data-mask` attribute
+ `.js_panel_input-mask` - use for init mask on input via input `data-mask` attribute
  
- `.js_panel-input-phone` - working same as .js_panel-input-mask. Mask is  '+375 (99) 999-99-99'
+ `.js_panel_input-phone` - working same as .js_panel_input-mask. Mask is  '+375 (99) 999-99-99'
  
- `.js_panel-input-chosen` - use it on selects to init [chosen](https://harvesthq.github.io/chosen/)
+ `.js_panel_input-chosen` - use it on selects to init [chosen](https://harvesthq.github.io/chosen/)
+ 
+ `.js_panel_input-redactor` - use it to init [redactor.js](https://imperavi.com/redactor/) wysiwyg
 
 Functions
 ---------

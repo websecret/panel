@@ -3,6 +3,7 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     var bower_components = './bower_components/';
     var resources_assets = './resources/assets/';
+    var resources_assets_plugins = resources_assets + 'plugins/';
     mix.less([
         bower_components + 'bootstrap/less/bootstrap.less',
         bower_components + 'PACE/themes/purple/pace-theme-flash.css',
@@ -16,6 +17,7 @@ elixir(function(mix) {
         bower_components + 'At.js/dist/css/jquery.atwho.css',
         bower_components + 'datatables/media/css/dataTables.bootstrap.css',
         bower_components + 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css',
+        resources_assets_plugins + 'redactorjs/css/redactor.css',
         resources_assets + 'css/climacons-font.css',
         resources_assets + 'css/filetypes.css',
         resources_assets + 'css/font-awesome.css',
@@ -52,6 +54,14 @@ elixir(function(mix) {
         bower_components + 'jquery.inputmask/dist/jquery.inputmask.bundle.js',
         bower_components + 'Flot/jquery.flot.js',
         bower_components + 'x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js',
+        resources_assets_plugins + 'redactorjs/js/redactor.js',
+        resources_assets_plugins + 'redactorjs/js/definedlinks.js',
+        resources_assets_plugins + 'redactorjs/js/fontcolor.js',
+        resources_assets_plugins + 'redactorjs/js/fontfamily.js',
+        resources_assets_plugins + 'redactorjs/js/fontsize.js',
+        resources_assets_plugins + 'redactorjs/js/imagemanager.js',
+        resources_assets_plugins + 'redactorjs/js/table.js',
+        resources_assets_plugins + 'redactorjs/js/ru.js',
         resources_assets + 'js/core.js',
         resources_assets + 'js/helpers.js'
     ], './public/js/panel.js');

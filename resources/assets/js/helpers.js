@@ -21,6 +21,7 @@ $(document).ready(function () {
             maxDepth: 1
         }).on('change', updateOrder);
 
+        initRedactor();
         initPhoneMask();
         initMask();
         initChosen();
@@ -35,11 +36,11 @@ $(document).ready(function () {
     }
 
     function initPhoneMask() {
-        $('.js_panel-input-phone').inputmask('+375 (99) 999-99-99');
+        $('.js_panel_input-phone').inputmask('+375 (99) 999-99-99');
     }
 
     function initMask() {
-        $('.js_panel-input-mask').each(function() {
+        $('.js_panel_input-mask').each(function() {
            $(this).inputmask($(this).data('mask'));
         });
     }
@@ -48,6 +49,7 @@ $(document).ready(function () {
     init();
 
     function refresh() {
+        initRedactor();
         initPhoneMask();
         initMask();
         initChosen();
@@ -59,15 +61,26 @@ $(document).ready(function () {
         refresh();
     });
 
+
+    function initRedactor() {
+        $('.js_panel_input-redactor').redactor({
+            buttonSource: true,
+            linkNofollow: true,
+            lang: 'ru',
+            plugins: ['table', 'fontsize', 'fontfamily', 'fontcolor']
+        });
+    }
+
+
     function initDatepicker() {
-        $('.js_panel-input-date').datepicker({
+        $('.js_panel_input-date').datepicker({
             format: 'dd.mm.yyyy',
             todayHighlight: true
         });
     }
 
     function initTimepicker() {
-        $('.js_panel-input-time').timepicker({
+        $('.js_panel_input-time').timepicker({
             minuteStep: 1,
             showSeconds: false,
             showMeridian: false,
@@ -76,7 +89,7 @@ $(document).ready(function () {
     }
 
     function initChosen() {
-        $(".js_panel-input-chosen").chosen({
+        $(".js_panel_input-chosen").chosen({
             no_results_text: "Ничего не найдено по запросу",
             placeholder_text_multiple: "Выберите из вариантов",
             search_contains: true
@@ -133,7 +146,7 @@ $(document).ready(function () {
             success: function (data) {
                 $form.find('.loader').remove();
                 if (data.result == 'success') {
-                    if ($form.hasClass('js_form-ajax-redirect')) {
+                    if ($form.hasClass('js_panel_form-ajax-redirect')) {
                         setTimeout(function () {
                             window.location.href = data.link;
                         }, 2000);
@@ -141,7 +154,11 @@ $(document).ready(function () {
                     showNotification('Данные успешно сохранены', '', 'success');
                 } else {
                     $.each(data.errors, function (name, errors) {
-                        var $input = $(':input[name="' + name + '"]');
+                        var inputArray = input.split('.');
+                        var $input = $form.find(':input[name="' + input + '"]');
+                        if(inputArray.length > 1) {
+                            $input = $form.find(':input[name="' + inputArray[0] + '[]"]:eq('+inputArray[1]+')');
+                        }
                         var $wrapper = $input.closest('.form-group');
                         var $error_block = $wrapper.find('.error-block');
                         var text = '';
@@ -186,7 +203,7 @@ $(document).ready(function () {
     }
 
     function uploadImage() {
-        var $wrapper = $(this).closest('.js_panel-image-upload-wrapper');
+        var $wrapper = $(this).closest('.js_panel_image-upload-wrapper');
         var data_class = $wrapper.data('class');
         var data_params = $wrapper.data('params');
         var data_multiple = $wrapper.data('multiple');
@@ -217,7 +234,7 @@ $(document).ready(function () {
     function removeImage(e) {
         e.preventDefault();
         var $col = $(this).closest('.js_panel_image-col');
-        var $wrapper = $col.closest('.js_panel-image-upload-wrapper');
+        var $wrapper = $col.closest('.js_panel_image-upload-wrapper');
         $col.remove();
         resetMainImage($wrapper);
     }
