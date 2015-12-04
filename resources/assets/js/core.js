@@ -74,16 +74,8 @@ $(document).ready(function($){
 	
 	/* ---------- Main Menu Open/Close, Min/Full ---------- */		
 	$('#main-menu-toggle').click(function(){
-		
-		if($('body').hasClass('sidebar-hidden')){
-									
-			$('body').removeClass('sidebar-hidden');
-			
-		} else {
-						
-			$('body').addClass('sidebar-hidden');
-			
-		}				
+
+		$('body').toggleClass('sidebar-hidden');
 		
 	});
 	
@@ -211,7 +203,7 @@ function widthFunctions(e) {
 		}
 	}
 	
-	if (winWidth > 768) {
+	//if (winWidth > 768) {
 		$('.main').css('min-height',winHeight-footerHeight);
-	}
+	//}
 }
