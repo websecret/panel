@@ -178,6 +178,7 @@ function widthFunctions(e) {
 		
 		if (winWidth < 992) {
 			var otherHeight = sidebarHeaderHeight + sidebarFooterHeight;
+			$('body').addClass('sidebar-hidden');
 		} else {
 			var otherHeight = headerHeight + sidebarHeaderHeight + sidebarFooterHeight;
 		}

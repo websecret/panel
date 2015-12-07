@@ -213,7 +213,7 @@ $(document).ready(function () {
                     }
                     showNotification('Данные успешно сохранены', '', 'success');
                 } else {
-                    $.each(data.errors, function (name, errors) {
+                    $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
                         var $input = $form.find(':input[name="' + input + '"]');
                         if(inputArray.length > 1) {
