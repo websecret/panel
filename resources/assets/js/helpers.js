@@ -118,7 +118,6 @@ $(document).ready(function () {
             var datatable = $table.DataTable({
                 order: order,
                 columnDefs: columnDefs,
-                bFilter: false,
             });
 
             datatable.columns().every(function () {
