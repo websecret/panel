@@ -15,6 +15,12 @@ $(document).ready(function () {
         return false;
     });
 
+    $(document).on('click', '.sidebar-overlay', function(e) {
+        e.preventDefault();
+        $('body').addClass('sidebar-hidden');
+        return false;
+    });
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
