@@ -9,8 +9,10 @@ $(document).ready(function () {
     $(document).on('click', '.js_panel_multiple-add', clickMultipleAdd);
     $(document).on('click', '.js_panel_multiple-remove', clickMultipleRemove);
 
-    $(document).on('click', '#sidebar-menu', function() {
+    $(document).on('click', '#sidebar-menu', function(e) {
+        e.preventDefault();
         $('body').toggleClass('sidebar-hidden');
+        return false;
     });
 
     $.ajaxSetup({
