@@ -7,7 +7,7 @@
 
     <div class="main">
         @yield('main')
-        <a class="sidebar-overlay"></a>
+        <a href="#" class="sidebar-overlay"></a>
     </div>
 
     @include('panel::partials.footer')
