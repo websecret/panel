@@ -9,6 +9,10 @@ $(document).ready(function () {
     $(document).on('click', '.js_panel_multiple-add', clickMultipleAdd);
     $(document).on('click', '.js_panel_multiple-remove', clickMultipleRemove);
 
+    $(document).on('click', '#sidebar-menu', function() {
+        $('body').toggleClass('sidebar-hidden');
+    });
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -16,6 +20,8 @@ $(document).ready(function () {
     });
 
     function init() {
+
+        $('[data-toggle="tooltip"]').tooltip();
 
         $('.dd.js_panel_nestable-order').nestable({
             maxDepth: 1

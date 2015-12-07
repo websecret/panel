@@ -1,5 +1,15 @@
 @import "./bower_components/bootstrap/less/variables";
 
+.main {
+  transition: padding-left .3s ease;
+}
+
+body.sidebar-hidden {
+  .main {
+    transition: padding-left .3s ease;
+  }
+}
+
 .dd {
   width: 100%;
 }
