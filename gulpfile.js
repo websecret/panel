@@ -5,7 +5,7 @@ elixir(function(mix) {
     var resources_assets = './resources/assets/';
     var resources_assets_plugins = resources_assets + 'plugins/';
     mix.less([
-        bower_components + 'bootstrap/less/bootstrap.less',
+        bower_components + 'bootstrap/dist/css/bootstrap.css',
         bower_components + 'PACE/themes/purple/pace-theme-flash.css',
         bower_components + 'chosen/chosen.min.css',
         bower_components + 'select2/dist/css/select2.css',
