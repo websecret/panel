@@ -386,7 +386,7 @@ $(document).ready(function () {
         var $row = $clone.clone();
         $row.find(':input').prop('disabled', false);
         $row.insertBefore($clone);
-        $row.removeClass('js_multiple-row-clone');
+        $row.removeClass('js_panel_multiple-row-clone');
         return false;
     }
 
