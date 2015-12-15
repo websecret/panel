@@ -162,8 +162,8 @@ $(document).ready(function () {
         $('.js_panel_input-autocomplete').each(function() {
             var $input = $(this);
             var url = $input.data('autocomplete-url');
-            $input.autocomplete({
-                serviceUrl: url
+            $input.devbridgeAutocomplete({
+                serviceUrl: url,
             });
         });
     }
