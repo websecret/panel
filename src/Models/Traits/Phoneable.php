@@ -2,13 +2,12 @@
 
 namespace Websecret\Panel\Models\Traits;
 
-use Websecret\Panel\Models\Phone;
-
 trait Phoneable
 {
     public function phones()
     {
-        return $this->morphMany(Phone::class, 'phoneable');
+        $phoneClass = config('panel.phone_model');
+        return $this->morphMany($phoneClass, 'phoneable');
     }
 
     public function syncPhones($data = []) {
