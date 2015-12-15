@@ -25,9 +25,6 @@ trait Addressable
 
     public function getAddressStringAttribute() {
         $address = $this->address;
-        if(!$address) {
-            return '';
-        }
         $fields = [];
         foreach(Address::$addressFields as $addressField) {
             if($address->{$addressField}) {
@@ -47,13 +44,11 @@ trait Addressable
         });
 
         static::deleted(function($model){
-            if($model->address) {
-                $model->address()->delete();
-            }
+            $model->address()->delete();
         });
     }
 
     public function getAddressViewAttribute() {
-        return view('index.partials.form.address', ['address' => $this->address]);
+        return view('panel::partials.form.address', ['address' => $this->address]);
     }
 }

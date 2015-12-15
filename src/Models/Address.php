@@ -5,9 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $fillable = ['city', 'street', 'zip'];
+    protected $fillable = ['street', 'city', 'state', 'zip'];
 
-    public static $addressFields = ['city', 'street', 'zip'];
+    public static $addressFields = ['street', 'city', 'state', 'zip'];
 
     public function addressable()
     {

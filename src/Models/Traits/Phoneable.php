@@ -31,6 +31,6 @@ trait Phoneable
     }
 
     public function getPhonesViewAttribute() {
-        return view('index.partials.form.phones', ['phones' => $this->phones]);
+        return view('panel::partials.form.phones', ['phones' => $this->phones]);
     }
 }
