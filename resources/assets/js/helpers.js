@@ -164,6 +164,7 @@ $(document).ready(function () {
             var url = $input.data('autocomplete-url');
             $input.devbridgeAutocomplete({
                 serviceUrl: url,
+                noCache: true
             });
         });
     }

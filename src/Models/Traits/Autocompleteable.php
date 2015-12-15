@@ -7,9 +7,9 @@ trait Autocompleteable
     protected static function autocomplete($field, $query)
     {
         $models = static::all()->unique($field)->pluck($field);
-        $models = $models->filter(function($item) use($query) {
+        $models = $models->filter(function ($item) use ($query) {
             $item = trim($item);
-            if($item != '' && $query != '') {
+            if ($item != '' && $query != '') {
                 return str_contains($item, $query);
             }
             return false;
@@ -22,7 +22,8 @@ trait Autocompleteable
         ]);
     }
 
-    public static function getAutocompleteUrl($field) {
+    public static function getAutocompleteUrl($field)
+    {
         return route('panel::autocomplete', ['model' => static::class, 'field' => $field]);
     }
 }
