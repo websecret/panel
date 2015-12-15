@@ -23,6 +23,6 @@ trait Autocompleteable
     }
 
     public static function getAutocompleteUrl($field) {
-        return route('autocomplete', ['model' => static::class, 'field' => $field]);
+        return route('panel::autocomplete', ['model' => static::class, 'field' => $field]);
     }
 }
