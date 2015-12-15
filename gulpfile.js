@@ -39,7 +39,7 @@ elixir(function(mix) {
         bower_components + 'moment/min/moment-with-locales.js',
         bower_components + 'chosen/chosen.jquery.min.js',
         bower_components + 'select2/dist/js/select2.full.js',
-        bower_components + 'devbridge-autocomplete/src/jquery.autocomplete.js',
+        bower_components + 'devbridge-autocomplete/dist/jquery.autocomplete.js',
         bower_components + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
         bower_components + 'bootstrap-datepicker/dist/locales/*.js',
         bower_components + 'bootstrap-daterangepicker/daterangepicker.js',
