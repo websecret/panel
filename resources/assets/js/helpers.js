@@ -40,6 +40,7 @@ $(document).ready(function () {
         initPhoneMask();
         initMask();
         initChosen();
+        initAutocomplete();
         initDatepicker();
         initTimepicker();
 
@@ -69,6 +70,7 @@ $(document).ready(function () {
         initPhoneMask();
         initMask();
         initChosen();
+        initAutocomplete();
         initDatepicker();
         initTimepicker();
     }
@@ -153,6 +155,16 @@ $(document).ready(function () {
             no_results_text: "Ничего не найдено по запросу",
             placeholder_text_multiple: "Выберите из вариантов",
             search_contains: true
+        });
+    }
+
+    function initAutocomplete() {
+        $('.js_panel_input-autocomplete').each(function() {
+            var $input = $(this);
+            var url = $input.data('autocomplete-url');
+            $input.autocomplete({
+                serviceUrl: url
+            });
         });
     }
 

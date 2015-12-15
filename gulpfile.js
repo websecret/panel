@@ -27,6 +27,7 @@ elixir(function(mix) {
         resources_assets + 'css/social.css',
         resources_assets + 'css/style.css',
         resources_assets + 'css/add-ons.css',
+        resources_assets + 'less/plugins.less',
         resources_assets + 'less/helpers.less'
     ], './public/css/panel.css');
     mix.scripts([
@@ -38,6 +39,7 @@ elixir(function(mix) {
         bower_components + 'moment/min/moment-with-locales.js',
         bower_components + 'chosen/chosen.jquery.min.js',
         bower_components + 'select2/dist/js/select2.full.js',
+        bower_components + 'devbridge-autocomplete/dist/jquery.autocomplete.js',
         bower_components + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
         bower_components + 'bootstrap-datepicker/dist/locales/*.js',
         bower_components + 'bootstrap-daterangepicker/daterangepicker.js',

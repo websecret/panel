@@ -37,7 +37,8 @@
     "bootbox.js": "bootbox#~4.4.0",
     "jquery.inputmask": "~3.2.4",
     "At.js": "jquery.atwho#~1.4.0",
-    "jquery-form": "~3.46.0"
+    "jquery-form": "~3.46.0",
+    "devbridge-autocomplete": "~1.2.24"
   },
   "resolutions": {
     "jquery": "~2.1.4"

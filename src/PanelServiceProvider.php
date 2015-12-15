@@ -2,28 +2,76 @@
 
 namespace Websecret\Panel;
 
-
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Router;
+use Illuminate\Http\Request;
 
 class PanelServiceProvider extends ServiceProvider
 {
     protected $defer = false;
 
-    public function boot()
+    public function boot(Router $router)
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'panel');
-
-        $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/panel'),
-        ], 'views');
-
-        $this->publishes([
-            __DIR__.'/../public' => public_path('assets/panel'),
-        ], 'assets');
+        $this->handleConfigs();
+        $this->handleModels();
+        $this->registerRoutes($router);
+        $this->handleViews();
+        $this->handleAssets();
     }
 
     public function register()
     {
-        
+    }
+
+    private function handleModels()
+    {
+        $config = $this->getPanelConfig();
+        $this->publishes([
+            __DIR__ . '/Models' => $config['models_path'],
+        ], 'models');
+    }
+
+    private function registerRoutes($router)
+    {
+        $config = $this->getPanelConfig();
+        $url = $config['autocomplete_url'];
+        $router->get($url, function (Request $request) {
+            $model = $request->input('model');
+            $field = $request->input('field');
+            $query = trim($request->input('query', ''));
+            return $model::autocomplete($field, $query);
+        })->name('panel::autocomplete');
+    }
+
+    private function handleViews()
+    {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'panel');
+        $this->publishes([
+            __DIR__ . '/../resources/views' => base_path('resources/views/vendor/panel'),
+        ], 'views');
+    }
+
+    private function handleAssets()
+    {
+        $this->publishes([
+            __DIR__ . '/../public' => public_path('assets/panel'),
+        ], 'assets');
+    }
+
+    private function handleConfigs()
+    {
+        $configPath = __DIR__ . '/../config/panel.php';
+        $this->publishes([$configPath => config_path('panel.php')], 'config');
+        $this->mergeConfigFrom($configPath, 'panel');
+    }
+
+
+    protected function getPanelConfig()
+    {
+        $defaults = app('config')->get('panel');
+        if (property_exists($this, 'panel')) {
+            return array_merge($defaults, $this->panel);
+        }
+        return $defaults;
     }
 }
