@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Traits;
+namespace Websecret\Panel\Models\Traits;
 
-use App\Models\Address;
+use Websecret\Panel\Models\Address;
 
 trait Addressable
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace Websecret\Panel\Models\Traits;
 
 trait Autocompleteable
 {

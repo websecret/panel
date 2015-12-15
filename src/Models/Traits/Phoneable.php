@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Traits;
+namespace Websecret\Panel\Models\Traits;
 
-use App\Models\Phone;
+use Websecret\Panel\Models\Phone;
 
 trait Phoneable
 {

@@ -1,9 +1,9 @@
 <?php
-namespace App\Models;
+namespace Websecret\Panel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Traits\Autocompleteable;
+use Websecret\Panel\Models\Traits\Autocompleteable;
 
 class Address extends Model
 {
