@@ -60,7 +60,6 @@ $(document).ready(function () {
         initPhoneMask();
         initMask();
         initChosen();
-        initAutocomplete();
         initDatepicker();
         initTimepicker();
     }
@@ -159,13 +158,11 @@ $(document).ready(function () {
     }
 
     function initAutocomplete() {
-        console.log('in aut');
-        $('.js_input-autocomplete').each(function() {
+        $('.js_panel_input-autocomplete').each(function() {
             var $input = $(this);
             var url = $input.data('autocomplete-url');
             $input.devbridgeAutocomplete({
-                serviceUrl: url,
-                noCache: true
+                serviceUrl: url
             });
         });
     }
