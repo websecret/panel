@@ -51,16 +51,6 @@ $(document).ready(function () {
         });
     }
 
-    function initPhoneMask() {
-        $('.js_panel_input-phone').inputmask('+375 (99) 999-99-99');
-    }
-
-    function initMask() {
-        $('.js_panel_input-mask').each(function() {
-           $(this).inputmask($(this).data('mask'));
-        });
-    }
-
 
     init();
 
@@ -79,6 +69,16 @@ $(document).ready(function () {
         refresh();
     });
 
+
+    function initPhoneMask() {
+        $('.js_panel_input-phone').inputmask('+375 (99) 999-99-99');
+    }
+
+    function initMask() {
+        $('.js_panel_input-mask').each(function() {
+            $(this).inputmask($(this).data('mask'));
+        });
+    }
 
     function initRedactor() {
         $('.js_panel_input-redactor').redactor({
@@ -159,7 +159,8 @@ $(document).ready(function () {
     }
 
     function initAutocomplete() {
-        $('.js_panel_input-autocomplete').each(function() {
+        console.log('in aut');
+        $('.js_input-autocomplete').each(function() {
             var $input = $(this);
             var url = $input.data('autocomplete-url');
             $input.devbridgeAutocomplete({
