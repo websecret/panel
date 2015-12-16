@@ -4,8 +4,9 @@ use Validator;
 use File;
 use GlideImage;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
-class UploadController
+class UploadController extends Controller
 {
 
     public function images(Request $request)
