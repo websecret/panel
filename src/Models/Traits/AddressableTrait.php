@@ -26,6 +26,9 @@ trait AddressableTrait
     public function getAddressStringAttribute() {
         $addressClass = config('panel.address_model');
         $address = $this->address;
+        if(!$address) {
+            return '';
+        }
         $fields = [];
         foreach($addressClass::$addressFields as $addressField) {
             if($address->{$addressField}) {
@@ -53,7 +56,7 @@ trait AddressableTrait
     public function getAddressViewAttribute() {
         $addressClass = config('panel.address_model');
         return view('panel::partials.form.address', [
-            'address' => $this->address,
+            'address' => $this->address ? $this->address : new $addressClass(),
             'fields' => $addressClass::$addressFields
         ]);
     }
