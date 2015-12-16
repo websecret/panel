@@ -6,7 +6,9 @@ return [
 
     'address_model' => \Websecret\Panel\Models\Address::class,
     'phone_model' => \Websecret\Panel\Models\Phone::class,
+    'photo_model' => \Websecret\Panel\Models\Photo::class,
 
     'autocomplete_url' => 'autocomplete',
+    'upload_url' => 'upload/images',
 
 ];

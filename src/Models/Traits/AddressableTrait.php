@@ -2,7 +2,7 @@
 
 namespace Websecret\Panel\Models\Traits;
 
-trait Addressable
+trait AddressableTrait
 {
     public function address()
     {

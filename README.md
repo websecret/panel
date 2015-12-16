@@ -36,6 +36,7 @@ Views, Assets, Models
 Publish the package views and assets to your application. Run these commands inside your terminal.
 
     php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=config
+    php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=migrations
     php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=models
     php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=views
     php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=assets

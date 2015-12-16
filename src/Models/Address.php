@@ -3,11 +3,11 @@ namespace Websecret\Panel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Websecret\Panel\Models\Traits\Autocompleteable;
+use Websecret\Panel\Models\Traits\AutocompleteableTrait;
 
 class Address extends Model
 {
-    use Autocompleteable;
+    use AutocompleteableTrait;
 
     protected $fillable = ['street', 'city', 'state', 'zip'];
 

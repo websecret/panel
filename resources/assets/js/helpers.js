@@ -8,6 +8,8 @@ $(document).ready(function () {
     $(document).on('change', '.js_panel_ajax-row :input', changeAjaxRowInput);
     $(document).on('click', '.js_panel_multiple-add', clickMultipleAdd);
     $(document).on('click', '.js_panel_multiple-remove', clickMultipleRemove);
+    $(document).on('change', '.js_panel_images-upload', changeImagesInput);
+    $(document).on('click', '.js_panel_images-remove', removeImages);
 
     $(document).on('click', '#sidebar-menu', function(e) {
         e.preventDefault();
@@ -407,5 +409,96 @@ $(document).ready(function () {
         var $row = $(this).closest('.js_panel_multiple-row[data-name="'+name+'"]');
         $row.remove();
         return false;
+    }
+
+    function uploadImages($input, model, type, params) {
+        if ($input[0].files) {
+            var data = new FormData();
+            data.append('model', model);
+            if ($.isArray(type)) {
+                $.each(type, function (key, value) {
+                    data.append('type[]', value);
+                });
+            } else {
+                data.append('type', type);
+            }
+            data.append('params', params);
+            $.each($input[0].files, function (key, value) {
+                data.append('files[]', value);
+            });
+            var result = {};
+            $.ajax({
+                url: '/upload/images',
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    result.type = data.type;
+                    if (data.type == 'success') {
+                        result.files = data.files;
+                    } else {
+                        result.text = data.error;
+                    }
+                    $input.replaceWith($input.clone(true));
+                }
+            });
+
+            return result;
+        }
+    }
+
+
+    function changeImagesInput() {
+        var $wrapper = $(this).closest('.js_panel_images-upload-wrapper');
+        var dataModel = $wrapper.data('model');
+        var dataType = $wrapper.data('type');
+        var dataParams = $wrapper.data('params');
+        var dataMultiple = $wrapper.data('multiple');
+
+        var uploaded = uploadImages($(this), dataModel, dataType, dataParams);
+
+        var $row = $wrapper.find('.js_panel_images-row');
+        if (uploaded.type == 'success') {
+            $.each(uploaded.files, function (i, file) {
+                if (!dataMultiple) {
+                    $row.find('.js_panel_images-col').not('.js_panel_images-col-clone').remove();
+                }
+                var $col_clone = $row.find('.js_panel_images-col-clone');
+                var $col = $col_clone.clone();
+                var $image = $col.find('.js_panel_images-img');
+                var $input = $col.find('.js_panel_images-path');
+                var $main = $col.find('.js_panel_images-main :input');
+                $image.attr('src', file.path);
+                $input.val(file.filename).prop('disabled', false);
+                $main.prop('disabled', false);
+                $col.removeClass('js_panel_images-col-clone');
+                $row.append($col);
+            });
+            resetMainImage($wrapper);
+        }
+    }
+
+    function removeImages(e) {
+        e.preventDefault();
+        var $col = $(this).closest('.js_panel_images-col');
+        var $wrapper = $col.closest('.js_panel_images-upload-wrapper');
+        $col.remove();
+        resetMainImage($wrapper);
+    }
+
+    function resetMainImage($wrapper) {
+        var data_multiple = $wrapper.data('multiple');
+        if (!data_multiple || (data_multiple && !$wrapper.find('.js_panel_images-main input:radio:enabled:checked').length)) {
+            $wrapper.find('.js_panel_images-main input:radio:enabled:first').prop('checked', true);
+        }
+        var $cols = $wrapper.find('.js_panel_images-col').not('.js_panel_images-col-clone');
+        $cols.each(function (i) {
+            var $col = $(this);
+            var $main = $col.find('.js_panel_images-main :input');
+            $main.attr('value', i);
+        });
     }
 });

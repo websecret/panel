@@ -34,13 +34,24 @@ class PanelServiceProvider extends ServiceProvider
     private function registerRoutes($router)
     {
         $config = $this->getPanelConfig();
-        $url = $config['autocomplete_url'];
-        $router->get($url, function (Request $request) {
+
+        $autocompleteUrl = $config['autocomplete_url'];
+        $router->get($autocompleteUrl, function (Request $request) {
             $model = $request->input('model');
             $field = $request->input('field');
             $query = trim($request->input('query', ''));
             return $model::autocomplete($field, $query);
         })->name('panel::autocomplete');
+
+        $uploadUrl = $config['upload_url'];
+        Route::post($uploadUrl, 'Websecret\Panel\Http\Controllers\UploadController@images');
+    }
+
+    private function handleMigrations()
+    {
+        $this->publishes([
+            __DIR__ . '/../migrations' => base_path('database/migrations'),
+        ], 'migrations');
     }
 
     private function handleViews()

@@ -2,7 +2,7 @@
 
 namespace Websecret\Panel\Models\Traits;
 
-trait Phoneable
+trait PhoneableTrait
 {
     public function phones()
     {

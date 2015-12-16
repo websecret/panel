@@ -2,7 +2,7 @@
 
 namespace Websecret\Panel\Models\Traits;
 
-trait Autocompleteable
+trait AutocompleteableTrait
 {
     protected static function autocomplete($field, $query)
     {
