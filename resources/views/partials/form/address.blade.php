@@ -1,5 +1,5 @@
 <div class="row">
-    @foreach(config('panel.address_model')::$addressFields as $addressField)
+    @foreach($fields as $addressField)
         <div class="col-md-12">
             <div class="form-group {{ PanelForm::formGroupClass('address.'.$addressField, $errors) }}">
                 <label class="col-md-4 control-label">{{ trans('labels.address.'.$addressField) }}</label>

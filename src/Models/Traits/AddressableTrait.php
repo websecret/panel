@@ -51,6 +51,10 @@ trait AddressableTrait
     }
 
     public function getAddressViewAttribute() {
-        return view('panel::partials.form.address', ['address' => $this->address]);
+        $addressClass = config('panel.address_model');
+        return view('panel::partials.form.address', [
+            'address' => $this->address,
+            'fields' => $addressClass::$addressFields
+        ]);
     }
 }
