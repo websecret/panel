@@ -15,9 +15,10 @@ class PanelServiceProvider extends ServiceProvider
         $this->handleConfigs();
         $this->handleModels();
         $this->handleMigrations();
-        $this->registerRoutes($router);
         $this->handleViews();
         $this->handleAssets();
+
+        $this->registerRoutes($router);
     }
 
     public function register()
