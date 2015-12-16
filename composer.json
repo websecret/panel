@@ -7,6 +7,8 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "5.*",
+        "illuminate/routing": "5.*",
+        "illuminate/http": "5.*",
         "spatie/laravel-glide": "^2.2"
     },
     "autoload": {

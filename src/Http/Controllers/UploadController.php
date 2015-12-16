@@ -2,7 +2,6 @@
 
 use Validator;
 use File;
-use Config;
 use GlideImage;
 use Illuminate\Http\Request;
 
