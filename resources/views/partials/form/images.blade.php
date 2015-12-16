@@ -1,5 +1,5 @@
 <?php $isImageMultiple = $model::getImageIsMultiple($type); ?>
-<div class="js_panel_images-upload-wrapper" data-multiple="{{ $isImageMultiple }}" data-model="{{ get_class($model) }}" data-type="{{ $type }}" data-params="{{ $params }}">
+<div class="js_panel_images-upload-wrapper" data-url="{{ route('panel::upload') }}" data-multiple="{{ $isImageMultiple }}" data-model="{{ get_class($model) }}" data-type="{{ $type }}" data-params="{{ $params }}">
     <div class="js_panel_images-row">
         <div class="js_panel_images-col js_panel_images-col-clone">
             <div class="js_panel_images-wrapper">

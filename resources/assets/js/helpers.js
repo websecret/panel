@@ -411,7 +411,7 @@ $(document).ready(function () {
         return false;
     }
 
-    function uploadImages($input, model, type, params) {
+    function uploadImages($input, url, model, type, params) {
         if ($input[0].files) {
             var data = new FormData();
             data.append('model', model);
@@ -428,7 +428,7 @@ $(document).ready(function () {
             });
             var result = {};
             $.ajax({
-                url: '/upload/images',
+                url: url,
                 type: 'POST',
                 data: data,
                 processData: false,
@@ -453,12 +453,13 @@ $(document).ready(function () {
 
     function changeImagesInput() {
         var $wrapper = $(this).closest('.js_panel_images-upload-wrapper');
+        var dataUrl = $wrapper.data('url');
         var dataModel = $wrapper.data('model');
         var dataType = $wrapper.data('type');
         var dataParams = $wrapper.data('params');
         var dataMultiple = $wrapper.data('multiple');
 
-        var uploaded = uploadImages($(this), dataModel, dataType, dataParams);
+        var uploaded = uploadImages($(this), dataUrl, dataModel, dataType, dataParams);
 
         var $row = $wrapper.find('.js_panel_images-row');
         if (uploaded.type == 'success') {

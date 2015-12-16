@@ -35,7 +35,7 @@ trait PhotoableTrait
     }
 
     public function getImagesView($type, $params) {
-        return view('index.partials.form.images', [
+        return view('panel:partials.form.images', [
             'model' => $this,
             'type' => $type,
             'params' => $params,
