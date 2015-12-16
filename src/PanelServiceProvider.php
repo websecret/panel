@@ -45,7 +45,7 @@ class PanelServiceProvider extends ServiceProvider
         })->name('panel::autocomplete');
 
         $uploadUrl = $config['upload_url'];
-        Route::post($uploadUrl, 'Websecret\Panel\Http\Controllers\UploadController@images');
+        $router->post($uploadUrl, 'Websecret\Panel\Http\Controllers\UploadController@images');
     }
 
     private function handleMigrations()
