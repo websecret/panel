@@ -97,9 +97,4 @@ class PanelServiceProvider extends ServiceProvider
         }
         return $defaults;
     }
-
-    public function provides()
-    {
-        return ['panel', 'form-helper'];
-    }
 }
