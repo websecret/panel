@@ -453,6 +453,10 @@ $(document).ready(function () {
 
     function changeImagesInput() {
         var $wrapper = $(this).closest('.js_panel_images-upload-wrapper');
+
+        var $loading = $wrapper.find('.js_panel_images-loading-col');
+        $loading.fadeIn(100);
+
         var dataUrl = $wrapper.data('url');
         var dataModel = $wrapper.data('model');
         var dataType = $wrapper.data('type');
@@ -471,14 +475,17 @@ $(document).ready(function () {
                 var $col = $col_clone.clone();
                 var $image = $col.find('.js_panel_images-img');
                 var $input = $col.find('.js_panel_images-path');
-                var $main = $col.find('.js_panel_images-main :input');
+                var $main = $col.find('.js_panel_images-main');
                 $image.attr('src', file.path);
                 $input.val(file.filename).prop('disabled', false);
                 $main.prop('disabled', false);
                 $col.removeClass('js_panel_images-col-clone');
-                $row.append($col);
+                $loading.fadeOut(100);
+                $col.insertBefore($col_clone);
             });
             resetMainImage($wrapper);
+        } else {
+            $loading.fadeOut(100);
         }
     }
 
@@ -492,13 +499,13 @@ $(document).ready(function () {
 
     function resetMainImage($wrapper) {
         var data_multiple = $wrapper.data('multiple');
-        if (!data_multiple || (data_multiple && !$wrapper.find('.js_panel_images-main input:radio:enabled:checked').length)) {
-            $wrapper.find('.js_panel_images-main input:radio:enabled:first').prop('checked', true);
+        if (!data_multiple || (data_multiple && !$wrapper.find('.js_panel_images-main:enabled:checked').length)) {
+            $wrapper.find('.js_panel_images-main:enabled:first').prop('checked', true);
         }
         var $cols = $wrapper.find('.js_panel_images-col').not('.js_panel_images-col-clone');
         $cols.each(function (i) {
             var $col = $(this);
-            var $main = $col.find('.js_panel_images-main :input');
+            var $main = $col.find('.js_panel_images-main');
             $main.attr('value', i);
         });
     }
