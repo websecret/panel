@@ -4,7 +4,7 @@ namespace Websecret\Panel;
 
 use Illuminate\Support\Facades\Facade;
 
-class HtmlFacade extends Facade
+class FormHelperFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {

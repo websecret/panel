@@ -12,10 +12,6 @@ class PanelServiceProvider extends ServiceProvider
 
     public function boot(Router $router)
     {
-        $this->app['form-helper'] = $this->app->share(function ($app) {
-            $breadcrumbs = $this->app->make(DaveJamesMiller\Breadcrumbs\Manager);
-            return $breadcrumbs;
-        });
 
         $this->handleConfigs();
         $this->handleModels();
@@ -36,8 +32,7 @@ class PanelServiceProvider extends ServiceProvider
     protected function registerFormHelperBuilder()
     {
         $this->app->bindShared('form-helper', function () {
-            $form = new FormHelperBuilder();
-            return $form;
+            return new FormHelperBuilder();
         });
     }
 
