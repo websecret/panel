@@ -25,7 +25,6 @@ class PanelServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerFormHelperBuilder();
-        $this->app->alias('form_helper', FormHelperBuilder::class);
     }
 
 
