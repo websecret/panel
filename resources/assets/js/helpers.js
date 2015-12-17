@@ -3,8 +3,6 @@ $(document).ready(function () {
     $(document).on('click', '.js_panel_ajax-content', ajaxContent);
     $(document).on('submit', '.js_panel_form-ajax', submitFormAjax);
     $(document).on('click', '.js_panel_delete', deleteElement);
-    $(document).on('change', '.js_panel_image-upload', uploadImage);
-    $(document).on('click', '.js_panel_image-remove', removeImage);
     $(document).on('change', '.js_panel_ajax-row :input', changeAjaxRowInput);
     $(document).on('click', '.js_panel_multiple-add', clickMultipleAdd);
     $(document).on('click', '.js_panel_multiple-remove', clickMultipleRemove);
@@ -279,56 +277,6 @@ $(document).ready(function () {
             }
         });
         return false;
-    }
-
-    function uploadImage() {
-        var $wrapper = $(this).closest('.js_panel_image-upload-wrapper');
-        var data_class = $wrapper.data('class');
-        var data_params = $wrapper.data('params');
-        var data_multiple = $wrapper.data('multiple');
-
-        var uploaded = uploadImages($(this), data_class, data_params);
-
-        var $row = $wrapper.find('.js_panel_image-row');
-        if (uploaded.type == 'success') {
-            $.each(uploaded.files, function (i, file) {
-                if (!data_multiple) {
-                    $row.find('.js_panel_image-col').not('.js_panel_image-col-clone').remove();
-                }
-                var $col_clone = $row.find('.js_panel_image-col-clone');
-                var $col = $col_clone.clone();
-                var $image = $col.find('.js_panel_image-img');
-                var $input = $col.find('.js_panel_image-path');
-                var $main = $col.find('.js_panel_image-main :input');
-                $image.attr('src', file.path);
-                $input.val(file.filename).prop('disabled', false);
-                $main.prop('disabled', false);
-                $col.removeClass('js_image-col-clone');
-                $row.append($col);
-            });
-            resetMainImage($wrapper);
-        }
-    }
-
-    function removeImage(e) {
-        e.preventDefault();
-        var $col = $(this).closest('.js_panel_image-col');
-        var $wrapper = $col.closest('.js_panel_image-upload-wrapper');
-        $col.remove();
-        resetMainImage($wrapper);
-    }
-
-    function resetMainImage($wrapper) {
-        var data_multiple = $wrapper.data('multiple');
-        if (!data_multiple || (data_multiple && !$wrapper.find('.js_panel_image-main input:radio:enabled:checked').length)) {
-            $wrapper.find('.js_panel_image-main input:radio:enabled:first').prop('checked', true);
-        }
-        var $cols = $wrapper.find('.js_panel_image-col').not('.js_panel_image-col-clone');
-        $cols.each(function (i) {
-            var $col = $(this);
-            var $main = $col.find('.js_panel_image-main :input');
-            $main.attr('value', i);
-        });
     }
 
     function changeAjaxRowInput() {
