@@ -8,10 +8,15 @@ use Illuminate\Http\Request;
 
 class PanelServiceProvider extends ServiceProvider
 {
-    protected $defer = false;
+    protected $defer = true;
 
     public function boot(Router $router)
     {
+        $this->app['form-helper'] = $this->app->share(function ($app) {
+            $breadcrumbs = $this->app->make(DaveJamesMiller\Breadcrumbs\Manager);
+            return $breadcrumbs;
+        });
+
         $this->handleConfigs();
         $this->handleModels();
         $this->handleMigrations();
@@ -23,6 +28,17 @@ class PanelServiceProvider extends ServiceProvider
 
     public function register()
     {
+        $this->registerFormHelperBuilder();
+        $this->app->alias('form_helper', FormHelperBuilder::class);
+    }
+
+
+    protected function registerFormHelperBuilder()
+    {
+        $this->app->bindShared('form-helper', function () {
+            $form = new FormHelperBuilder();
+            return $form;
+        });
     }
 
     private function handleModels()
