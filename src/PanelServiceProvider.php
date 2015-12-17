@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class PanelServiceProvider extends ServiceProvider
 {
+
     public function boot(Router $router)
     {
 
