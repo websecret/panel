@@ -359,7 +359,7 @@ $(document).ready(function () {
         return false;
     }
 
-    function uploadImages($input, url, model, type, params) {
+    function uploadImages($input, url, model, type, params, callback) {
         if ($input[0].files) {
             var data = new FormData();
             data.append('model', model);
@@ -382,7 +382,6 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 dataType: 'json',
-                async: false,
                 success: function (data) {
                     result.type = data.type;
                     if (data.type == 'success') {
@@ -391,10 +390,9 @@ $(document).ready(function () {
                         result.text = data.error;
                     }
                     $input.replaceWith($input.clone(true));
+                    callback(result);
                 }
             });
-
-            return result;
         }
     }
 
@@ -411,30 +409,30 @@ $(document).ready(function () {
         var dataParams = $wrapper.data('params');
         var dataMultiple = $wrapper.data('multiple');
 
-        var uploaded = uploadImages($(this), dataUrl, dataModel, dataType, dataParams);
-
         var $row = $wrapper.find('.js_panel_images-row');
-        if (uploaded.type == 'success') {
-            $.each(uploaded.files, function (i, file) {
-                if (!dataMultiple) {
-                    $row.find('.js_panel_images-col').not('.js_panel_images-col-clone').remove();
-                }
-                var $col_clone = $row.find('.js_panel_images-col-clone');
-                var $col = $col_clone.clone();
-                var $image = $col.find('.js_panel_images-img');
-                var $input = $col.find('.js_panel_images-path');
-                var $main = $col.find('.js_panel_images-main');
-                $image.attr('src', file.path);
-                $input.val(file.filename).prop('disabled', false);
-                $main.prop('disabled', false);
-                $col.removeClass('js_panel_images-col-clone');
+        uploadImages($(this), dataUrl, dataModel, dataType, dataParams, function(uploaded) {
+            if (uploaded.type == 'success') {
+                $.each(uploaded.files, function (i, file) {
+                    if (!dataMultiple) {
+                        $row.find('.js_panel_images-col').not('.js_panel_images-col-clone').remove();
+                    }
+                    var $col_clone = $row.find('.js_panel_images-col-clone');
+                    var $col = $col_clone.clone();
+                    var $image = $col.find('.js_panel_images-img');
+                    var $input = $col.find('.js_panel_images-path');
+                    var $main = $col.find('.js_panel_images-main');
+                    $image.attr('src', file.path);
+                    $input.val(file.filename).prop('disabled', false);
+                    $main.prop('disabled', false);
+                    $col.removeClass('js_panel_images-col-clone');
+                    $col.insertBefore($col_clone);
+                });
                 $loading.fadeOut(100);
-                $col.insertBefore($col_clone);
-            });
-            resetMainImage($wrapper);
-        } else {
-            $loading.fadeOut(100);
-        }
+                resetMainImage($wrapper);
+            } else {
+                $loading.fadeOut(100);
+            }
+        });
     }
 
     function removeImages(e) {
