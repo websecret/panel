@@ -1,1 +1,1 @@
-<link href="{{ asset('assets/panel/css/vendor.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/panel/css/panel.css') }}" rel="stylesheet">
