@@ -28,6 +28,10 @@ Add the package to your application service providers in config/app.php file.
     'providers' => [
         Websecret\Panel\PanelServiceProvider::class,
     ],
+
+    'aliases' => [
+        'FormHelper' => Websecret\Panel\FormHelperFacade::class,
+    ],
     
 
 Views, Assets, Models
