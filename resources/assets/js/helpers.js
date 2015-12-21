@@ -227,7 +227,7 @@ $(document).ready(function () {
                     $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
                         var $input = $form.find(':input[name="' + input + '"]');
-                        if(inputArray.length > 1) {
+                        if(!$input.length && inputArray.length > 1) {
                             $input = $form.find(':input[name="' + inputArray[0] + '[]"]:eq('+inputArray[1]+')');
                         }
                         var $wrapper = $input.closest('.form-group');
