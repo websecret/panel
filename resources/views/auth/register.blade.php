@@ -1,35 +1,29 @@
 @extends('panel::layouts.auth')
 
 @section('auth')
-    <div class="login-box col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
-        <div class="header">Регистрация</div>
-        <form action="/" method="post">
-            <fieldset>
-                <div class="form-group first">
-                    <div class="input-group col-sm-12">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control input-lg" id="username" placeholder="Логин" name="login"/>
-                    </div>
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <h3>Register</h3>
+            <p>Create account</p>
+            <form class="m-t" role="form" action="login.html">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name" required="" name="name">
                 </div>
-                <div class="form-group middle">
-                    <div class="input-group col-sm-12">
-                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                        <input type="text" class="form-control input-lg" id="username" placeholder="Введите email" name="email"/>
-                    </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" required="" name="email">
                 </div>
-                <div class="form-group last">
-                    <div class="input-group col-sm-12">
-                        <span class="input-group-addon last"><i class="fa fa-key"></i></span>
-                        <input type="password" class="form-control input-lg" id="password" placeholder="Пароль" name="password"/>
-                    </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" required="" name="password">
                 </div>
-                <button type="submit" class="btn btn-primary col-xs-12">Зарегистрироваться</button>
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <a href="/">Войти</a>
-                    </div>
+                <div class="form-group">
+                    <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
                 </div>
-            </fieldset>
-        </form>
+                <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+
+                <p class="text-muted text-center"><small>Already have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+            </form>
+            <p class="m-t"><small>@include('panel::layouts.partials.footer.copyright')</small></p>
+        </div>
     </div>
 @stop

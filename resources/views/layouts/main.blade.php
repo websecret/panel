@@ -1,14 +1,21 @@
 @extends('panel::root')
 
 @section('root')
-    @include('panel::partials.navbar')
-
-    @include('panel::partials.sidebar')
-
-    <div class="main">
-        @yield('main')
-        <a href="#" class="sidebar-overlay"></a>
+    <div id="wrapper">
+        @include('panel::layouts.partials.sidebar')
+        <div id="page-wrapper" class="gray-bg">
+            @include('panel::layouts.partials.navbar')
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    @include('panel::layouts.partials.breadcrumbs')
+                </div>
+                <div class="col-sm-8">
+                    <div class="title-action">
+                        @yield('actions')
+                    </div>
+                </div>
+            </div>
+            @include('panel::layouts.partials.footer')
+        </div>
     </div>
-
-    @include('panel::partials.footer')
 @stop

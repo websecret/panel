@@ -1,11 +1,7 @@
 @extends('panel::root')
 
-@section('body_class', 'login')
+@section('body_class', 'gray-bg')
 
 @section('root')
-    <div class="container">
-        <div class="row">
-            @yield('auth')
-        </div>
-    </div>
+    @yield('auth')
 @stop
