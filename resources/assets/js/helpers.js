@@ -27,6 +27,55 @@ $(document).ready(function () {
         }
     });
 
+    var langs = {
+        ru:  {
+            bootbox: {
+                locale: 'ru',
+            },
+            redactor: {
+                locale: 'ru',
+            },
+            datepicker: {
+                format: 'dd.mm.yyyy',
+            },
+            chosen: {
+                no_results_text: "Ничего не найдено по запросу",
+                placeholder_text_multiple: "Выберите из вариантов",
+            },
+            form: {
+                success: 'Данные успешно сохранены',
+                error: 'Ошибка сохранения данных',
+            },
+            deleting: {
+                sure: 'Вы действительно хотите удалить?',
+                success: 'Удаление прошло успешно',
+            }
+        },
+        en:  {
+            bootbox: {
+                locale: 'en',
+            },
+            redactor: {
+                locale: 'en',
+            },
+            datepicker: {
+                format: 'yyyy-mm-dd',
+            },
+            chosen: {
+                no_results_text: "Nothing to show",
+                placeholder_text_multiple: "Choose one",
+            },
+            form: {
+                success: 'Data successfully saved',
+                error: 'Error saving data',
+            },
+            deleting: {
+                sure: 'Are you sure?',
+                success: 'Deleting was successful',
+            }
+        },
+    };
+
     function init() {
 
         $('[data-toggle="tooltip"]').tooltip();
@@ -45,7 +94,7 @@ $(document).ready(function () {
         initTimepicker();
 
         bootbox.setDefaults({
-            locale: "ru",
+            locale: langs.ru.bootbox.locale,
             size: 'small',
             backdrop: true
         });
@@ -83,7 +132,7 @@ $(document).ready(function () {
         $('.js_panel_input-redactor').redactor({
             buttonSource: true,
             linkNofollow: true,
-            lang: 'ru',
+            lang: langs.ru.redactor.locale,
             plugins: ['table']
         });
     }
@@ -135,7 +184,7 @@ $(document).ready(function () {
 
     function initDatepicker() {
         $('.js_panel_input-date').datepicker({
-            format: 'dd.mm.yyyy',
+            format: langs.ru.datepicker.format,
             todayHighlight: true
         });
     }
@@ -151,8 +200,8 @@ $(document).ready(function () {
 
     function initChosen() {
         $(".js_panel_input-chosen").chosen({
-            no_results_text: "Ничего не найдено по запросу",
-            placeholder_text_multiple: "Выберите из вариантов",
+            no_results_text: langs.ru.chosen.no_results_text,
+            placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
             search_contains: true
         });
     }
@@ -222,7 +271,7 @@ $(document).ready(function () {
                             window.location.href = data.link;
                         }, 2000);
                     }
-                    showNotification('Данные успешно сохранены', '', 'success');
+                    showNotification(langs.ru.form.success, '', 'success');
                 } else {
                     $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
@@ -240,7 +289,7 @@ $(document).ready(function () {
                         var $help_block = '<span class="help-block">' + text + '</span>';
                         $error_block.append($help_block);
                     });
-                    showNotification('Ошибка сохранения данных', '', 'danger');
+                    showNotification(langs.ru.form.error, '', 'danger');
                 }
             }
         });
@@ -252,7 +301,7 @@ $(document).ready(function () {
         var $link = $(this);
         var url = $link.attr('href');
         bootbox.confirm({
-            message: "Вы действительно хотите удалить?",
+            message: langs.ru.deleting.sure,
             callback: function (result) {
                 if (result) {
                     $.ajax({
@@ -269,7 +318,7 @@ $(document).ready(function () {
                                     var $element = $link.parent();
                                 }
                                 $element.remove();
-                                showNotification('Удаление прошло успешно', '', 'success');
+                                showNotification(langs.ru.deleting.success, '', 'success');
                             }
                         }
                     });
@@ -303,7 +352,7 @@ $(document).ready(function () {
             data: dataObject,
             success: function (data) {
                 if (data.result == 'success') {
-                    showNotification('Данные успешно сохранены', '', 'success');
+                    showNotification(langs.ru.form.success, '', 'success');
                 }
             }
         });
@@ -334,7 +383,7 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.result == 'success') {
                     $list.find('.loader').remove();
-                    showNotification('Обновление прошло успешно', '', 'success');
+                    showNotification(langs.ru.form.success, '', 'success');
                 }
             }
         });
