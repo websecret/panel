@@ -1,0 +1,1 @@
+<strong>Copyright</strong> <a href="websecret.by">websecret.by</a> &copy; 2015
