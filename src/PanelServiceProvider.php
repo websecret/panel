@@ -76,7 +76,7 @@ class PanelServiceProvider extends ServiceProvider
     private function handleAssets()
     {
         $this->publishes([
-            __DIR__ . '/../public' => public_path('assets/panel'),
+            __DIR__ . '/../public/assets' => public_path('assets/panel'),
         ], 'assets');
     }
 
