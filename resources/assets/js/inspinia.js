@@ -163,6 +163,9 @@ $(document).ready(function () {
     $('.full-height-scroll').slimscroll({
         height: '100%'
     })
+
+
+    $('.nav.nav-second-level li.active').parents('.nav li').addClass('active').children('ul').addClass('in');
 });
 
 
