@@ -169,6 +169,9 @@ $(document).ready(function () {
                 order: order,
                 columnDefs: columnDefs,
                 "dom": 'lTfigt',
+                "tableTools": {
+                    "sSwfPath": "assets/panel/swf/dataTables/swf/copy_csv_xls_pdf.swf"
+                }
             });
 
             datatable.columns().every(function () {
@@ -217,20 +220,21 @@ $(document).ready(function () {
         });
     }
 
-    function showNotification(text, title, type) {
+    window.showNotification = function(text, type){
         if (typeof title === 'undefined') {
             title = '';
         }
         if (typeof type === 'undefined') {
-            type = 'primary';
+            type = 'success';
         }
-        $.gritter.add({
-            position: 'top-right',
-            title: title,
-            text: text,
-            class_name: 'gritter-' + type
-        });
-    }
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            showMethod: 'slideDown',
+            timeOut: 4000
+        };
+        toastr[type](text);
+    };
 
     function ajaxContent(e) {
         e.preventDefault();
@@ -272,7 +276,7 @@ $(document).ready(function () {
                             window.location.href = data.link;
                         }, 2000);
                     }
-                    showNotification(langs.ru.form.success, '', 'success');
+                    window.showNotification(langs.ru.form.success, 'success');
                 } else {
                     $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
@@ -290,7 +294,7 @@ $(document).ready(function () {
                         var $help_block = '<span class="help-block">' + text + '</span>';
                         $error_block.append($help_block);
                     });
-                    showNotification(langs.ru.form.error, '', 'danger');
+                    window.showNotification(langs.ru.form.error, 'error');
                 }
             }
         });
@@ -319,7 +323,7 @@ $(document).ready(function () {
                                     var $element = $link.parent();
                                 }
                                 $element.remove();
-                                showNotification(langs.ru.deleting.success, '', 'success');
+                                window.showNotification(langs.ru.deleting.success, 'error');
                             }
                         }
                     });
@@ -353,7 +357,7 @@ $(document).ready(function () {
             data: dataObject,
             success: function (data) {
                 if (data.result == 'success') {
-                    showNotification(langs.ru.form.success, '', 'success');
+                    window.showNotification(langs.ru.form.success, 'success');
                 }
             }
         });
@@ -384,7 +388,7 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.result == 'success') {
                     $list.find('.loader').remove();
-                    showNotification(langs.ru.form.success, '', 'success');
+                    window.showNotification(langs.ru.form.success, 'success');
                 }
             }
         });

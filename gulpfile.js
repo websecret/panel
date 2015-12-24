@@ -37,6 +37,10 @@ elixir(function (mix) {
     ], publicFolder + 'js/panel.js');
 
     mix.copy([
+        resourcesFolder + 'js/plugins/**/*.swf',
+    ], publicFolder + 'swf');
+
+    mix.copy([
         resourcesFolder + 'fonts/**'
     ], publicFolder + 'fonts');
 
