@@ -168,6 +168,7 @@ $(document).ready(function () {
             var datatable = $table.DataTable({
                 order: order,
                 columnDefs: columnDefs,
+                "dom": 'lTfigt',
             });
 
             datatable.columns().every(function () {
