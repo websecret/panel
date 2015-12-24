@@ -92,6 +92,7 @@ $(document).ready(function () {
         initAutocomplete();
         initDatepicker();
         initTimepicker();
+        initClockpicker();
 
         bootbox.setDefaults({
             locale: langs.ru.bootbox.locale,
@@ -111,6 +112,7 @@ $(document).ready(function () {
         initChosen();
         initDatepicker();
         initTimepicker();
+        initClockpicker();
     }
 
     $(document).ajaxComplete(function () {
@@ -129,12 +131,7 @@ $(document).ready(function () {
     }
 
     function initRedactor() {
-        $('.js_panel_input-redactor').redactor({
-            buttonSource: true,
-            linkNofollow: true,
-            lang: langs.ru.redactor.locale,
-            plugins: ['table']
-        });
+        $('.js_panel_input-redactor').summernote();
     }
 
 
@@ -200,6 +197,11 @@ $(document).ready(function () {
             showMeridian: false,
             defaultTime: false
         });
+    }
+
+    function initClockpicker() {
+        $('.js_panel_input-clock').clockpicker();
+
     }
 
     function initChosen() {
