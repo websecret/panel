@@ -11,9 +11,10 @@ elixir(function (mix) {
         resourcesFolder + 'css/font-awesome.css',
         resourcesFolder + 'css/plugins/dataTables/dataTables.bootstrap.css',
         resourcesFolder + 'css/plugins/dataTables/dataTables.tableTools.min.css',
-        resourcesFolder + 'css/plugins/**/*.{css|less}',
+        resourcesFolder + 'css/plugins/**/*.less',
+        resourcesFolder + 'css/plugins/**/*.css',
         resourcesFolder + 'css/animate.css',
-        resourcesFolder + 'less/style.less',
+        resourcesFolder + 'less/style.less'
     ], publicFolder + 'css/panel.css');
 
     mix.scripts([
@@ -33,11 +34,11 @@ elixir(function (mix) {
         resourcesFolder + 'js/plugins/rickshaw/vendor/d3.v3.js',
         resourcesFolder + 'js/plugins/codemirror/codemirror.js',
         resourcesFolder + 'js/plugins/**/*.js',
-        resourcesFolder + 'js/helpers.js',
+        resourcesFolder + 'js/helpers.js'
     ], publicFolder + 'js/panel.js');
 
     mix.copy([
-        resourcesFolder + 'js/plugins/**/*.swf',
+        resourcesFolder + 'js/plugins/**/*.swf'
     ], publicFolder + 'swf');
 
     mix.copy([
@@ -46,6 +47,7 @@ elixir(function (mix) {
 
     mix.copy([
         resourcesFolder + 'img/**',
-        resourcesFolder + 'css/plugins/**/*.{png|jpg}',
+        resourcesFolder + 'css/plugins/**/*.png',
+        resourcesFolder + 'css/plugins/**/*.jpg'
     ], publicFolder + 'img');
 });
