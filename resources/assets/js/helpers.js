@@ -203,10 +203,6 @@ $(document).ready(function () {
     }
 
     function initSelect2(refresh) {
-        var refresh = !!refresh || false;
-        if(refresh) {
-            $(".js_panel_input-select2").select2("destroy");
-        }
         $(".js_panel_input-select2").select2();
     }
 
