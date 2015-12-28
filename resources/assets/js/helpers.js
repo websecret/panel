@@ -77,6 +77,7 @@ $(document).ready(function () {
         initPhoneMask();
         initMask();
         initChosen();
+        initSelect2();
         initAutocomplete();
         initDatepicker();
         initTimepicker();
@@ -98,6 +99,7 @@ $(document).ready(function () {
         initPhoneMask();
         initMask();
         initChosen();
+        initSelect2();
         initDatepicker();
         initTimepicker();
         initClockpicker();
@@ -198,6 +200,10 @@ $(document).ready(function () {
             placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
             search_contains: true
         });
+    }
+
+    function initSelect2() {
+        $(".js_panel_input-select2").select2();
     }
 
     function initAutocomplete() {

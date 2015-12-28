@@ -45,6 +45,7 @@ elixir(function (mix) {
     ], publicFolder + 'fonts');
 
     mix.copy([
-        resourcesFolder + 'img/**'
+        resourcesFolder + 'img/**',
+        resourcesFolder + 'css/plugins/**/*.{png|jpg}',
     ], publicFolder + 'img');
 });
