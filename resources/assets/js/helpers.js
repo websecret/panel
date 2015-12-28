@@ -194,11 +194,15 @@ $(document).ready(function () {
 
     }
 
-    function initChosen() {
-        $(".js_panel_input-chosen").chosen({
+    function initChosen($el) {
+        if(!$el) {
+            $el = $(".js_panel_input-chosen");
+        }
+        $el.chosen({
             no_results_text: langs.ru.chosen.no_results_text,
             placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
-            search_contains: true
+            search_contains: true,
+            width: "100%"
         });
     }
 
@@ -399,6 +403,10 @@ $(document).ready(function () {
         $input.prop('disabled', false);
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
+        if($input.hasClass('js_panel_input-chosen')) {
+            $clone.find('.chosen-container').remove();
+            initChosen($input);
+        }
         return false;
     }
 
