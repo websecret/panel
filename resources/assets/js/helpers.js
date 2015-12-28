@@ -202,7 +202,11 @@ $(document).ready(function () {
         });
     }
 
-    function initSelect2() {
+    function initSelect2(refresh) {
+        var refresh = !!refresh || false;
+        if(refresh) {
+            $(".js_panel_input-select2").select2("destroy");
+        }
         $(".js_panel_input-select2").select2();
     }
 
@@ -398,6 +402,7 @@ $(document).ready(function () {
         $row.find(':input').prop('disabled', false);
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
+        refresh();
         return false;
     }
 
