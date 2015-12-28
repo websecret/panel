@@ -11,7 +11,6 @@ elixir(function (mix) {
         resourcesFolder + 'css/font-awesome.css',
         resourcesFolder + 'css/plugins/dataTables/dataTables.bootstrap.css',
         resourcesFolder + 'css/plugins/dataTables/dataTables.tableTools.min.css',
-        resourcesFolder + 'css/plugins/**/*.less',
         resourcesFolder + 'css/plugins/**/*.css',
         resourcesFolder + 'css/animate.css',
         resourcesFolder + 'less/style.less'
