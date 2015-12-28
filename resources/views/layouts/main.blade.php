@@ -15,6 +15,10 @@
                     </div>
                 </div>
             </div>
+            <div class="wrapper wrapper-content">
+                @include('panel::helpers.alert')
+                @yield('main')
+            </div>
             @include('panel::layouts.partials.footer')
         </div>
     </div>
