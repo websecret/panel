@@ -99,7 +99,7 @@ $(document).ready(function () {
         initPhoneMask();
         initMask();
         initChosen();
-        initSelect2(true);
+        initSelect2();
         initDatepicker();
         initTimepicker();
         initClockpicker();
@@ -202,7 +202,7 @@ $(document).ready(function () {
         });
     }
 
-    function initSelect2(refresh) {
+    function initSelect2() {
         $(".js_panel_input-select2").select2();
     }
 
@@ -395,9 +395,13 @@ $(document).ready(function () {
         var name = $(this).data('name');
         var $clone = $('.js_panel_multiple-row-clone[data-name="'+name+'"]');
         var $row = $clone.clone();
-        $row.find(':input').prop('disabled', false);
+        var $input =  $row.find(':input');
+        $input.prop('disabled', false);
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
+        if($input.hasClass('js_panel_input-select2')) {
+            $input.select2("destroy");
+        }
         refresh();
         return false;
     }
