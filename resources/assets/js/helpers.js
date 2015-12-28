@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
 
     var langs = {
-        ru:  {
+        ru: {
             bootbox: {
                 locale: 'ru',
             },
@@ -39,7 +39,7 @@ $(document).ready(function () {
                 success: 'Удаление прошло успешно',
             }
         },
-        en:  {
+        en: {
             bootbox: {
                 locale: 'en',
             },
@@ -115,7 +115,7 @@ $(document).ready(function () {
     }
 
     function initMask() {
-        $('.js_panel_input-mask').each(function() {
+        $('.js_panel_input-mask').each(function () {
             $(this).inputmask($(this).data('mask'));
         });
     }
@@ -195,7 +195,7 @@ $(document).ready(function () {
     }
 
     function initChosen($el) {
-        if(!$el) {
+        if (!$el) {
             $el = $(".js_panel_input-chosen");
         }
         $el.chosen({
@@ -211,7 +211,7 @@ $(document).ready(function () {
     }
 
     function initAutocomplete() {
-        $('.js_panel_input-autocomplete').each(function() {
+        $('.js_panel_input-autocomplete').each(function () {
             var $input = $(this);
             var url = $input.data('autocomplete-url');
             $input.devbridgeAutocomplete({
@@ -220,7 +220,7 @@ $(document).ready(function () {
         });
     }
 
-    window.showNotification = function(text, type){
+    window.showNotification = function (text, type) {
         if (typeof title === 'undefined') {
             title = '';
         }
@@ -281,8 +281,8 @@ $(document).ready(function () {
                     $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
                         var $input = $form.find(':input[name="' + input + '"]');
-                        if(!$input.length && inputArray.length > 1) {
-                            $input = $form.find(':input[name="' + inputArray[0] + '[]"]:eq('+inputArray[1]+')');
+                        if (!$input.length && inputArray.length > 1) {
+                            $input = $form.find(':input[name="' + inputArray[0] + '[]"]:eq(' + inputArray[1] + ')');
                         }
                         var $wrapper = $input.closest('.form-group');
                         var $error_block = $wrapper.find('.error-block');
@@ -315,9 +315,9 @@ $(document).ready(function () {
                         dataType: 'JSON',
                         success: function (data) {
                             if (data.result == 'success') {
-                                if($link.hasClass('js_panel_delete-table-row')) {
+                                if ($link.hasClass('js_panel_delete-table-row')) {
                                     var $element = $link.closest('tr');
-                                } else if($link.data('delete')) {
+                                } else if ($link.data('delete')) {
                                     var $element = data('delete');
                                 } else {
                                     var $element = $link.parent();
@@ -397,13 +397,13 @@ $(document).ready(function () {
     function clickMultipleAdd(e) {
         e.preventDefault();
         var name = $(this).data('name');
-        var $clone = $('.js_panel_multiple-row-clone[data-name="'+name+'"]');
+        var $clone = $('.js_panel_multiple-row-clone[data-name="' + name + '"]');
         var $row = $clone.clone();
-        var $inputs =  $row.find(':input');
-        $inputs.each(function() {
-           var $input = $(this);
+        var $inputs = $row.find(':input');
+        $inputs.each(function () {
+            var $input = $(this);
             $input.prop('disabled', false);
-            if($input.hasClass('js_panel_input-chosen')) {
+            if ($input.hasClass('js_panel_input-chosen')) {
                 $row.find('.chosen-container').remove();
                 initChosen($input);
             }
@@ -416,7 +416,7 @@ $(document).ready(function () {
     function clickMultipleRemove(e) {
         e.preventDefault();
         var name = $(this).data('name');
-        var $row = $(this).closest('.js_panel_multiple-row[data-name="'+name+'"]');
+        var $row = $(this).closest('.js_panel_multiple-row[data-name="' + name + '"]');
         $row.remove();
         return false;
     }
@@ -472,7 +472,7 @@ $(document).ready(function () {
         var dataMultiple = $wrapper.data('multiple');
 
         var $row = $wrapper.find('.js_panel_images-row');
-        uploadImages($(this), dataUrl, dataModel, dataType, dataParams, function(uploaded) {
+        uploadImages($(this), dataUrl, dataModel, dataType, dataParams, function (uploaded) {
             if (uploaded.type == 'success') {
                 $.each(uploaded.files, function (i, file) {
                     if (!dataMultiple) {
