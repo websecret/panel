@@ -99,7 +99,7 @@ $(document).ready(function () {
         initPhoneMask();
         initMask();
         initChosen();
-        initSelect2();
+        initSelect2(true);
         initDatepicker();
         initTimepicker();
         initClockpicker();
