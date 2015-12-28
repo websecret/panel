@@ -399,10 +399,6 @@ $(document).ready(function () {
         $input.prop('disabled', false);
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
-        if($input.hasClass('js_panel_input-select2')) {
-            $input.select2("destroy");
-        }
-        refresh();
         return false;
     }
 
