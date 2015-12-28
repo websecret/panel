@@ -157,7 +157,7 @@ $(document).ready(function () {
                 columnDefs: columnDefs,
                 "dom": 'lTfigt',
                 "tableTools": {
-                    "sSwfPath": "assets/panel/swf/dataTables/swf/copy_csv_xls_pdf.swf"
+                    "sSwfPath": "/assets/panel/swf/dataTables/swf/copy_csv_xls_pdf.swf"
                 }
             });
 
