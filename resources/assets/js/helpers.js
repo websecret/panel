@@ -399,14 +399,17 @@ $(document).ready(function () {
         var name = $(this).data('name');
         var $clone = $('.js_panel_multiple-row-clone[data-name="'+name+'"]');
         var $row = $clone.clone();
-        var $input =  $row.find(':input');
-        $input.prop('disabled', false);
+        var $inputs =  $row.find(':input');
+        $inputs.each(function() {
+           var $input = $(this);
+            $input.prop('disabled', false);
+            if($input.hasClass('js_panel_input-chosen')) {
+                $row.find('.chosen-container').remove();
+                initChosen($input);
+            }
+        });
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
-        if($input.hasClass('js_panel_input-chosen')) {
-            $row.find('.chosen-container').remove();
-            initChosen($input);
-        }
         return false;
     }
 
