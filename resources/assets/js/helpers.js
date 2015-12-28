@@ -404,7 +404,7 @@ $(document).ready(function () {
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
         if($input.hasClass('js_panel_input-chosen')) {
-            $clone.find('.chosen-container').remove();
+            $row.find('.chosen-container').remove();
             initChosen($input);
         }
         return false;
