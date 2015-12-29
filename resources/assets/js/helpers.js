@@ -148,7 +148,7 @@ $(document).ready(function () {
             $table.find('tfoot th').each(function () {
                 if (disabledSearch.indexOf($(this).index()) === -1) {
                     var title = $table.find('thead th:eq(' + $(this).index() + ')').text();
-                    $(this).html('<input type="text" placeholder="Search ' + title + '" class="form-control input-sm" />');
+                    $(this).html('<input type="text" placeholder="&#128269; ' + title + '" class="form-control input-sm" />');
                 }
             });
 
