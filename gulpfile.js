@@ -23,7 +23,6 @@ elixir(function (mix) {
         resourcesFolder + 'js/plugins/slimscroll/jquery.slimscroll.min.js',
         resourcesFolder + 'js/plugins/pace/pace.min.js',
         resourcesFolder + 'js/inspinia.js',
-        resourcesFolder + 'js/jquery-ui-1.10.4.min.js',
         resourcesFolder + 'js/plugins/dataTables/jquery.dataTables.js',
         resourcesFolder + 'js/plugins/dataTables/dataTables.bootstrap.js',
         resourcesFolder + 'js/plugins/dataTables/dataTables.responsive.js',
