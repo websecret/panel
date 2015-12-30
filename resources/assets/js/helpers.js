@@ -276,7 +276,11 @@ $(document).ready(function () {
                             window.location.href = data.link;
                         }, 2000);
                     }
-                    window.showNotification(langs.ru.form.success, 'success');
+                    if(data.message) {
+                        window.showNotification(data.message, 'success');
+                    } else {
+                        window.showNotification(langs.ru.form.success, 'success');
+                    }
                 } else {
                     $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
