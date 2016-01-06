@@ -288,15 +288,19 @@ $(document).ready(function () {
                         if (!$input.length && inputArray.length > 1) {
                             $input = $form.find(':input[name="' + inputArray[0] + '[]"]:eq(' + inputArray[1] + ')');
                         }
-                        var $wrapper = $input.closest('.form-group');
-                        var $error_block = $wrapper.find('.error-block');
                         var text = '';
                         $.each(errors, function (i, error) {
                             text += error + "<br>";
                         });
-                        $wrapper.addClass('has-error');
-                        var $help_block = '<span class="help-block">' + text + '</span>';
-                        $error_block.append($help_block);
+                        if($input.length) {
+                            var $wrapper = $input.closest('.form-group');
+                            var $error_block = $wrapper.find('.error-block');
+                            $wrapper.addClass('has-error');
+                            var $help_block = '<span class="help-block">' + text + '</span>';
+                            $error_block.append($help_block);
+                        } else {
+                            window.showNotification(text, 'error');
+                        }
                     });
                     window.showNotification(langs.ru.form.error, 'error');
                 }
