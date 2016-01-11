@@ -43,6 +43,7 @@ class UploadController extends Controller
             $results[] = [
                 'filename' => $modelBasename . '/' . $filename,
                 'path' => GlideImage::load($modelBasename . '/' . $filename, $model::getImageParams($type, $params))->getUrl(),
+                'fullsize' => GlideImage::load($modelBasename . '/' . $filename)->getUrl(),
             ];
         }
 

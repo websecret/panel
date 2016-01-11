@@ -8,6 +8,7 @@ $(document).ready(function () {
     $(document).on('click', '.js_panel_multiple-remove', clickMultipleRemove);
     $(document).on('change', '.js_panel_images-upload', changeImagesInput);
     $(document).on('click', '.js_panel_images-remove', removeImages);
+    $(document).on('click', '.js_panel_addable-input-button', clickAddableButton);
 
     $.ajaxSetup({
         headers: {
@@ -82,6 +83,7 @@ $(document).ready(function () {
         initDatepicker();
         initTimepicker();
         initClockpicker();
+        initAddable();
 
         bootbox.setDefaults({
             locale: langs.ru.bootbox.locale,
@@ -103,6 +105,7 @@ $(document).ready(function () {
         initDatepicker();
         initTimepicker();
         initClockpicker();
+        initAddable();
     }
 
     $(document).ajaxComplete(function () {
@@ -213,11 +216,30 @@ $(document).ready(function () {
     function initAutocomplete() {
         $('.js_panel_input-autocomplete').each(function () {
             var $input = $(this);
+            if(!$input.parent().hasClass('input-group')) {
+                $input.wrap('div.input-group');
+                $input.before('<span class="input-group-addon"><span class="fa fa-ellipsis-h"></span></span>');
+            }
             var url = $input.data('autocomplete-url');
             $input.devbridgeAutocomplete({
                 serviceUrl: url
             });
         });
+    }
+
+    function initAddable() {
+        var $wrapper = $('.js_panel_addable-input');
+        var $exists = $wrapper.find('.js_panel_addable-input-exists');
+        var $new = $wrapper.find('.js_panel_addable-input-new');
+        $exists.prop('disabled', false);
+        $new.prop('disabled', true);
+        $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
+        $wrapper.append('' +
+            '<span class="input-group-btn">' +
+            '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
+            '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
+            '</span>'
+        );
     }
 
     window.showNotification = function (text, type) {
@@ -491,7 +513,9 @@ $(document).ready(function () {
                     var $image = $col.find('.js_panel_images-img');
                     var $input = $col.find('.js_panel_images-path');
                     var $main = $col.find('.js_panel_images-main');
+                    var $zoom = $col.find('.js_panel_images-zoom');
                     $image.attr('src', file.path);
+                    $zoom.attr('href', file.fullsize);
                     $input.val(file.filename).prop('disabled', false);
                     $main.prop('disabled', false);
                     $col.removeClass('js_panel_images-col-clone');
@@ -524,5 +548,36 @@ $(document).ready(function () {
             var $main = $col.find('.js_panel_images-main');
             $main.attr('value', i);
         });
+    }
+
+
+
+    function clickAddableButton(e) {
+        e.preventDefault();
+        var $button = $(this);
+        var $wrapper = $button.closest('.input-group');
+        var $exists = $wrapper.find('.js_panel_addable-input-exists');
+        var $new = $wrapper.find('.js_panel_addable-input-new');
+        var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
+        var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
+        if ($button.hasClass('js_panel_addable-input-button-new')) {
+            $exists.prop('disabled', true);
+            $new.prop('disabled', false);
+            $button.insertBefore($existsButton);
+            $existsButton.show();
+            $newButton.hide();
+            $exists.slideUp(150);
+            $new.slideDown(150);
+            //
+        } else {
+            $new.prop('disabled', true);
+            $exists.prop('disabled', false);
+            $button.insertBefore($newButton);
+            $newButton.show();
+            $existsButton.hide();
+            $new.slideUp(150);
+            $exists.slideDown(150);
+        }
+        return false;
     }
 });

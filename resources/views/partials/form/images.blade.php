@@ -7,6 +7,7 @@
                 <input class="js_panel_images-main" type="radio" name="images[{{ $type }}][main]" value="{{ $imageKey }}" {{ $image->main || !$isImageMultiple ? "checked='checked'" : '' }}/>
                 <label class="js_panel_images-wrapper">
                     <img class="js_panel_images-img" src="{{ $model->loadImage($image, $params) }}" alt=""/>
+                    <a href="{{ $model->loadImage($image) }}" data-gallery="" class="js_panel_images-zoom"><span class="fa fa-search-plus"></span></a>
                     <a href="#" class="js_panel_images-remove"><span class="fa fa-close"></span></a>
                     <input class="js_panel_images-path" type="hidden" name="images[{{ $type }}][path][{{ $imageKey }}]" value="{{ $image->path }}"/>
                 </label>
@@ -22,6 +23,7 @@
             <input class="js_panel_images-main" type="radio" name="images[{{ $type }}][main]" value="" disabled="disabled"/>
             <label class="js_panel_images-wrapper">
                 <img class="js_panel_images-img" src="" alt=""/>
+                <a href="#" data-gallery="" class="js_panel_images-zoom"><span class="fa fa-search-plus"></span></a>
                 <a href="#" class="js_panel_images-remove"><span class="fa fa-close"></span></a>
                 <input class="js_panel_images-path" type="hidden" name="images[{{ $type }}][path][]" value="" disabled="disabled"/>
             </label>

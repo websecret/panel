@@ -18,8 +18,11 @@ trait PhotoableTrait
         return $this->morphOne($photoClass, 'imageable')->ofMain();
     }
 
-    public static function getImageParams($type, $params)
+    public static function getImageParams($type, $params = '')
     {
+        if(!$params) {
+            return [];
+        }
         $imageParams = defined('static::IMAGES_PARAMS') ? static::IMAGES_PARAMS : [];
         return array_get($imageParams, $type.'.params.'.$params, []);
     }
@@ -30,11 +33,11 @@ trait PhotoableTrait
         return array_get($imageParams, $type.'.multiple', true);
     }
 
-    public function loadImage($image, $params) {
+    public function loadImage($image, $params = '') {
         return GlideImage::load($image->path, static::getImageParams($image->type, $params));
     }
 
-    public function getImagesView($type, $params) {
+    public function getImagesView($type, $params = '') {
         return view('panel::partials.form.images', [
             'model' => $this,
             'type' => $type,
