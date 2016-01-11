@@ -217,7 +217,7 @@ $(document).ready(function () {
         $('.js_panel_input-autocomplete').each(function () {
             var $input = $(this);
             if(!$input.parent().hasClass('input-group')) {
-                $input.wrap('div.input-group');
+                $input.wrap("<div class='input-group'></div>");
                 $input.before('<span class="input-group-addon"><span class="fa fa-ellipsis-h"></span></span>');
             }
             var url = $input.data('autocomplete-url');

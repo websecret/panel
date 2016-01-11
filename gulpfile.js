@@ -46,6 +46,8 @@ elixir(function (mix) {
     mix.copy([
         resourcesFolder + 'img/**',
         resourcesFolder + 'css/plugins/**/*.png',
-        resourcesFolder + 'css/plugins/**/*.jpg'
+        resourcesFolder + 'css/plugins/**/*.jpg',
+        resourcesFolder + 'css/plugins/**/*.gif',
+        resourcesFolder + 'css/plugins/**/*.svg'
     ], publicFolder + 'img');
 });
