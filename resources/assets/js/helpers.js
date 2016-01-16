@@ -201,11 +201,13 @@ $(document).ready(function () {
         if (!$el) {
             $el = $(".js_panel_input-chosen");
         }
-        $el.chosen({
-            no_results_text: langs.ru.chosen.no_results_text,
-            placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
-            search_contains: true,
-            width: "100%"
+        $el.each(function() {
+            $(this).chosen({
+                no_results_text: langs.ru.chosen.no_results_text,
+                placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
+                search_contains: true,
+                width: "100%"
+            });
         });
     }
 
