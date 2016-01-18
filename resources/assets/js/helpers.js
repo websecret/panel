@@ -442,6 +442,7 @@ $(document).ready(function () {
         });
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
+        $row.trigger('panel-multiple-added');
         return false;
     }
 
@@ -450,6 +451,7 @@ $(document).ready(function () {
         var name = $(this).data('name');
         var $row = $(this).closest('.js_panel_multiple-row[data-name="' + name + '"]');
         $row.remove();
+        $row.trigger('panel-multiple-removed');
         return false;
     }
 
