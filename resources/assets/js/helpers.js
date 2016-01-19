@@ -245,18 +245,20 @@ $(document).ready(function () {
                 '</span>'
             );
             if(!$exists.find('option').length) {
-                $wrapper.find('.js_panel_addable-input-button-new').click();
+                $wrapper.setAddableNew().disableAddable();
             }
         });
     }
 
     $.fn.enableAddable = function() {
         this.find('.js_panel_addable-input-button').prop('disabled', false);
+        return this;
     };
     $.fn.disableAddable = function() {
         this.find('.js_panel_addable-input-button').prop('disabled', true);
+        return this;
     };
-    $.fn.setAddableNew = function() {
+    $.fn.setAddableExists = function() {
         var $wrapper = this;
         var $exists = $wrapper.find('.js_panel_addable-input-exists');
         var $new = $wrapper.find('.js_panel_addable-input-new');
@@ -270,8 +272,9 @@ $(document).ready(function () {
         $new.slideUp(150);
         $exists.slideDown(150);
         $wrapper.trigger('panel-addable-exists-click');
+        return this;
     };
-    $.fn.setAddableExists = function() {
+    $.fn.setAddableNew = function() {
         var $wrapper = this;
         var $exists = $wrapper.find('.js_panel_addable-input-exists');
         var $new = $wrapper.find('.js_panel_addable-input-new');
@@ -285,6 +288,7 @@ $(document).ready(function () {
         $exists.slideUp(150);
         $new.slideDown(150);
         $wrapper.trigger('panel-addable-new-click');
+        return this;
     };
 
     window.showNotification = function (text, type) {
@@ -604,9 +608,9 @@ $(document).ready(function () {
         var $button = $(this);
         var $wrapper = $button.closest('.input-group');
         if ($button.hasClass('js_panel_addable-input-button-new')) {
-            $wrapper.setAddableExists();
-        } else {
             $wrapper.setAddableNew();
+        } else {
+            $wrapper.setAddableExists();
         }
         return false;
     }
