@@ -230,18 +230,24 @@ $(document).ready(function () {
     }
 
     function initAddable() {
-        var $wrapper = $('.js_panel_addable-input');
-        var $exists = $wrapper.find('.js_panel_addable-input-exists');
-        var $new = $wrapper.find('.js_panel_addable-input-new');
-        $exists.prop('disabled', false);
-        $new.prop('disabled', true);
-        $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
-        $wrapper.append('' +
-            '<span class="input-group-btn">' +
-            '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
-            '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
-            '</span>'
-        );
+        var $wrappers = $('.js_panel_addable-input');
+        $wrappers.each(function() {
+            var $wrapper = $(this);
+            var $exists = $wrapper.find('.js_panel_addable-input-exists');
+            var $new = $wrapper.find('.js_panel_addable-input-new');
+            $exists.prop('disabled', false);
+            $new.prop('disabled', true);
+            $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
+            $wrapper.append('' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
+                '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
+                '</span>'
+            );
+            if(!$exists.find('option').length) {
+                $wrapper.find('.js_panel_addable-input-button-new').click();
+            }
+        });
     }
 
     window.showNotification = function (text, type) {
@@ -572,6 +578,7 @@ $(document).ready(function () {
             $newButton.hide();
             $exists.slideUp(150);
             $new.slideDown(150);
+            $wrapper.trigger('panel-addable-new-click');
             //
         } else {
             $new.prop('disabled', true);
@@ -581,6 +588,7 @@ $(document).ready(function () {
             $existsButton.hide();
             $new.slideUp(150);
             $exists.slideDown(150);
+            $wrapper.trigger('panel-addable-exists-click');
         }
         return false;
     }
