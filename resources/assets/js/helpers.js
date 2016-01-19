@@ -288,23 +288,25 @@ $(document).ready(function () {
         var $wrappers = $('.js_panel_addable-input');
         $wrappers.each(function () {
             var $wrapper = $(this);
-            var $exists = $wrapper.find('.js_panel_addable-input-exists');
-            var $new = $wrapper.find('.js_panel_addable-input-new');
-            $exists.prop('disabled', false);
-            if($wrapper.hasClass('js_panel_addable-input-enabled')) {
-                $new.prop('disabled', false);
-            } else {
-                $new.prop('disabled', true);
-            }
-            $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
-            $wrapper.append('' +
-                '<span class="input-group-btn">' +
-                '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
-                '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
-                '</span>'
-            );
-            if (!$exists.find('option').length) {
-                $wrapper.setAddableNew().disableAddable();
+            if(!$wrapper.closest('.js_panel_multiple-row-clone').length) {
+                var $exists = $wrapper.find('.js_panel_addable-input-exists');
+                var $new = $wrapper.find('.js_panel_addable-input-new');
+                $exists.prop('disabled', false);
+                if($wrapper.hasClass('js_panel_addable-input-enabled')) {
+                    $new.prop('disabled', false);
+                } else {
+                    $new.prop('disabled', true);
+                }
+                $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
+                $wrapper.append('' +
+                    '<span class="input-group-btn">' +
+                    '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
+                    '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
+                    '</span>'
+                );
+                if (!$exists.find('option').length) {
+                    $wrapper.setAddableNew().disableAddable();
+                }
             }
         });
     }
