@@ -65,6 +65,47 @@ $(document).ready(function () {
         },
     };
 
+    $.fn.enableAddable = function () {
+        this.find('.js_panel_addable-input-button').prop('disabled', false);
+        return this;
+    };
+    $.fn.disableAddable = function () {
+        this.find('.js_panel_addable-input-button').prop('disabled', true);
+        return this;
+    };
+    $.fn.setAddableExists = function () {
+        var $wrapper = this;
+        var $exists = $wrapper.find('.js_panel_addable-input-exists');
+        var $new = $wrapper.find('.js_panel_addable-input-new');
+        var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
+        var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
+        $new.prop('disabled', true);
+        $exists.prop('disabled', false);
+        $existsButton.insertBefore($newButton);
+        $newButton.show();
+        $existsButton.hide();
+        $new.slideUp(150);
+        $exists.slideDown(150);
+        $wrapper.trigger('panel-addable-exists-click');
+        return this;
+    };
+    $.fn.setAddableNew = function () {
+        var $wrapper = this;
+        var $exists = $wrapper.find('.js_panel_addable-input-exists');
+        var $new = $wrapper.find('.js_panel_addable-input-new');
+        var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
+        var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
+        $exists.prop('disabled', true);
+        $new.prop('disabled', false);
+        $newButton.insertBefore($existsButton);
+        $existsButton.show();
+        $newButton.hide();
+        $exists.slideUp(150);
+        $new.slideDown(150);
+        $wrapper.trigger('panel-addable-new-click');
+        return this;
+    };
+
     function init() {
 
         $('[data-toggle="tooltip"]').tooltip();
@@ -201,7 +242,7 @@ $(document).ready(function () {
         if (!$el) {
             $el = $(".js_panel_input-chosen");
         }
-        $el.each(function() {
+        $el.each(function () {
             $(this).chosen({
                 no_results_text: langs.ru.chosen.no_results_text,
                 placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
@@ -218,7 +259,7 @@ $(document).ready(function () {
     function initAutocomplete() {
         $('.js_panel_input-autocomplete').each(function () {
             var $input = $(this);
-            if(!$input.parent().hasClass('input-group')) {
+            if (!$input.parent().hasClass('input-group')) {
                 $input.wrap("<div class='input-group'></div>");
                 $input.before('<span class="input-group-addon"><span class="fa fa-ellipsis-h"></span></span>');
             }
@@ -231,7 +272,7 @@ $(document).ready(function () {
 
     function initAddable() {
         var $wrappers = $('.js_panel_addable-input');
-        $wrappers.each(function() {
+        $wrappers.each(function () {
             var $wrapper = $(this);
             var $exists = $wrapper.find('.js_panel_addable-input-exists');
             var $new = $wrapper.find('.js_panel_addable-input-new');
@@ -240,56 +281,15 @@ $(document).ready(function () {
             $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
             $wrapper.append('' +
                 '<span class="input-group-btn">' +
-                    '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
-                    '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
+                '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
+                '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
                 '</span>'
             );
-            if(!$exists.find('option').length) {
+            if (!$exists.find('option').length) {
                 $wrapper.setAddableNew().disableAddable();
             }
         });
     }
-
-    $.fn.enableAddable = function() {
-        this.find('.js_panel_addable-input-button').prop('disabled', false);
-        return this;
-    };
-    $.fn.disableAddable = function() {
-        this.find('.js_panel_addable-input-button').prop('disabled', true);
-        return this;
-    };
-    $.fn.setAddableExists = function() {
-        var $wrapper = this;
-        var $exists = $wrapper.find('.js_panel_addable-input-exists');
-        var $new = $wrapper.find('.js_panel_addable-input-new');
-        var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
-        var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-        $new.prop('disabled', true);
-        $exists.prop('disabled', false);
-        $existsButton.insertBefore($newButton);
-        $newButton.show();
-        $existsButton.hide();
-        $new.slideUp(150);
-        $exists.slideDown(150);
-        $wrapper.trigger('panel-addable-exists-click');
-        return this;
-    };
-    $.fn.setAddableNew = function() {
-        var $wrapper = this;
-        var $exists = $wrapper.find('.js_panel_addable-input-exists');
-        var $new = $wrapper.find('.js_panel_addable-input-new');
-        var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
-        var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-        $exists.prop('disabled', true);
-        $new.prop('disabled', false);
-        $newButton.insertBefore($existsButton);
-        $existsButton.show();
-        $newButton.hide();
-        $exists.slideUp(150);
-        $new.slideDown(150);
-        $wrapper.trigger('panel-addable-new-click');
-        return this;
-    };
 
     window.showNotification = function (text, type) {
         if (typeof title === 'undefined') {
@@ -321,11 +321,6 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.result == 'success') {
                     $wrapper.html(data.view);
-                    $.scrollTo($wrapper, 250, {
-                        offset: {
-                            top: -80
-                        }
-                    });
                     refresh();
                 }
             }
@@ -347,7 +342,7 @@ $(document).ready(function () {
                             window.location.href = data.link;
                         }, 2000);
                     }
-                    if(data.message) {
+                    if (data.message) {
                         window.showNotification(data.message, 'success');
                     } else {
                         window.showNotification(langs.ru.form.success, 'success');
@@ -363,7 +358,7 @@ $(document).ready(function () {
                         $.each(errors, function (i, error) {
                             text += error + "<br>";
                         });
-                        if($input.length) {
+                        if ($input.length) {
                             var $wrapper = $input.closest('.form-group');
                             var $error_block = $wrapper.find('.error-block');
                             $wrapper.addClass('has-error');
@@ -600,7 +595,6 @@ $(document).ready(function () {
             $main.attr('value', i);
         });
     }
-
 
 
     function clickAddableButton(e) {
