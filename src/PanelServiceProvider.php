@@ -23,15 +23,6 @@ class PanelServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->registerFormHelperBuilder();
-    }
-
-
-    protected function registerFormHelperBuilder()
-    {
-        $this->app->bindShared('form-helper', function () {
-            return new FormHelperBuilder();
-        });
     }
 
     private function handleModels()
