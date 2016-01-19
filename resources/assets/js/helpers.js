@@ -81,9 +81,11 @@ $(document).ready(function () {
             var $new = $wrapper.find('.js_panel_addable-input-new');
             var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
             var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-            if(!$wrapper.hasClass('js_panel_addable-input-enabled')) {
+            $exists.prop('disabled', false);
+            if($wrapper.hasClass('js_panel_addable-input-enabled')) {
+                $new.prop('disabled', false);
+            } else {
                 $new.prop('disabled', true);
-                $exists.prop('disabled', false);
             }
             $existsButton.insertBefore($newButton);
             $newButton.show();
@@ -102,9 +104,11 @@ $(document).ready(function () {
             var $new = $wrapper.find('.js_panel_addable-input-new');
             var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
             var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-            if(!$wrapper.hasClass('js_panel_addable-input-enabled')) {
+            $new.prop('disabled', false);
+            if($wrapper.hasClass('js_panel_addable-input-enabled')) {
+                $exists.prop('disabled', false);
+            } else {
                 $exists.prop('disabled', true);
-                $new.prop('disabled', false);
             }
             $newButton.insertBefore($existsButton);
             $existsButton.show();
@@ -287,7 +291,11 @@ $(document).ready(function () {
             var $exists = $wrapper.find('.js_panel_addable-input-exists');
             var $new = $wrapper.find('.js_panel_addable-input-new');
             $exists.prop('disabled', false);
-            $new.prop('disabled', true);
+            if($wrapper.hasClass('js_panel_addable-input-enabled')) {
+                $new.prop('disabled', false);
+            } else {
+                $new.prop('disabled', true);
+            }
             $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
             $wrapper.append('' +
                 '<span class="input-group-btn">' +
