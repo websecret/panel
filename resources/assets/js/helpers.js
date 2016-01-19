@@ -81,8 +81,10 @@ $(document).ready(function () {
             var $new = $wrapper.find('.js_panel_addable-input-new');
             var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
             var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-            $new.prop('disabled', true);
-            $exists.prop('disabled', false);
+            if(!$wrapper.hasClass('js_panel_addable-input-enabled')) {
+                $new.prop('disabled', true);
+                $exists.prop('disabled', false);
+            }
             $existsButton.insertBefore($newButton);
             $newButton.show();
             $existsButton.hide();
@@ -100,8 +102,10 @@ $(document).ready(function () {
             var $new = $wrapper.find('.js_panel_addable-input-new');
             var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
             var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-            $exists.prop('disabled', true);
-            $new.prop('disabled', false);
+            if(!$wrapper.hasClass('js_panel_addable-input-enabled')) {
+                $exists.prop('disabled', true);
+                $new.prop('disabled', false);
+            }
             $newButton.insertBefore($existsButton);
             $existsButton.show();
             $newButton.hide();
