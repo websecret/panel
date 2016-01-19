@@ -18,12 +18,12 @@ class Photo extends Model
 
     public function scopeMain($query)
     {
-        $query->where('main', '=', 1);
+        return $query->where('main', '=', 1);
     }
 
     public function scopeOfType($query, $type)
     {
-        $query->where('type', '=', $type);
+        return $query->where('type', '=', $type);
     }
 
 }

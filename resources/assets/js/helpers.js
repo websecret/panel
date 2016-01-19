@@ -74,35 +74,41 @@ $(document).ready(function () {
         return this;
     };
     $.fn.setAddableExists = function () {
-        var $wrapper = this;
-        var $exists = $wrapper.find('.js_panel_addable-input-exists');
-        var $new = $wrapper.find('.js_panel_addable-input-new');
-        var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
-        var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-        $new.prop('disabled', true);
-        $exists.prop('disabled', false);
-        $existsButton.insertBefore($newButton);
-        $newButton.show();
-        $existsButton.hide();
-        $new.slideUp(150);
-        $exists.slideDown(150);
-        $wrapper.trigger('panel-addable-exists-click');
+        var $wrappers = this;
+        $wrappers.each(function() {
+            var $wrapper = $(this);
+            var $exists = $wrapper.find('.js_panel_addable-input-exists');
+            var $new = $wrapper.find('.js_panel_addable-input-new');
+            var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
+            var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
+            $new.prop('disabled', true);
+            $exists.prop('disabled', false);
+            $existsButton.insertBefore($newButton);
+            $newButton.show();
+            $existsButton.hide();
+            $new.slideUp(150);
+            $exists.slideDown(150);
+            $wrapper.trigger('panel-addable-exists-click');
+        });
         return this;
     };
     $.fn.setAddableNew = function () {
-        var $wrapper = this;
-        var $exists = $wrapper.find('.js_panel_addable-input-exists');
-        var $new = $wrapper.find('.js_panel_addable-input-new');
-        var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
-        var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
-        $exists.prop('disabled', true);
-        $new.prop('disabled', false);
-        $newButton.insertBefore($existsButton);
-        $existsButton.show();
-        $newButton.hide();
-        $exists.slideUp(150);
-        $new.slideDown(150);
-        $wrapper.trigger('panel-addable-new-click');
+        var $wrappers = this;
+        $wrappers.each(function() {
+            var $wrapper = $(this);
+            var $exists = $wrapper.find('.js_panel_addable-input-exists');
+            var $new = $wrapper.find('.js_panel_addable-input-new');
+            var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
+            var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
+            $exists.prop('disabled', true);
+            $new.prop('disabled', false);
+            $newButton.insertBefore($existsButton);
+            $existsButton.show();
+            $newButton.hide();
+            $exists.slideUp(150);
+            $new.slideDown(150);
+            $wrapper.trigger('panel-addable-new-click');
+        });
         return this;
     };
 
