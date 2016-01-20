@@ -119,6 +119,15 @@ $(document).ready(function () {
         });
         return this;
     };
+    $.fn.initChosen = function () {
+        this.chosen({
+            no_results_text: langs.ru.chosen.no_results_text,
+            placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
+            search_contains: true,
+            width: "100%"
+        });
+        return this;
+    };
 
     function init() {
 
@@ -252,17 +261,11 @@ $(document).ready(function () {
 
     }
 
-    function initChosen($el) {
-        if (!$el) {
-            $el = $(".js_panel_input-chosen");
-        }
-        $el.each(function () {
-            $(this).chosen({
-                no_results_text: langs.ru.chosen.no_results_text,
-                placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
-                search_contains: true,
-                width: "100%"
-            });
+    function initChosen() {
+        $(".js_panel_input-chosen").each(function() {
+            if($(this).closest('.js_panel_multiple-row-clone').length == 0) {
+                $(this).initChosen();
+            }
         });
     }
 
@@ -492,7 +495,13 @@ $(document).ready(function () {
         var $clone = $('.js_panel_multiple-row-clone[data-name="' + name + '"]');
         var $row = $clone.clone();
         var $inputs = $row.find(':input');
-        $inputs.prop('disabled', false).trigger("chosen:updated");
+        $inputs.prop('disabled', false);
+        $inputs.each(function() {
+           var $input = $(this);
+            if($input.hasClass('js_panel_input-chosen')) {
+                $input.initChosen();
+            }
+        });
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
         $row.trigger('panel-multiple-added');
