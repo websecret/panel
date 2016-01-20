@@ -492,13 +492,7 @@ $(document).ready(function () {
         var $clone = $('.js_panel_multiple-row-clone[data-name="' + name + '"]');
         var $row = $clone.clone();
         var $inputs = $row.find(':input');
-        $inputs.each(function () {
-            var $input = $(this);
-            $input.prop('disabled', false);
-            if ($input.hasClass('js_panel_input-chosen')) {
-                $input.trigger("chosen:updated");
-            }
-        });
+        $inputs.prop('disabled', false).trigger("chosen:updated");
         $row.insertBefore($clone);
         $row.removeClass('js_panel_multiple-row-clone');
         $row.trigger('panel-multiple-added');
