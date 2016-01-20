@@ -496,8 +496,7 @@ $(document).ready(function () {
             var $input = $(this);
             $input.prop('disabled', false);
             if ($input.hasClass('js_panel_input-chosen')) {
-                $row.find('.chosen-container').remove();
-                initChosen($input);
+                $input.trigger("chosen:updated");
             }
         });
         $row.insertBefore($clone);
