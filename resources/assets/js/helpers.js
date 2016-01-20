@@ -512,8 +512,9 @@ $(document).ready(function () {
         e.preventDefault();
         var name = $(this).data('name');
         var $row = $(this).closest('.js_panel_multiple-row[data-name="' + name + '"]');
+        var $parent = $row.parent();
         $row.remove();
-        $row.parent().trigger('panel-multiple-removed');
+        $parent.trigger('panel-multiple-removed');
         return false;
     }
 
