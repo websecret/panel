@@ -15,7 +15,7 @@ trait PhotoableTrait
     public function mainImage()
     {
         $photoClass = config('panel.photo_model');
-        return $this->morphOne($photoClass, 'imageable')->ofMain();
+        return $this->morphOne($photoClass, 'imageable')->main();
     }
 
     public static function getImageParams($type, $params = '')
