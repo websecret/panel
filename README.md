@@ -27,10 +27,12 @@ Add the package to your application service providers in config/app.php file.
 
     'providers' => [
         Websecret\Panel\PanelServiceProvider::class,
+        Spatie\Glide\GlideServiceProvider::class,
     ],
 
     'aliases' => [
         'FormHelper' => Websecret\Panel\FormHelperFacade::class,
+        'GlideImage' => Spatie\Glide\GlideImageFacade::class,
     ],
     
 
