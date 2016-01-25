@@ -305,7 +305,17 @@ $(document).ready(function () {
                 '<button class="btn btn-success js_panel_addable-input-button js_panel_addable-input-button-new" type="button"><span class="fa fa-plus"></span></button>' +
                 '</span>'
             );
-            if (!$exists.find('option').length) {
+            var disabled = true;
+            var $options = $exists.find('option');
+            if ($options.length > 0) {
+                $options.each(function() {
+                    var $option = $(this);
+                    if($option.val()) {
+                        disabled = false;
+                    }
+                });
+            }
+            if(disabled) {
                 $wrapper.setAddableNew().disableAddable();
             }
         });
