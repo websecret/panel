@@ -123,8 +123,7 @@ $(document).ready(function () {
         this.chosen({
             no_results_text: langs.ru.chosen.no_results_text,
             placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
-            search_contains: true,
-            width: "100%"
+            search_contains: true
         });
         return this;
     };
