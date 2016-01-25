@@ -490,6 +490,7 @@ $(document).ready(function () {
 
     function clickMultipleAdd(e) {
         e.preventDefault();
+        e.stopPropagation();
         var name = $(this).data('name');
         var $clone = $('.js_panel_multiple-row-clone[data-name="' + name + '"]');
         var $row = $clone.clone();
