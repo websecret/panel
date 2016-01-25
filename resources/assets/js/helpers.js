@@ -75,14 +75,14 @@ $(document).ready(function () {
     };
     $.fn.setAddableExists = function () {
         var $wrappers = this;
-        $wrappers.each(function() {
+        $wrappers.each(function () {
             var $wrapper = $(this);
             var $exists = $wrapper.find('.js_panel_addable-input-exists');
             var $new = $wrapper.find('.js_panel_addable-input-new');
             var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
             var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
             $exists.prop('disabled', false);
-            if($wrapper.hasClass('js_panel_addable-input-enabled')) {
+            if ($wrapper.hasClass('js_panel_addable-input-enabled')) {
                 $new.prop('disabled', false);
             } else {
                 $new.prop('disabled', true);
@@ -98,14 +98,14 @@ $(document).ready(function () {
     };
     $.fn.setAddableNew = function () {
         var $wrappers = this;
-        $wrappers.each(function() {
+        $wrappers.each(function () {
             var $wrapper = $(this);
             var $exists = $wrapper.find('.js_panel_addable-input-exists');
             var $new = $wrapper.find('.js_panel_addable-input-new');
             var $newButton = $wrapper.find('.js_panel_addable-input-button-new');
             var $existsButton = $wrapper.find('.js_panel_addable-input-button-exists');
             $new.prop('disabled', false);
-            if($wrapper.hasClass('js_panel_addable-input-enabled')) {
+            if ($wrapper.hasClass('js_panel_addable-input-enabled')) {
                 $exists.prop('disabled', false);
             } else {
                 $exists.prop('disabled', true);
@@ -261,8 +261,8 @@ $(document).ready(function () {
     }
 
     function initChosen() {
-        $(".js_panel_input-chosen").each(function() {
-            if($(this).closest('.js_panel_multiple-row-clone').length == 0) {
+        $(".js_panel_input-chosen").each(function () {
+            if ($(this).closest('.js_panel_multiple-row-clone').length == 0) {
                 $(this).initChosen();
             }
         });
@@ -293,7 +293,7 @@ $(document).ready(function () {
             var $exists = $wrapper.find('.js_panel_addable-input-exists');
             var $new = $wrapper.find('.js_panel_addable-input-new');
             $exists.prop('disabled', false);
-            if($wrapper.hasClass('js_panel_addable-input-enabled')) {
+            if ($wrapper.hasClass('js_panel_addable-input-enabled')) {
                 $new.prop('disabled', false);
             } else {
                 $new.prop('disabled', true);
@@ -491,14 +491,20 @@ $(document).ready(function () {
     function clickMultipleAdd(e) {
         e.preventDefault();
         var name = $(this).data('name');
+        var $wrapper = $(this).closest('.js_panel_multiple-wrapper[data-name="' + name + '"]');
         var $clone = $('.js_panel_multiple-row-clone[data-name="' + name + '"]');
+        if ($wrapper.length) {
+            $clone = $wrapper.find('.js_panel_multiple-row-clone[data-name="' + name + '"]');
+        }
         var $row = $clone.clone();
         var $inputs = $row.find(':input');
-        $inputs.prop('disabled', false);
-        $inputs.each(function() {
-           var $input = $(this);
-            if($input.hasClass('js_panel_input-chosen')) {
-                $input.initChosen();
+        $inputs.each(function () {
+            var $input = $(this);
+            if($input.closest('.js_panel_multiple-row').data('name') == name) {
+                $input.prop('disabled', false);
+                if ($input.hasClass('js_panel_input-chosen')) {
+                    $input.initChosen();
+                }
             }
         });
         $row.insertBefore($clone);
