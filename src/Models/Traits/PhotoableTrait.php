@@ -46,7 +46,12 @@ trait PhotoableTrait
     }
 
     public function syncImages($data) {
-        foreach(array_keys(array_get($data, 'images', [])) as $type) {
+        $images = array_get($data, 'images', []);
+        if (empty($images)) {
+            $this->images()->delete();
+            return;
+        }
+        foreach(array_keys($images) as $type) {
             $this->syncImagesByType($data, $type);
         }
     }
