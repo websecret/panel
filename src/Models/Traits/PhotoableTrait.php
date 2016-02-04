@@ -9,7 +9,7 @@ trait PhotoableTrait
     public function images()
     {
         $photoClass = config('panel.photo_model');
-        return $this->morphMany($photoClass, 'imageable');
+        return $this->morphMany($photoClass, 'imageable')->orderBy('main', 'desc');
     }
 
     public function mainImage()
