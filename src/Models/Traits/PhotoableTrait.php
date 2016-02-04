@@ -34,7 +34,17 @@ trait PhotoableTrait
     }
 
     public function loadImage($image, $params = '') {
-        return GlideImage::load($image->path, static::getImageParams($image->type, $params));
+        $photoClass = config('panel.photo_model');
+        if($image instanceof $photoClass) {
+            $path = $image->path;
+            $type = $image->type;
+        } else {
+            $path = $image;
+            $paramsArray = explode('.', $params);
+            $type = array_shift($paramsArray);
+            $params = implode('.', $paramsArray);
+        }
+        return GlideImage::load($path, static::getImageParams($type, $params));
     }
 
     public function getImagesView($type, $params = '') {
