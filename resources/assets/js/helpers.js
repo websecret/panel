@@ -187,7 +187,39 @@ $(document).ready(function () {
     }
 
     function initRedactor() {
-        $('.js_panel_input-redactor').summernote();
+        $('.js_panel_input-redactor').each(function () {
+            var $redactor = $(this);
+            if ($redactor.data('base64')) {
+                $(this).summernote();
+            } else {
+                var model = $(this).data('model');
+                $(this).summernote({
+                    onImageUpload: function (files, editor, welEditable) {
+                        uploadRedactorImages(files[0], editor, welEditable, model);
+                    }
+                });
+            }
+        });
+    }
+
+    function uploadRedactorImages(file, editor, welEditable, model) {
+        data = new FormData();
+        data.append("file", file);
+        data.append('model', model);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: urlUpload,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function (data) {
+                $.each(data.files, function (i, file) {
+                    editor.insertImage(welEditable, file.path);
+                });
+            }
+        });
     }
 
 
@@ -308,14 +340,14 @@ $(document).ready(function () {
             var disabled = true;
             var $options = $exists.find('option');
             if ($options.length > 0) {
-                $options.each(function() {
+                $options.each(function () {
                     var $option = $(this);
-                    if($option.val()) {
+                    if ($option.val()) {
                         disabled = false;
                     }
                 });
             }
-            if(disabled) {
+            if (disabled) {
                 $wrapper.setAddableNew().disableAddable();
             }
         });
@@ -510,7 +542,7 @@ $(document).ready(function () {
         var $inputs = $row.find(':input');
         $inputs.each(function () {
             var $input = $(this);
-            if($input.closest('.js_panel_multiple-row').data('name') == name) {
+            if ($input.closest('.js_panel_multiple-row').data('name') == name) {
                 $input.prop('disabled', false);
                 if ($input.hasClass('js_panel_input-chosen')) {
                     $input.initChosen();
@@ -577,11 +609,11 @@ $(document).ready(function () {
         var $loading = $wrapper.find('.js_panel_images-loading-col');
         $loading.fadeIn(100);
 
-        var dataUrl = $wrapper.data('url');
         var dataModel = $wrapper.data('model');
         var dataType = $wrapper.data('type');
         var dataParams = $wrapper.data('params');
         var dataMultiple = $wrapper.data('multiple');
+        var dataUrl = $wrapper.data('url');
 
         var $row = $wrapper.find('.js_panel_images-row');
         uploadImages($(this), dataUrl, dataModel, dataType, dataParams, function (uploaded) {

@@ -18,9 +18,9 @@ trait PhotoableTrait
         return $this->morphOne($photoClass, 'imageable')->main();
     }
 
-    public static function getImageParams($type, $params = '')
+    public static function getImageParams($type = '', $params = '')
     {
-        if(!$params) {
+        if(!$type || !$params) {
             return [];
         }
         $imageParams = defined('static::IMAGES_PARAMS') ? static::IMAGES_PARAMS : [];

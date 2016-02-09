@@ -25,6 +25,9 @@
     <ol class="indicator"></ol>
 </div>
 
+<script>
+    var urlUpload = '{{ route('panel::upload') }}';
+</script>
 @include('panel::partials.scripts')
 
 </body>
