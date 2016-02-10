@@ -209,26 +209,19 @@ $(document).ready(function () {
         data = new FormData();
         data.append('files[]', file);
         data.append('model', model);
-        var fileData = URL.createObjectURL(file);
-        $editor.summernote('insertImage', fileData, function ($image) {
-            if(!model) {
-                console.error('Model in not defined for summernote');
-                return;
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: urlUpload,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function (data) {
+                var file = files[0];
+                var path = file.path;
+                $editor.summernote('insertImage', path, path);
             }
-            $.ajax({
-                data: data,
-                type: "POST",
-                url: urlUpload,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                success: function (data) {
-                    $.each(data.files, function (i, file) {
-                        $image.attr('src', file.path);
-                    });
-                }
-            });
         });
     }
 
