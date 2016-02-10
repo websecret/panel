@@ -1,7 +1,6 @@
 <?php namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Photo;
 use File;
 
 class ClearImages extends Command {
