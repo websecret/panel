@@ -209,6 +209,10 @@ $(document).ready(function () {
         data = new FormData();
         data.append('files[]', file);
         data.append('model', model);
+        var type = $editor.data('type') || '';
+        var params = $editor.data('params') || '';
+        data.append('type', type);
+        data.append('params', params);
         $.ajax({
             data: data,
             type: "POST",
@@ -220,7 +224,16 @@ $(document).ready(function () {
             success: function (data) {
                 var file = data['files'][0];
                 var path = file.path;
-                $editor.summernote('insertImage', path, path);
+                $editor.summernote('insertImage', path, function($image) {
+                    $image.attr('data-filename', path);
+                    if(data.type) {
+                        $image.attr('data-type', data.type);
+                    }
+                    if(data.params) {
+                        $image.attr('data-params', data.params);
+                    }
+                    $image.css('width', Math.min($editor.width(), $image.width()));
+                });
             }
         });
     }
@@ -591,8 +604,8 @@ $(document).ready(function () {
                 contentType: false,
                 dataType: 'json',
                 success: function (data) {
-                    result.type = data.type;
-                    if (data.type == 'success') {
+                    result.result = data.result;
+                    if (data.result == 'success') {
                         result.files = data.files;
                     } else {
                         result.text = data.error;
@@ -619,7 +632,7 @@ $(document).ready(function () {
 
         var $row = $wrapper.find('.js_panel_images-row');
         uploadImages($(this), dataUrl, dataModel, dataType, dataParams, function (uploaded) {
-            if (uploaded.type == 'success') {
+            if (uploaded.result == 'success') {
                 $.each(uploaded.files, function (i, file) {
                     if (!dataMultiple) {
                         $row.find('.js_panel_images-col').not('.js_panel_images-col-clone').remove();

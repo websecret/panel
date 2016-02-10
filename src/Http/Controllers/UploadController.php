@@ -48,8 +48,10 @@ class UploadController extends Controller
         }
 
         return response()->json([
-            'type' => 'success',
+            'result' => 'success',
             'files' => $results,
+            'type' => $type,
+            'params' => $params,
         ]);
     }
 }
