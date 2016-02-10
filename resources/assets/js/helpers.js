@@ -218,7 +218,7 @@ $(document).ready(function () {
             processData: false,
             dataType: 'json',
             success: function (data) {
-                var file = files[0];
+                var file = data['files'][0];
                 var path = file.path;
                 $editor.summernote('insertImage', path, path);
             }
