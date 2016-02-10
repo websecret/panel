@@ -194,10 +194,6 @@ $(document).ready(function () {
             } else {
                 var $summernote = $(this);
                 $summernote.summernote({
-                    onImageUpload: function (files, editor, welEditable) {
-                    }
-                });
-                $summernote.summernote({
                     callbacks: {
                         onImageUpload: function(files) {
                             uploadRedactorImages(files[0], $summernote);
