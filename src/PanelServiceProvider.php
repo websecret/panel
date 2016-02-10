@@ -14,6 +14,7 @@ class PanelServiceProvider extends ServiceProvider
 
         $this->handleConfigs();
         $this->handleModels();
+        $this->handleCommands();
         $this->handleMigrations();
         $this->handleViews();
         $this->handleAssets();
@@ -31,6 +32,13 @@ class PanelServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/Models' => $config['models_path'],
         ], 'models');
+    }
+
+    private function handleCommands()
+    {
+        $this->publishes([
+            __DIR__ . '/Console/Commands' => app_path('Console/Commands'),
+        ], 'commands');
     }
 
     private function registerRoutes($router)

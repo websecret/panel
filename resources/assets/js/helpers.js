@@ -206,15 +206,15 @@ $(document).ready(function () {
 
     function uploadRedactorImages(file, $editor) {
         var model = $editor.data('model');
-        if(!model) {
-            console.log('Model in not defined for summernote');
-            return;
-        }
         data = new FormData();
         data.append('files[]', file);
         data.append('model', model);
         var fileData = URL.createObjectURL(file);
         $editor.summernote('insertImage', fileData, function ($image) {
+            if(!model) {
+                console.error('Model in not defined for summernote');
+                return;
+            }
             $.ajax({
                 data: data,
                 type: "POST",
