@@ -190,10 +190,13 @@ $(document).ready(function () {
         $('.js_panel_input-redactor').each(function () {
             var $redactor = $(this);
             if ($redactor.data('base64')) {
-                $(this).summernote();
+                $(this).summernote({
+                    height: 300
+                });
             } else {
                 var $summernote = $(this);
                 $summernote.summernote({
+                    height: 300,
                     callbacks: {
                         onImageUpload: function(files) {
                             uploadRedactorImages(files[0], $summernote);

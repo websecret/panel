@@ -40,7 +40,10 @@ elixir(function (mix) {
     ], publicFolder + 'swf');
 
     mix.copy([
-        resourcesFolder + 'fonts/**'
+        resourcesFolder + 'fonts/**',
+        resourcesFolder + 'css/plugins/**/*.eot',
+        resourcesFolder + 'css/plugins/**/*.woff',
+        resourcesFolder + 'css/plugins/**/*.ttf'
     ], publicFolder + 'fonts');
 
     mix.copy([
