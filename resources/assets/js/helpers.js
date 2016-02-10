@@ -192,36 +192,45 @@ $(document).ready(function () {
             if ($redactor.data('base64')) {
                 $(this).summernote();
             } else {
-                var model = $(this).data('model');
-                $(this).summernote({
+                var $summernote = $(this);
+                $summernote.summernote({
                     onImageUpload: function (files, editor, welEditable) {
-                        uploadRedactorImages(files[0], editor, welEditable, model);
+                    }
+                });
+                $summernote.summernote({
+                    callbacks: {
+                        onImageUpload: function(files) {
+                            uploadRedactorImages(files[0], $summernote);
+                        }
                     }
                 });
             }
         });
     }
 
-    function uploadRedactorImages(file, editor, welEditable, model) {
+    function uploadRedactorImages(file, $editor) {
+        var model = $editor.data('model');
         data = new FormData();
         data.append("file", file);
         data.append('model', model);
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: urlUpload,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: 'json',
-            success: function (data) {
-                $.each(data.files, function (i, file) {
-                    editor.insertImage(welEditable, file.path);
-                });
-            }
+        var fileData = URL.createObjectURL(file);
+        $editor.summernote('insertImage', fileData, function ($image) {
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: urlUpload,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data.files, function (i, file) {
+                        $image.attr('src', file.path);
+                    });
+                }
+            });
         });
     }
-
 
     function initDatatable() {
         $('.js_panel_datatable').each(function () {
