@@ -348,7 +348,7 @@ $(document).ready(function () {
             } else {
                 $new.prop('disabled', true);
             }
-            $wrapper.removeClass('js_panel_addable-input').addClass('input-group').height($exists.outerHeight());
+            $wrapper.removeClass('js_panel_addable-input').addClass('input-group');
             $wrapper.append('' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-default js_panel_addable-input-button js_panel_addable-input-button-exists" type="button"><span class="fa fa-bars"></span></button>' +
