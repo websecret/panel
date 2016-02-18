@@ -187,23 +187,28 @@ $(document).ready(function () {
     }
 
     function initRedactor() {
+        var options = {
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'hr']],
+                ['view', ['fullscreen', 'codeview']]
+            ]
+        };
         $('.js_panel_input-redactor').each(function () {
             var $redactor = $(this);
-            if ($redactor.data('base64')) {
-                $(this).summernote({
-                    height: 300
-                });
-            } else {
-                var $summernote = $(this);
-                $summernote.summernote({
-                    height: 300,
-                    callbacks: {
-                        onImageUpload: function(files) {
-                            uploadRedactorImages(files[0], $summernote);
-                        }
+            if (!$redactor.data('base64')) {
+                options['callbacks'] = {
+                    onImageUpload: function(files) {
+                        uploadRedactorImages(files[0], $redactor);
                     }
-                });
+                };
             }
+            $redactor.summernote(options);
         });
     }
 
