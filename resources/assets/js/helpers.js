@@ -188,6 +188,7 @@ $(document).ready(function () {
 
     function initRedactor() {
         var options = {
+            lang: 'ru-RU',
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'italic', 'underline', 'clear']],
