@@ -9,6 +9,8 @@ $(document).ready(function () {
     $(document).on('change', '.js_panel_images-upload', changeImagesInput);
     $(document).on('click', '.js_panel_images-remove', removeImages);
     $(document).on('click', '.js_panel_addable-input-button', clickAddableButton);
+    $(document).on('click', '.js_panel_form-submit-redirect', clickFormAjaxSubmitRedirect);
+    $(document).on('click', '.js_panel_form-submit', clickFormAjaxSubmit);
 
     $.ajaxSetup({
         headers: {
@@ -189,6 +191,7 @@ $(document).ready(function () {
     function initRedactor() {
         var options = {
             lang: 'ru-RU',
+            height: 300,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'italic', 'underline', 'clear']],
@@ -424,8 +427,9 @@ $(document).ready(function () {
                 $form.find('.loader').remove();
                 if (data.result == 'success') {
                     if ($form.hasClass('js_panel_form-ajax-redirect')) {
+                        var redirectLink = data.link || data.redirect;
                         setTimeout(function () {
-                            window.location.href = data.link;
+                            window.location.href = redirectLink;
                         }, 2000);
                     }
                     if (data.message) {
@@ -699,5 +703,13 @@ $(document).ready(function () {
             $wrapper.setAddableExists();
         }
         return false;
+    }
+
+    function clickFormAjaxSubmitRedirect() {
+        $(this).closest('form').addClass('js_panel_form-ajax-redirect');
+    }
+
+    function clickFormAjaxSubmit() {
+        $(this).closest('form').removeClass('js_panel_form-ajax-redirect');
     }
 });
