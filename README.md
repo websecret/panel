@@ -47,6 +47,7 @@ Publish the package views and assets to your application. Run these commands ins
     php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=commands
     php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=views
     php artisan vendor:publish --provider="Websecret\Panel\PanelServiceProvider" --tag=assets
+    php artisan vendor:publish --provider="Spatie\Glide\GlideServiceProvider"
 
 Use `--force` to overwrite files
 
