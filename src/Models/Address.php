@@ -18,4 +18,15 @@ class Address extends Model
         return $this->morphTo();
     }
 
+    public function getFullStringAttribute()
+    {
+        $fields = [];
+        foreach (self::$addressFields as $addressField) {
+            if ($this->{$addressField}) {
+                $fields[] = $this->{$addressField};
+            }
+        }
+        return implode(', ', $fields);
+    }
+
 }

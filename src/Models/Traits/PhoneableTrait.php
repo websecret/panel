@@ -10,26 +10,29 @@ trait PhoneableTrait
         return $this->morphMany($phoneClass, 'phoneable');
     }
 
-    public function syncPhones($data = []) {
+    public function syncPhones($data = [])
+    {
         $this->phones()->delete();
-        foreach(array_get($data, 'phones', []) as $phone) {
+        foreach (array_get($data, 'phones', []) as $phone) {
             $this->phones()->create(['phone' => $phone]);
         }
     }
 
-    public function getPhonesStringAttribute() {
+    public function getPhonesStringAttribute()
+    {
         return $this->phones->implode('phone', ', ');
     }
 
 
     protected static function bootPhoneable()
     {
-        static::deleted(function($model){
+        static::deleted(function ($model) {
             $model->phones()->delete();
         });
     }
 
-    public function getPhonesViewAttribute() {
+    public function getPhonesViewAttribute()
+    {
         return view('panel::partials.form.phones', ['phones' => $this->phones]);
     }
 }

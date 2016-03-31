@@ -11,4 +11,7 @@ return [
     'autocomplete_url' => 'autocomplete',
     'upload_url' => 'upload/images',
 
+    'address_view' => 'panel::partials.form.address',
+    'addresses_view' => 'panel::partials.form.addresses',
+
 ];
