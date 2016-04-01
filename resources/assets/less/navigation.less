@@ -148,14 +148,13 @@
 }
 
 .pace-done .nav-header {
-  transition:all 0.5s;
+  transition: all 0.4s;
 }
 
 .nav > li.active {
   border-left: 4px solid darken(@navy, 2%);
   background: darken(@nav-bg, 3%);
 }
-
 
 .nav.nav-second-level > li.active {
   border: none;
@@ -267,7 +266,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 .mini-navbar .nav-second-level {
   position: absolute;
   left: 70px;
-  top: 0px;
+  top: 0;
   background-color: @nav-bg;
   padding: 10px 10px 10px 10px;
   font-size: 12px;
@@ -285,11 +284,13 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   background: @navy;
   color: white;
 }
+
 .navbar-default .special_link a:hover {
   background: #17987e !important;
   color: white;
 }
-.navbar-default .special_link a span.label{
+
+.navbar-default .special_link a span.label {
   background: #fff;
   color: @navy;
 }
@@ -298,11 +299,13 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   background: lighten(@navy, 3%);
   color: white;
 }
+
 .navbar-default .landing_link a:hover {
   background: @navy !important;
   color: white;
 }
-.navbar-default .landing_link a span.label{
+
+.navbar-default .landing_link a span.label {
   background: #fff;
   color: lighten(@navy, 3%);
 }
@@ -317,15 +320,15 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 }
 
 .pace-done .navbar-static-side, .pace-done .nav-header, .pace-done li.active, .pace-done #page-wrapper, .pace-done .footer {
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 .navbar-fixed-top {
   background: #fff;
-  transition-duration: 0.5s;
+  transition-duration: 0.4s;
   border-bottom: 1px solid #e7eaec !important;
   z-index: 2030;
 }
@@ -339,8 +342,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 }
 
 body.fixed-nav #wrapper .navbar-static-side,
-body.fixed-nav #wrapper #page-wrapper
-{
+body.fixed-nav #wrapper #page-wrapper {
   margin-top: 60px;
 }
 
@@ -348,12 +350,36 @@ body.top-navigation.fixed-nav #wrapper #page-wrapper {
   margin-top: 0;
 }
 
+body.fixed-nav.fixed-nav-basic .navbar-fixed-top {
+  left: 220px;
+}
+
+body.fixed-nav.fixed-nav-basic.mini-navbar .navbar-fixed-top {
+  left: 70px;
+}
+
+body.fixed-nav.fixed-nav-basic.fixed-sidebar.mini-navbar .navbar-fixed-top {
+  left: 0;
+}
+
+body.fixed-nav.fixed-nav-basic #wrapper .navbar-static-side {
+  margin-top: 0;
+}
+
+body.fixed-nav.fixed-nav-basic.body-small .navbar-fixed-top {
+  left: 0;
+}
+
+body.fixed-nav.fixed-nav-basic.fixed-sidebar.mini-navbar.body-small .navbar-fixed-top {
+  left: 220px;
+}
+
 .fixed-nav .minimalize-styl-2 {
   margin: 14px 5px 5px 15px;
 }
 
 .body-small .navbar-fixed-top {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 body.mini-navbar .navbar-static-side {
@@ -398,7 +424,7 @@ body.mini-navbar #page-wrapper {
 }
 
 body.fixed-sidebar.mini-navbar .footer,
-body.canvas-menu.mini-navbar .footer{
+body.canvas-menu.mini-navbar .footer {
   margin: 0 0 0 0 !important;
 }
 
@@ -416,11 +442,11 @@ body.canvas-menu .navbar-static-side {
 }
 
 body.fixed-sidebar.mini-navbar .navbar-static-side {
-  width: 0px;
+  width: 0;
 }
 
 body.fixed-sidebar.mini-navbar #page-wrapper {
-  margin: 0 0 0 0px;
+  margin: 0 0 0 0;
 }
 
 body.body-small.fixed-sidebar.mini-navbar #page-wrapper {
@@ -461,7 +487,7 @@ body.canvas-menu.mini-navbar .navbar-default .nav > li > .nav-second-level li a 
 
 .fixed-sidebar.mini-navbar li.active .nav-second-level,
 .canvas-menu.mini-navbar li.active .nav-second-level {
-  left: 0px
+  left: 0
 }
 
 body.fixed-sidebar.mini-navbar .navbar-default .nav > li > a,
@@ -487,9 +513,8 @@ body.canvas-menu.mini-navbar .navbar-default .nav li .profile-element a span {
 
 .fixed-sidebar.mini-navbar .nav-second-level,
 .canvas-menu.mini-navbar .nav-second-level {
-  left: 0px
+  left: 0
 }
-
 
 body.canvas-menu nav.navbar-static-side {
   z-index: 2001;
@@ -498,7 +523,6 @@ body.canvas-menu nav.navbar-static-side {
   position: fixed;
   display: none;
 }
-
 
 body.canvas-menu.mini-navbar nav.navbar-static-side {
   display: block;

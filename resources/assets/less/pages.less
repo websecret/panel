@@ -121,7 +121,7 @@
   font-size: 180px;
   font-weight: 800;
   letter-spacing: -10px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .middle-box h1 {
@@ -257,7 +257,7 @@ ul.notes li div a {
 }
 
 ul.notes li {
-  margin: 10px 40px 50px 0px;
+  margin: 10px 40px 50px 0;
   float: left;
 }
 
@@ -573,7 +573,6 @@ a.compose-mail {
   margin-bottom: 10px;
 }
 
-
 .file-list li {
   padding: 5px 10px;
   font-size: 11px;
@@ -599,14 +598,13 @@ a.compose-mail {
 
 }
 
-
 /* MAILBOX */
 
 .mail-box {
   background-color: #ffffff;
   border: 1px solid @border-color;
   border-top: 0;
-  padding: 0px;
+  padding: 0;
   margin-bottom: 20px;
 }
 
@@ -618,7 +616,7 @@ a.compose-mail {
 }
 
 .mail-box-header h2 {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .mailbox-content .tag-list li a {
@@ -691,7 +689,7 @@ dd.project-people {
   vertical-align: middle;
 }
 
-.project-manager .tag-list li a  {
+.project-manager .tag-list li a {
   font-size: 10px;
   background-color: white;
   padding: 5px 12px;
@@ -778,10 +776,11 @@ dd.project-people {
 }
 
 @media (max-width: 992px) {
-  .chat-users,.chat-statistic {
-    margin-left: 0px;
+  .chat-users, .chat-statistic {
+    margin-left: 0;
   }
 }
+
 .chat-view .ibox-content {
   padding: 0;
 }
@@ -889,7 +888,7 @@ dd.project-people {
 .clients-list table tr td {
   height: 46px;
   vertical-align: middle;
-  border: none ;
+  border: none;
 }
 
 .client-link {
@@ -943,7 +942,7 @@ dd.project-people {
   margin: 0 0 5px 0;
 }
 
-.blog .btn{
+.blog .btn {
   margin: 0 0 5px 0;
 }
 
@@ -1007,34 +1006,42 @@ table.issue-tracker tbody tr td {
 .sortable-list {
   padding: 10px 0;
 }
+
 .agile-list {
   list-style: none;
   margin: 0;
 }
+
 .agile-list li {
 
   background: #FAFAFB;
   border: 1px solid #e7eaec;
-  margin: 0px 0 10px 0;
+  margin: 0 0 10px 0;
   padding: 10px;
   border-radius: 2px;
 }
+
 .agile-list li:hover {
   cursor: pointer;
   background: #fff;
 }
+
 .agile-list li.warning-element {
   border-left: 3px solid @yellow;
 }
+
 .agile-list li.danger-element {
   border-left: 3px solid @red;
 }
+
 .agile-list li.info-element {
   border-left: 3px solid @blue;
 }
+
 .agile-list li.success-element {
   border-left: 3px solid @navy;
 }
+
 .agile-detail {
   margin-top: 5px;
   font-size: 12px;
@@ -1057,14 +1064,12 @@ del {
   border: 1px solid @border-color;
 }
 
-
-
 .product-box:hover,
 .product-box.active {
   border: 1px solid transparent;
-  -webkit-box-shadow: 0px 3px 7px 0px rgba(168,168,168,1);
-  -moz-box-shadow: 0px 3px 7px 0px rgba(168,168,168,1);
-  box-shadow: 0px 3px 7px 0px rgba(168,168,168,1);
+  -webkit-box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
+  -moz-box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
+  box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
 }
 
 .product-imitation {
@@ -1073,6 +1078,14 @@ del {
   background-color: lighten(@gray, 2%);
   color: darken(@gray, 20%);
   font-weight: 600;
+}
+
+.cart-product-imitation {
+  text-align: center;
+  padding-top: 30px;
+  height: 80px;
+  width: 80px;
+  background-color: lighten(@gray, 2%);
 }
 
 .product-imitation.xl {
@@ -1100,6 +1113,24 @@ del {
   border: 1px solid @border-color;
 }
 
+table.shoping-cart-table {
+  margin-bottom: 0;
+
+  tr td {
+    border: none;
+    text-align: right;
+  }
+
+  tr td.desc, tr td:first-child {
+    text-align: left;
+  }
+
+  tr td:last-child {
+    width: 80px;
+  }
+
+}
+
 .product-name {
   font-size: 16px;
   font-weight: 600;
@@ -1125,7 +1156,7 @@ del {
   right: 0;
 }
 
-.product-detail .ibox-content{
+.product-detail .ibox-content {
   padding: 30px 30px 50px 30px;
 }
 
@@ -1178,7 +1209,7 @@ del {
   border-bottom: none;
 }
 
-.article .social-feed-box:last-child{
+.article .social-feed-box:last-child {
   margin-bottom: 0;
   border-bottom: 1px solid @border-color;
 }
@@ -1270,6 +1301,7 @@ del {
   color: @navy;
   font-weight: 600;
 }
+
 .vote-actions {
   font-weight: 600;
 }
@@ -1283,7 +1315,7 @@ del {
   margin-bottom: 2px;
 }
 
-.vote-title:hover,.vote-title:focus{
+.vote-title:hover, .vote-title:focus {
   color: inherit;
 }
 
@@ -1317,5 +1349,13 @@ del {
 
 body.body-small .vote-icon {
   display: none;
+}
+
+.lightBoxGallery {
+  text-align: center
+}
+
+.lightBoxGallery img {
+  margin: 5px
 }
 

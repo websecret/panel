@@ -45,7 +45,7 @@
   color: #FFFFFF;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary.active:hover, .btn-primary.active:focus  {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary.active:hover, .btn-primary.active:focus {
   background-color: darken(@navy, 3%);
   border-color: darken(@navy, 3%);
   color: #FFFFFF;
@@ -103,24 +103,22 @@
 }
 
 .btn-default {
-  background-color: @dark-gray;
-  border-color: @dark-gray;
-  color: #FFFFFF;
+  color: inherit;
+  background: white;
+  border: 1px solid @border-color;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default, .btn-default:active:focus, .btn-default:active:hover, .btn-default.active:hover, .btn-default.active:focus {
-  background-color: darken(@dark-gray, 3%);
-  border-color: darken(@dark-gray, 3%);
-  color: #FFFFFF;
+  color: inherit;
+  border: 1px solid #d2d2d2;
 }
 
 .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-  background-image: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
 }
 
 .btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled:active, .btn-default.disabled.active, .btn-default[disabled], .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled]:active, .btn-default.active[disabled], fieldset[disabled] .btn-default, fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:active, fieldset[disabled] .btn-default.active {
-  background-color: lighten(@dark-gray, 4%);
-  border-color: lighten(@dark-gray, 4%);
+  color: #cacaca;
 }
 
 .btn-warning {
@@ -188,7 +186,7 @@
   border: 1px solid @border-color;
 }
 
-.btn-white:hover, .btn-white:focus, .btn-white:active, .btn-white.active, .open .dropdown-toggle.btn-white, .btn-white:active:focus, .btn-white:active:hover, .btn-white.active:hover, .btn-white.active:focus{
+.btn-white:hover, .btn-white:focus, .btn-white:active, .btn-white.active, .open .dropdown-toggle.btn-white, .btn-white:active:focus, .btn-white:active:hover, .btn-white.active:hover, .btn-white.active:focus {
   color: inherit;
   border: 1px solid #d2d2d2;
 }
@@ -227,7 +225,6 @@
 
 button.dim {
   display: inline-block;
-  color: #fff;
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
@@ -245,51 +242,51 @@ button.dim:active {
 }
 
 button.btn-primary.dim {
-  box-shadow: inset 0px 0px 0px darken(@navy,6%), 0px 5px 0px 0px darken(@navy,6%), 0px 10px 5px #999;
+  box-shadow: inset 0 0 0 darken(@navy, 6%), 0 5px 0 0 darken(@navy, 6%), 0 10px 5px #999;
 }
 
 button.btn-primary.dim:active {
-  box-shadow: inset 0px 0px 0px darken(@navy,6%), 0px 2px 0px 0px darken(@navy,6%), 0px 5px 3px #999;
+  box-shadow: inset 0 0 0 darken(@navy, 6%), 0 2px 0 0 darken(@navy, 6%), 0 5px 3px #999;
 }
 
 button.btn-default.dim {
-  box-shadow: inset 0px 0px 0px darken(@dark-gray,6%), 0px 5px 0px 0px darken(@dark-gray,6%), 0px 10px 5px #999;
+  box-shadow: inset 0 0 0 darken(@dark-gray, 6%), 0 5px 0 0 darken(@dark-gray, 6%), 0 10px 5px #999;
 }
 
 button.btn-default.dim:active {
-  box-shadow: inset 0px 0px 0px darken(@dark-gray,6%), 0px 2px 0px 0px darken(@dark-gray,6%), 0px 5px 3px #999;
+  box-shadow: inset 0 0 0 darken(@dark-gray, 6%), 0 2px 0 0 darken(@dark-gray, 6%), 0 5px 3px #999;
 }
 
 button.btn-warning.dim {
-  box-shadow: inset 0px 0px 0px darken(@yellow,6%), 0px 5px 0px 0px darken(@yellow,6%), 0px 10px 5px #999;
+  box-shadow: inset 0 0 0 darken(@yellow, 6%), 0 5px 0 0 darken(@yellow, 6%), 0 10px 5px #999;
 }
 
 button.btn-warning.dim:active {
-  box-shadow: inset 0px 0px 0px darken(@yellow,6%), 0px 2px 0px 0px darken(@yellow,6%), 0px 5px 3px #999;
+  box-shadow: inset 0 0 0 darken(@yellow, 6%), 0 2px 0 0 darken(@yellow, 6%), 0 5px 3px #999;
 }
 
 button.btn-info.dim {
-  box-shadow: inset 0px 0px 0px darken(@lazur,6%), 0px 5px 0px 0px darken(@lazur,6%), 0px 10px 5px #999;
+  box-shadow: inset 0 0 0 darken(@lazur, 6%), 0 5px 0 0 darken(@lazur, 6%), 0 10px 5px #999;
 }
 
 button.btn-info.dim:active {
-  box-shadow: inset 0px 0px 0px darken(@lazur,6%), 0px 2px 0px 0px darken(@lazur,6%), 0px 5px 3px #999;
+  box-shadow: inset 0 0 0 darken(@lazur, 6%), 0 2px 0 0 darken(@lazur, 6%), 0 5px 3px #999;
 }
 
 button.btn-success.dim {
-  box-shadow: inset 0px 0px 0px darken(@blue,6%), 0px 5px 0px 0px darken(@blue,6%), 0px 10px 5px #999;
+  box-shadow: inset 0 0 0 darken(@blue, 6%), 0 5px 0 0 darken(@blue, 6%), 0 10px 5px #999;
 }
 
 button.btn-success.dim:active {
-  box-shadow: inset 0px 0px 0px darken(@blue,6%), 0px 2px 0px 0px darken(@blue,6%), 0px 5px 3px #999;
+  box-shadow: inset 0 0 0 darken(@blue, 6%), 0 2px 0 0 darken(@blue, 6%), 0 5px 3px #999;
 }
 
 button.btn-danger.dim {
-  box-shadow: inset 0px 0px 0px darken(@red,6%), 0px 5px 0px 0px darken(@red,6%), 0px 10px 5px #999;
+  box-shadow: inset 0 0 0 darken(@red, 6%), 0 5px 0 0 darken(@red, 6%), 0 10px 5px #999;
 }
 
 button.btn-danger.dim:active {
-  box-shadow: inset 0px 0px 0px darken(@red,6%), 0px 2px 0px 0px darken(@red,6%), 0px 5px 3px #999;
+  box-shadow: inset 0 0 0 darken(@red, 6%), 0 2px 0 0 darken(@red, 6%), 0 5px 3px #999;
 }
 
 button.dim:before {
@@ -305,4 +302,8 @@ button.dim:before {
 button.dim:active:before {
   top: 7px;
   font-size: 50px;
+}
+
+.btn:focus {
+  outline: none !important;
 }
