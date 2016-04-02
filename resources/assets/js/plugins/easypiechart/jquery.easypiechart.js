@@ -7,7 +7,7 @@
  * @version 2.1.5
  **/
 
-(function(root, factory) {
+;(function(root, factory) {
     if(typeof exports === 'object') {
         module.exports = factory(require('jquery'));
     }

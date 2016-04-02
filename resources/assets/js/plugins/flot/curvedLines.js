@@ -84,7 +84,7 @@
  *  v0.6   flot 0.8 compatibility and some bug fixes
  */
 
-(function($) {
+;(function($) {
 
     var options = {
         series : {

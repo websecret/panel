@@ -8,7 +8,7 @@
  *
  * Date: 2016-02-15T18:35Z
  */
-(function (factory) {
+;(function (factory) {
   /* global define */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
