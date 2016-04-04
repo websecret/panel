@@ -31,7 +31,8 @@ $(document).ready(function () {
             },
             chosen: {
                 no_results_text: "Ничего не найдено по запросу",
-                placeholder_text_multiple: "Выберите из вариантов",
+                placeholder_text_multiple: "-Выберите из вариантов-",
+                placeholder_text_single: "-Ничего не выбрано-"
             },
             form: {
                 success: 'Данные успешно сохранены',
@@ -122,11 +123,9 @@ $(document).ready(function () {
         return this;
     };
     $.fn.initChosen = function () {
-        this.chosen({
-            no_results_text: langs.ru.chosen.no_results_text,
-            placeholder_text_multiple: langs.ru.chosen.placeholder_text_multiple,
-            search_contains: true
-        });
+        var options = langs.ru.chosen;
+        options['search_contains'] = true;
+        this.chosen(options);
         return this;
     };
 
@@ -419,6 +418,7 @@ $(document).ready(function () {
     function submitFormAjax(e) {
         e.preventDefault(); // prevent native submit
         var $form = $(this);
+        $form.trigger('panel-form-ajax-submitted');
         $form.append('<div class="loader"></div>');
         $form.find('.form-group').removeClass('has-error');
         $form.find('.error-block').html('');
@@ -426,11 +426,16 @@ $(document).ready(function () {
             success: function (data) {
                 $form.find('.loader').remove();
                 if (data.result == 'success') {
+                    $form.trigger('panel-form-ajax-success');
                     if ($form.hasClass('js_panel_form-ajax-redirect')) {
                         var redirectLink = data.link || data.redirect;
                         setTimeout(function () {
                             window.location.href = redirectLink;
                         }, 2000);
+                    }
+                    if ($form.hasClass('js_panel_form-ajax-popup')) {
+                        var $popup = $form.closest('.modal');
+                        $popup.modal('hide');
                     }
                     if (data.message) {
                         window.showNotification(data.message, 'success');
@@ -438,6 +443,7 @@ $(document).ready(function () {
                         window.showNotification(langs.ru.form.success, 'success');
                     }
                 } else {
+                    $form.trigger('panel-form-ajax-error');
                     $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
                         var $input = $form.find(':input[name="' + input + '"]');

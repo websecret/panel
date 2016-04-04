@@ -84,6 +84,20 @@ Functions
 
 `showNotification(text, title, type)`
 
+Events
+------
+`panel-form-ajax-submitted`
+
+`panel-form-ajax-error`
+
+`panel-form-ajax-success`
+
+`panel-multiple-added`
+
+`panel-multiple-removed`
+
+`panel-addable-exists-click`
+
 Helpers.less
 -----------
 `.td-actions` - set row min width and remove text wrap

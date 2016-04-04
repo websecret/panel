@@ -17,7 +17,7 @@ elixir(function (mix) {
     ], publicFolder + 'css/panel.css');
 
     mix.scripts([
-        resourcesFolder + 'js/jquery-2.1.1.js',
+        resourcesFolder + 'js/jquery-2.2.2.js',
         resourcesFolder + 'js/bootstrap.js',
         resourcesFolder + 'js/plugins/metisMenu/jquery.metisMenu.js',
         resourcesFolder + 'js/plugins/slimscroll/jquery.slimscroll.min.js',
