@@ -138,7 +138,7 @@ $(document).ready(function () {
         }).on('change', updateOrder);
 
         initRedactor();
-        initDatatable();
+        initDatatable(false);
         initPhoneMask();
         initMask();
         initChosen();
@@ -161,7 +161,7 @@ $(document).ready(function () {
 
     function refresh() {
         initRedactor();
-        initDatatable();
+        initDatatable(true);
         initPhoneMask();
         initMask();
         initChosen();
@@ -249,7 +249,11 @@ $(document).ready(function () {
         });
     }
 
-    function initDatatable() {
+    function initDatatable(refresh) {
+        refresh = refresh || false;
+        if(refresh) {
+            $('.js_panel_datatable').dataTable().fnDestroy();
+        }
         $('.js_panel_datatable').each(function () {
             var $table = $(this);
 
@@ -279,6 +283,7 @@ $(document).ready(function () {
             var datatable = $table.DataTable({
                 order: order,
                 columnDefs: columnDefs,
+                "bDestroy": true,
                 "dom": 'lTfigt',
                 "tableTools": {
                     "sSwfPath": "/assets/panel/swf/dataTables/swf/copy_csv_xls_pdf.swf"
