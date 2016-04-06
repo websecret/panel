@@ -466,10 +466,18 @@ $(document).ready(function () {
                             var $help_block = '<span class="help-block">' + text + '</span>';
                             $error_block.append($help_block);
                         } else {
-                            window.showNotification(text, 'error');
+                            if($form.data('message-success')) {
+                                window.showNotification($form.data('message-success'), 'error');
+                            } else {
+                                window.showNotification(text, 'error');
+                            }
                         }
                     });
-                    window.showNotification(langs.ru.form.error, 'error');
+                    if($form.data('message-error')) {
+                        window.showNotification($form.data('message-error'), 'error');
+                    } else {
+                        window.showNotification(langs.ru.form.error, 'error');
+                    }
                 }
             }
         });
