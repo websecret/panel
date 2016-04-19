@@ -517,35 +517,36 @@ $(document).ready(function () {
     }
 
     function changeAjaxRowInput() {
-        var $row = $(this).closest('tr');
-        var link = $row.data('link');
-        var dataObject = {};
-        $row.find(':input').each(function () {
-            if(!$(this).hasClass('js_panel_ajax-row-ignore')) {
-                var name = $(this).attr('name');
-                var value = $(this).val();
-                if ($(this).is(':checkbox')) {
-                    if ($(this).is(':checked')) {
-                        value = 1;
-                    } else {
-                        value = 0;
+        if(!$(this).hasClass('js_panel_ajax-row-ignore')) {
+            var $row = $(this).closest('tr');
+            var link = $row.data('link');
+            var dataObject = {};
+            $row.find(':input').each(function () {
+                if(!$(this).hasClass('js_panel_ajax-row-ignore')) {
+                    var name = $(this).attr('name');
+                    var value = $(this).val();
+                    if ($(this).is(':checkbox')) {
+                        if ($(this).is(':checked')) {
+                            value = 1;
+                        } else {
+                            value = 0;
+                        }
+                    }
+                    dataObject[name] = value;
+                }
+            });
+            $.ajax({
+                url: link,
+                type: "POST",
+                dataType: 'JSON',
+                data: dataObject,
+                success: function (data) {
+                    if (data.result == 'success') {
+                        window.showNotification(langs.ru.form.success, 'success');
                     }
                 }
-                dataObject[name] = value;
-            }
-        });
-
-        $.ajax({
-            url: link,
-            type: "POST",
-            dataType: 'JSON',
-            data: dataObject,
-            success: function (data) {
-                if (data.result == 'success') {
-                    window.showNotification(langs.ru.form.success, 'success');
-                }
-            }
-        });
+            });
+        }
     }
 
     function updateOrder(e) {
