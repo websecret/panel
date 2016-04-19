@@ -521,16 +521,18 @@ $(document).ready(function () {
         var link = $row.data('link');
         var dataObject = {};
         $row.find(':input').each(function () {
-            var name = $(this).attr('name');
-            var value = $(this).val();
-            if ($(this).is(':checkbox')) {
-                if ($(this).is(':checked')) {
-                    value = 1;
-                } else {
-                    value = 0;
+            if(!$(this).hasClass('js_panel_ajax-row-ignore')) {
+                var name = $(this).attr('name');
+                var value = $(this).val();
+                if ($(this).is(':checkbox')) {
+                    if ($(this).is(':checked')) {
+                        value = 1;
+                    } else {
+                        value = 0;
+                    }
                 }
+                dataObject[name] = value;
             }
-            dataObject[name] = value;
         });
 
         $.ajax({
