@@ -431,7 +431,7 @@ $(document).ready(function () {
             success: function (data) {
                 $form.find('.loader').remove();
                 if (data.result == 'success') {
-                    $form.trigger('panel-form-ajax-success');
+                    $form.trigger('panel-form-ajax-success', [{data: data}]);
                     if ($form.hasClass('js_panel_form-ajax-redirect')) {
                         var redirectLink = data.link || data.redirect;
                         setTimeout(function () {
@@ -448,7 +448,7 @@ $(document).ready(function () {
                         window.showNotification(langs.ru.form.success, 'success');
                     }
                 } else {
-                    $form.trigger('panel-form-ajax-error');
+                    $form.trigger('panel-form-ajax-error', [{data: data}]);
                     $.each(data.errors, function (input, errors) {
                         var inputArray = input.split('.');
                         var $input = $form.find(':input[name="' + input + '"]');
