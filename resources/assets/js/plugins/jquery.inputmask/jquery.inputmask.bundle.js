@@ -3,7 +3,7 @@
 * https://github.com/RobinHerbots/jquery.inputmask
 * Copyright (c) 2010 - 2016 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.1-0
+* Version: 3.3.1
 */
 ;!function($) {
     function Inputmask(alias, options) {
@@ -266,8 +266,8 @@
             maskset.buffer = void 0, soft !== !0 && (maskset.tests = {}, maskset._buffer = void 0, 
             maskset.validPositions = {}, maskset.p = 0);
         }
-        function getLastValidPosition(closestTo, strict) {
-            var before = -1, after = -1, valids = getMaskSet().validPositions;
+        function getLastValidPosition(closestTo, strict, validPositions) {
+            var before = -1, after = -1, valids = validPositions || getMaskSet().validPositions;
             void 0 === closestTo && (closestTo = -1);
             for (var posNdx in valids) {
                 var psNdx = parseInt(posNdx);
@@ -281,17 +281,24 @@
                 var i, positionsClone = $.extend(!0, {}, getMaskSet().validPositions), lvp = getLastValidPosition();
                 for (i = pos; lvp >= i; i++) delete getMaskSet().validPositions[i];
                 getMaskSet().validPositions[pos] = validTest;
-                var j, valid = !0, vps = getMaskSet().validPositions;
+                var j, valid = !0, vps = getMaskSet().validPositions, needsValidation = !1;
                 for (i = j = pos; lvp >= i; i++) {
                     var t = positionsClone[i];
-                    if (void 0 !== t) for (var posMatch = j, prevPosMatch = -1; posMatch < getMaskLength() && (null == t.match.fn && vps[i] && (vps[i].match.optionalQuantifier === !0 || vps[i].match.optionality === !0) || null != t.match.fn); ) if (null === t.match.fn || !opts.keepStatic && vps[i] && (void 0 !== vps[i + 1] && getTests(i + 1, vps[i].locator.slice(), i).length > 1 || void 0 !== vps[i].alternation) ? posMatch++ : posMatch = seekNext(j), 
-                    positionCanMatchDefinition(posMatch, t.match.def)) {
-                        var result = isValid(posMatch, t.input, !0, !0);
-                        if (valid = result !== !1, j = result.caret || result.insert ? getLastValidPosition() : posMatch, 
-                        valid) break;
-                    } else {
-                        if (valid = null == t.match.fn, prevPosMatch === posMatch) break;
-                        prevPosMatch = posMatch;
+                    if (void 0 !== t) for (var posMatch = j, prevPosMatch = -1; posMatch < getMaskLength() && (null == t.match.fn && vps[i] && (vps[i].match.optionalQuantifier === !0 || vps[i].match.optionality === !0) || null != t.match.fn); ) {
+                        if (null === t.match.fn || !opts.keepStatic && vps[i] && (void 0 !== vps[i + 1] && getTests(i + 1, vps[i].locator.slice(), i).length > 1 || void 0 !== vps[i].alternation) ? posMatch++ : posMatch = seekNext(j), 
+                        needsValidation === !1 && positionsClone[posMatch] && positionsClone[posMatch].match.def === t.match.def) {
+                            getMaskSet().validPositions[posMatch] = $.extend(!0, {}, positionsClone[posMatch]), 
+                            getMaskSet().validPositions[posMatch].input = t.input, j = posMatch, valid = !0;
+                            break;
+                        }
+                        if (positionCanMatchDefinition(posMatch, t.match.def)) {
+                            var result = isValid(posMatch, t.input, !0, !0);
+                            if (valid = result !== !1, j = result.caret || result.insert ? getLastValidPosition() : posMatch, 
+                            needsValidation = !0, valid) break;
+                        } else {
+                            if (valid = null == t.match.fn, prevPosMatch === posMatch) break;
+                            prevPosMatch = posMatch;
+                        }
                     }
                     if (!valid) break;
                 }
@@ -309,15 +316,17 @@
                 }
                 return !1;
             }
-            var i, startPos = start;
+            var i, startPos = start, positionsClone = $.extend(!0, {}, getMaskSet().validPositions), needsValidation = !1;
             for (getMaskSet().p = start, i = end - 1; i >= startPos; i--) void 0 !== getMaskSet().validPositions[i] && (nocheck === !0 || !IsEnclosedStatic(i) && opts.canClearPosition(getMaskSet(), i, getLastValidPosition(), strict, opts) !== !1) && delete getMaskSet().validPositions[i];
             for (resetMaskSet(!0), i = startPos + 1; i <= getLastValidPosition(); ) {
                 for (;void 0 !== getMaskSet().validPositions[startPos]; ) startPos++;
                 var s = getMaskSet().validPositions[startPos];
                 if (startPos > i && (i = startPos + 1), void 0 === getMaskSet().validPositions[i] && isMask(i) || void 0 !== s) i++; else {
                     var t = getTestTemplate(i);
-                    positionCanMatchDefinition(startPos, t.match.def) ? isValid(startPos, t.input || getPlaceholder(i), !0) !== !1 && (delete getMaskSet().validPositions[i], 
-                    i++) : isMask(i) || (i++, startPos--), startPos++;
+                    needsValidation === !1 && positionsClone[startPos] && positionsClone[startPos].match.def === t.match.def ? (getMaskSet().validPositions[startPos] = $.extend(!0, {}, positionsClone[startPos]), 
+                    getMaskSet().validPositions[startPos].input = t.input, delete getMaskSet().validPositions[i], 
+                    i++) : positionCanMatchDefinition(startPos, t.match.def) ? isValid(startPos, t.input || getPlaceholder(i), !0) !== !1 && (delete getMaskSet().validPositions[i], 
+                    i++, needsValidation = !0) : isMask(i) || (i++, startPos--), startPos++;
                 }
             }
             resetMaskSet(!0);
@@ -442,15 +451,17 @@
                 }
             }
             function mergeLocators(tests) {
-                var test = tests[0] || tests;
-                return test.locator.slice();
+                var locator = [];
+                return $.isArray(tests) || (tests = [ tests ]), void 0 === tests[0].alternation ? locator = tests[0].locator.slice() : $.each(tests, function(ndx, tst) {
+                    if ("" !== tst.def) if (0 === locator.length) locator = tst.locator.slice(); else for (var i = 0; i < locator.length; i++) tst.locator[i] && -1 === locator[i].toString().indexOf(tst.locator[i]) && (locator[i] += "," + tst.locator[i]);
+                }), locator;
             }
             var latestMatch, maskTokens = getMaskSet().maskToken, testPos = ndxIntlzr ? tstPs : 0, ndxInitializer = ndxIntlzr || [ 0 ], matches = [], insertStop = !1, cacheDependency = ndxIntlzr ? ndxIntlzr.join("") : "";
             if (pos > -1) {
                 if (void 0 === ndxIntlzr) {
                     for (var test, previousPos = pos - 1; void 0 === (test = getMaskSet().validPositions[previousPos] || getMaskSet().tests[previousPos]) && previousPos > -1; ) previousPos--;
                     void 0 !== test && previousPos > -1 && (ndxInitializer = mergeLocators(test), cacheDependency = ndxInitializer.join(""), 
-                    test = test[0] || test, testPos = previousPos);
+                    testPos = previousPos);
                 }
                 if (getMaskSet().tests[pos] && getMaskSet().tests[pos][0].cd === cacheDependency) return getMaskSet().tests[pos];
                 for (var mtndx = ndxInitializer.shift(); mtndx < maskTokens.length; mtndx++) {
@@ -693,9 +704,9 @@
             if (test = test || getTest(pos), void 0 !== test.placeholder) return test.placeholder;
             if (null === test.fn) {
                 if (pos > -1 && !opts.keepStatic && void 0 === getMaskSet().validPositions[pos]) {
-                    var prevTest, tests = getTests(pos), staticAlternations = 0;
-                    if (tests.length > 2) for (var i = 0; i < tests.length; i++) if (tests[i].match.optionality !== !0 && tests[i].match.optionalQuantifier !== !0 && (null === tests[i].match.fn || void 0 === prevTest || tests[i].match.fn.test(prevTest.match.def, getMaskSet(), pos, !0, opts) !== !1) && (staticAlternations++, 
-                    null === tests[i].match.fn && (prevTest = tests[i]), staticAlternations > 1)) return opts.placeholder.charAt(pos % opts.placeholder.length);
+                    var prevTest, tests = getTests(pos), staticAlternations = [];
+                    if (tests.length > 2) for (var i = 0; i < tests.length; i++) if (tests[i].match.optionality !== !0 && tests[i].match.optionalQuantifier !== !0 && (null === tests[i].match.fn || void 0 === prevTest || tests[i].match.fn.test(prevTest.match.def, getMaskSet(), pos, !0, opts) !== !1) && (staticAlternations.push(tests[i]), 
+                    null === tests[i].match.fn && (prevTest = tests[i]), staticAlternations.length > 1)) return opts.placeholder.charAt(pos % opts.placeholder.length);
                 }
                 return test.def;
             }
@@ -827,7 +838,7 @@
                             if (elem.inputmask) {
                                 if (elem.inputmask.opts.autoUnmask) return elem.inputmask.unmaskedvalue();
                                 var result = valhookGet(elem);
-                                return -1 !== getLastValidPosition() || opts.nullable !== !0 ? result : "";
+                                return -1 !== getLastValidPosition(void 0, void 0, elem.inputmask.maskset.validPositions) || opts.nullable !== !0 ? result : "";
                             }
                             return valhookGet(elem);
                         },
@@ -855,6 +866,11 @@
             var valueGet, valueSet;
             if (!npt.inputmask.__valueGet) {
                 if (Object.getOwnPropertyDescriptor) {
+                    "function" != typeof Object.getPrototypeOf && (Object.getPrototypeOf = "object" == typeof "test".__proto__ ? function(object) {
+                        return object.__proto__;
+                    } : function(object) {
+                        return object.constructor.prototype;
+                    });
                     var valueProperty = Object.getPrototypeOf ? Object.getOwnPropertyDescriptor(Object.getPrototypeOf(npt), "value") : void 0;
                     valueProperty && valueProperty.get && valueProperty.set ? (valueGet = valueProperty.get, 
                     valueSet = valueProperty.set, Object.defineProperty(npt, "value", {
@@ -1337,13 +1353,9 @@
                 }));
             }), elems && elems[0] ? elems[0].inputmask || this : this;
         },
-        option: function(options) {
-            return "string" == typeof options ? this.opts[options] : "object" == typeof options ? ($.extend(this.opts, options), 
-            $.extend(this.userOptions, options), this.el && (void 0 !== options.mask || void 0 !== options.alias ? this.mask(this.el) : ($.data(this.el, "_inputmask_opts", this.opts), 
-            maskScope({
-                action: "mask",
-                el: this.el
-            }))), this) : void 0;
+        option: function(options, noremask) {
+            return "string" == typeof options ? this.opts[options] : "object" == typeof options ? ($.extend(this.userOptions, options), 
+            this.el && noremask !== !0 && this.mask(this.el), this) : void 0;
         },
         unmaskedvalue: function(value) {
             return maskScope({
@@ -2049,7 +2061,7 @@
             }
         },
         email: {
-            mask: "*{1,64}[.*{1,64}][.*{1,64}][.*{1,63}]@-{1,63}[.-{1,63}][.-{1,63}][.-{1,63}]",
+            mask: "*{1,64}[.*{1,64}][.*{1,64}][.*{1,63}]@-{1,63}.-{1,63}[.-{1,63}][.-{1,63}]",
             greedy: !1,
             onBeforePaste: function(pastedValue, opts) {
                 return pastedValue = pastedValue.toLowerCase(), pastedValue.replace("mailto:", "");
