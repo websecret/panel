@@ -588,7 +588,7 @@ $(document).ready(function () {
         if ($wrapper.length) {
             $clone = $wrapper.find('.js_panel_multiple-row-clone[data-name="' + name + '"]');
         }
-        var $row = $clone.clone();
+        var $row = $clone.clone(true);
         var $inputs = $row.find(':input');
         $inputs.each(function () {
             var $input = $(this);
