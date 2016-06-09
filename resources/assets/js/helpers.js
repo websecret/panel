@@ -543,6 +543,8 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data.result == 'success') {
                         window.showNotification(langs.ru.form.success, 'success');
+                    } else {
+                        window.showNotification(data.message, 'error');
                     }
                 }
             });
