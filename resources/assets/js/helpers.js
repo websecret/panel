@@ -331,6 +331,10 @@ $(document).ready(function () {
         });
     }
 
+    function initSelect2() {
+        $(".js_panel_input-select2").select2();
+    }
+
     $.fn.extend({
         initAjaxSelect2: function () {
             this.select2({
