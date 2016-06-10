@@ -333,6 +333,26 @@ $(document).ready(function () {
 
     function initSelect2() {
         $(".js_panel_input-select2").select2();
+        $(".js_panel_input-select2-ajax").each(function(){
+            $(this).select2({
+                placeholder: $(this).attr('data-placeholder') || 'Поиск',
+                ajax: {
+                    url: $(this).attr('data-url'),
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return {
+                            results: data.items
+                        };
+                    }
+                }
+            })
+        });
     }
 
     function initAutocomplete() {
