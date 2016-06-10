@@ -331,10 +331,9 @@ $(document).ready(function () {
         });
     }
 
-    function initSelect2() {
-        $(".js_panel_input-select2").select2();
-        $(".js_panel_input-select2-ajax").each(function(){
-            $(this).select2({
+    $.fn.extend({
+        initAjaxSelect2: function () {
+            this.select2({
                 placeholder: $(this).attr('data-placeholder') || 'Поиск',
                 ajax: {
                     url: $(this).attr('data-url'),
@@ -352,8 +351,12 @@ $(document).ready(function () {
                     }
                 }
             })
-        });
-    }
+        }
+    });
+
+    $(".js_panel_input-select2-ajax").each(function() {
+        $(this).initAjaxSelect2();
+    });
 
     function initAutocomplete() {
         $('.js_panel_input-autocomplete').each(function () {
