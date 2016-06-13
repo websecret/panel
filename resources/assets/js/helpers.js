@@ -187,34 +187,6 @@ $(document).ready(function () {
         });
     }
 
-    function initRedactor() {
-        var options = {
-            lang: 'ru-RU',
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'hr']],
-                ['view', ['fullscreen', 'codeview']]
-            ]
-        };
-        $('.js_panel_input-redactor').each(function () {
-            var $redactor = $(this);
-            if (!$redactor.data('base64')) {
-                options['callbacks'] = {
-                    onImageUpload: function(files) {
-                        uploadRedactorImages(files[0], $redactor);
-                    }
-                };
-            }
-            $redactor.summernote(options);
-        });
-    }
-
     function uploadRedactorImages(file, $editor) {
         var model = $editor.data('model');
         data = new FormData();
@@ -336,6 +308,33 @@ $(document).ready(function () {
     }
 
     $.fn.extend({
+        initRedactor : function () {
+            function initRedactor() {
+                var options = {
+                    lang: 'ru-RU',
+                    height: 300,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'hr']],
+                        ['view', ['fullscreen', 'codeview']]
+                    ]
+                };
+                var $redactor = this;
+                if (!$redactor.data('base64')) {
+                    options['callbacks'] = {
+                        onImageUpload: function(files) {
+                            uploadRedactorImages(files[0], $redactor);
+                        }
+                    };
+                }
+                $redactor.summernote(options);
+            }
+        },
         initAjaxSelect2: function () {
             this.select2({
                 placeholder: $(this).attr('data-placeholder') || 'Поиск',
@@ -360,6 +359,10 @@ $(document).ready(function () {
 
     $(".js_panel_input-select2-ajax").each(function() {
         $(this).initAjaxSelect2();
+    });
+
+    $(".js_panel_input-redactor").each(function() {
+        $(this).initRedactor();
     });
 
     function initAutocomplete() {
@@ -625,6 +628,9 @@ $(document).ready(function () {
                 $input.prop('disabled', false);
                 if ($input.hasClass('js_panel_input-chosen')) {
                     $input.initChosen();
+                }
+                if ($input.hasClass('js_panel_input-redactor')) {
+                    $input.initRedactor();
                 }
             }
         });
