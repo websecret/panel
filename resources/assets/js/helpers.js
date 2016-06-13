@@ -137,7 +137,6 @@ $(document).ready(function () {
             maxDepth: 1
         }).on('change', updateOrder);
 
-        initRedactor();
         initDatatable(false);
         initPhoneMask();
         initMask();
