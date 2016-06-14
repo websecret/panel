@@ -200,7 +200,12 @@ $(document).ready(function () {
                 ['table', ['table']],
                 ['insert', ['link', 'picture', 'hr']],
                 ['view', ['fullscreen', 'codeview']]
-            ]
+            ],
+            popover: {
+                image: [
+                    ['float', ['floatLeft', 'floatRight', 'floatNone']]
+                ]
+            }
         };
         $('.js_panel_input-redactor').each(function () {
             var $redactor = $(this);
@@ -333,7 +338,7 @@ $(document).ready(function () {
 
     function initSelect2() {
         $(".js_panel_input-select2").select2();
-    } 
+    }
 
     $.fn.extend({
         initAjaxSelect2: function () {
