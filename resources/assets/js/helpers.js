@@ -128,6 +128,38 @@ $(document).ready(function () {
         this.chosen(options);
         return this;
     };
+    $.fn.initRedactor = function () {
+
+        var options = {
+            lang: 'ru-RU',
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'hr']],
+                ['view', ['fullscreen', 'codeview']]
+            ],
+            popover: {
+                image: [
+                    ['float', ['floatLeft', 'floatRight', 'floatNone']]
+                ]
+            }
+        };
+        var $redactor = this;
+        if (!$redactor.data('base64')) {
+            options['callbacks'] = {
+                onImageUpload: function(files) {
+                    uploadRedactorImages(files[0], $redactor);
+                }
+            };
+        }
+        $redactor.summernote(options);
+        return this;
+    };
 
     function init() {
 
@@ -188,35 +220,8 @@ $(document).ready(function () {
     }
 
     function initRedactor() {
-        var options = {
-            lang: 'ru-RU',
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'hr']],
-                ['view', ['fullscreen', 'codeview']]
-            ],
-            popover: {
-                image: [
-                    ['float', ['floatLeft', 'floatRight', 'floatNone']]
-                ]
-            }
-        };
         $('.js_panel_input-redactor').each(function () {
-            var $redactor = $(this);
-            if (!$redactor.data('base64')) {
-                options['callbacks'] = {
-                    onImageUpload: function(files) {
-                        uploadRedactorImages(files[0], $redactor);
-                    }
-                };
-            }
-            $redactor.summernote(options);
+            $(this).initRedactor();
         });
     }
 
