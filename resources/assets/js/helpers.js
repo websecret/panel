@@ -200,7 +200,12 @@ $(document).ready(function () {
                 ['table', ['table']],
                 ['insert', ['link', 'picture', 'hr']],
                 ['view', ['fullscreen', 'codeview']]
-            ]
+            ],
+            popover: {
+                image: [
+                    ['float', ['floatLeft', 'floatRight', 'floatNone']]
+                ]
+            }
         };
         $('.js_panel_input-redactor').each(function () {
             var $redactor = $(this);
@@ -334,6 +339,33 @@ $(document).ready(function () {
     function initSelect2() {
         $(".js_panel_input-select2").select2();
     }
+
+    $.fn.extend({
+        initAjaxSelect2: function () {
+            this.select2({
+                placeholder: $(this).attr('data-placeholder') || 'Поиск',
+                ajax: {
+                    url: $(this).attr('data-url'),
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return {
+                            results: data.items
+                        };
+                    }
+                }
+            })
+        }
+    });
+
+    $(".js_panel_input-select2-ajax").each(function() {
+        $(this).initAjaxSelect2();
+    });
 
     function initAutocomplete() {
         $('.js_panel_input-autocomplete').each(function () {
@@ -543,6 +575,8 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data.result == 'success') {
                         window.showNotification(langs.ru.form.success, 'success');
+                    } else {
+                        window.showNotification(data.message, 'error');
                     }
                 }
             });
