@@ -719,8 +719,8 @@ $(document).ready(function () {
                     var $zoom = $col.find('.js_panel_images-zoom');
                     $image.attr('src', file.path);
                     $zoom.attr('href', file.fullsize);
-                    $input.val(file.filename).prop('disabled', false);
-                    $main.prop('disabled', false);
+                    $input.val(file.filename);
+                    $col.find(':input').prop('disabled', false);
                     $col.removeClass('js_panel_images-col-clone');
                     $col.insertBefore($col_clone);
                 });
