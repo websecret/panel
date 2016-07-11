@@ -75,7 +75,7 @@ class UploadController extends Controller
         $file->move($imagesFolder, $filename);
 
         $results[] = [
-            'url' => $imagesFolder . '/' . $filename,
+            'url' => '/' . $imagesFolder . '/' . $filename,
         ];
         return response()->json($results);
     }
