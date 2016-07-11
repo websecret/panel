@@ -168,7 +168,7 @@ $(document).ready(function () {
             buttonSource: true,
             linkNofollow: true,
             lang: langs.ru.redactor.locale,
-            imageUpload: urlUploadRedactor,
+            imageUpload: typeof urlUploadRedactor !== 'undefined' ? urlUploadRedactor : '',
         };
         var plugins = plugins = [
             'source',
