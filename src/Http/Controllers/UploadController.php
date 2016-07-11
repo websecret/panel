@@ -1,4 +1,4 @@
-<?php namespace  Websecret\Panel\Http\Controllers;
+<?php namespace Websecret\Panel\Http\Controllers;
 
 use Validator;
 use File;
@@ -54,4 +54,30 @@ class UploadController extends Controller
             'params' => $params,
         ]);
     }
+
+    public function redactorImages(Request $request)
+    {
+        $imagesFolder = 'redactor-images';
+
+        $rules = [
+            'file' => 'mimes:jpg,jpeg,png'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->messages()->first('file')]);
+        }
+
+        $file = $request->file('file');
+
+        do {
+            $filename = str_random() . '.' . $file->getClientOriginalExtension();
+        } while (File::exists($imagesFolder . '/' . $filename));
+        $file->move($imagesFolder, $filename);
+
+        $results[] = [
+            'url' => $imagesFolder . '/' . $filename,
+        ];
+        return response()->json($results);
+    }
+
 }

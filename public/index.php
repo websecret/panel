@@ -3,7 +3,11 @@
         <link href="assets/css/panel.css" rel="stylesheet">
     </head>
     <body>
-        <input type="text" class="form-control js_panel_input-phone">
-        <script src="assets/js/panel.js"></script>
+    <div class="row m-t-lg">
+        <div class="col-md-8 col-md-offset-2">
+            <textarea class="form-control js_panel_input-redactorjs"></textarea>
+        </div>
+    </div>
+    <script src="assets/js/panel.js"></script>
     </body>
 </html>

@@ -161,6 +161,46 @@ $(document).ready(function () {
         return this;
     };
 
+
+    $.fn.initRedactorJS = function () {
+        var $redactor = this;
+        var options = {
+            buttonSource: true,
+            linkNofollow: true,
+            lang: langs.ru.redactor.locale,
+            imageUpload: urlUploadRedactor,
+        };
+        var plugins = plugins = [
+            'source',
+            'alignment',
+            'table',
+            'fullscreen',
+            'properties',
+            'imagemanager',
+        ];
+        var links = $redactor.data('links');
+        if(links) {
+            plugins.push('definedlinks');
+            options.definedLinks = links;
+        }
+        var linksAjax = $redactor.data('links-ajax');
+        if(linksAjax) {
+            plugins.push('definedlinks');
+            options.definedLinks = linksAjax;
+        }
+        var images = $redactor.data('images');
+        if(images) {
+            options.imageManagerJson = images;
+        }
+        var imagesAjax = $redactor.data('images-ajax');
+        if(linksAjax) {
+            options.imageManagerJson = imagesAjax;
+        }
+        options.plugins = plugins;
+        $redactor.redactor(options);
+        return this;
+    };
+
     function init() {
 
         $('[data-toggle="tooltip"]').tooltip();
@@ -170,6 +210,7 @@ $(document).ready(function () {
         }).on('change', updateOrder);
 
         initRedactor();
+        initRedactorJS();
         initDatatable(false);
         initPhoneMask();
         initMask();
@@ -192,7 +233,7 @@ $(document).ready(function () {
     init();
 
     function refresh() {
-        initRedactor();
+        initRedactorJS();
         initDatatable(true);
         initPhoneMask();
         initMask();
@@ -222,6 +263,12 @@ $(document).ready(function () {
     function initRedactor() {
         $('.js_panel_input-redactor').each(function () {
             $(this).initRedactor();
+        });
+    }
+
+    function initRedactorJS() {
+        $('.js_panel_input-redactorjs').each(function () {
+            $(this).initRedactorJS();
         });
     }
 

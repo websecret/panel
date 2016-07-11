@@ -27,6 +27,7 @@
 
 <script>
     var urlUpload = '{{ route('panel::upload') }}';
+    var urlUploadRedactor = '{{ route('panel::upload-redactor') }}';
 </script>
 @include('panel::partials.scripts')
 

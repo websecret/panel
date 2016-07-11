@@ -32,6 +32,9 @@ elixir(function (mix) {
         resourcesFolder + 'js/plugins/rickshaw/vendor/d3.v3.js',
         resourcesFolder + 'js/plugins/codemirror/codemirror.js',
         resourcesFolder + 'js/plugins/flot/jquery.flot.js',
+        resourcesFolder + 'js/plugins/redactor/redactor-all.min.js',
+        resourcesFolder + 'js/plugins/redactor/plugins/*.js',
+        resourcesFolder + 'js/plugins/redactor/langs/*.js',
         resourcesFolder + 'js/plugins/**/*.js',
         resourcesFolder + 'js/helpers.js'
     ], publicFolder + 'js/panel.js');
