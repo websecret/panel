@@ -57,7 +57,7 @@ class UploadController extends Controller
 
     public function redactorImages(Request $request)
     {
-        $imagesFolder = 'images/wysiwyg';
+        $imagesFolder = 'images/wysiwyg/' . date('Y-m-d');
 
         $file = $request->file('file');
 
@@ -74,7 +74,7 @@ class UploadController extends Controller
 
     public function froalaImages(Request $request)
     {
-        $imagesFolder = 'images/wysiwyg';
+        $imagesFolder = 'images/wysiwyg/' . date('Y-m-d');
 
         $file = $request->file('file');
 
