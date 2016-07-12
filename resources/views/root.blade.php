@@ -28,6 +28,7 @@
 <script>
     var urlUpload = '{{ route('panel::upload') }}';
     var urlUploadRedactor = '{{ route('panel::upload-redactor') }}';
+    var urlUploadFloara = '{{ route('panel::upload-floara') }}';
 </script>
 @include('panel::partials.scripts')
 

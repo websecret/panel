@@ -57,15 +57,7 @@ class UploadController extends Controller
 
     public function redactorImages(Request $request)
     {
-        $imagesFolder = 'redactor-images';
-
-        $rules = [
-            'file' => 'mimes:jpg,jpeg,png'
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return response()->json(['message' => $validator->messages()->first('file')]);
-        }
+        $imagesFolder = 'images/wysiwyg';
 
         $file = $request->file('file');
 
@@ -76,6 +68,23 @@ class UploadController extends Controller
 
         $results[] = [
             'url' => '/' . $imagesFolder . '/' . $filename,
+        ];
+        return response()->json($results);
+    }
+
+    public function floaraImages(Request $request)
+    {
+        $imagesFolder = 'images/wysiwyg';
+
+        $file = $request->file('file');
+
+        do {
+            $filename = str_random() . '.' . $file->getClientOriginalExtension();
+        } while (File::exists($imagesFolder . '/' . $filename));
+        $file->move($imagesFolder, $filename);
+
+        $results = [
+            'link' => '/' . $imagesFolder . '/' . $filename,
         ];
         return response()->json($results);
     }

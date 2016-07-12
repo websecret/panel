@@ -128,6 +128,7 @@ $(document).ready(function () {
         this.chosen(options);
         return this;
     };
+
     $.fn.initRedactor = function () {
 
         var options = {
@@ -152,7 +153,7 @@ $(document).ready(function () {
         var $redactor = this;
         if (!$redactor.data('base64')) {
             options['callbacks'] = {
-                onImageUpload: function(files) {
+                onImageUpload: function (files) {
                     uploadRedactorImages(files[0], $redactor);
                 }
             };
@@ -168,7 +169,7 @@ $(document).ready(function () {
             buttonSource: true,
             linkNofollow: true,
             lang: langs.ru.redactor.locale,
-            imageUpload: typeof urlUploadRedactor !== 'undefined' ? urlUploadRedactor : '',
+            imageUpload: typeof urlUploadRedactor !== 'undefined' ? urlUploadRedactor : '/upload/redactor/images',
         };
         var plugins = plugins = [
             'source',
@@ -179,25 +180,84 @@ $(document).ready(function () {
             'imagemanager',
         ];
         var links = $redactor.data('links');
-        if(links) {
+        if (links) {
             plugins.push('definedlinks');
             options.definedLinks = links;
         }
         var linksAjax = $redactor.data('links-ajax');
-        if(linksAjax) {
+        if (linksAjax) {
             plugins.push('definedlinks');
             options.definedLinks = linksAjax;
         }
         var images = $redactor.data('images');
-        if(images) {
+        if (images) {
             options.imageManagerJson = images;
         }
         var imagesAjax = $redactor.data('images-ajax');
-        if(linksAjax) {
+        if (linksAjax) {
             options.imageManagerJson = imagesAjax;
         }
         options.plugins = plugins;
         $redactor.redactor(options);
+        return this;
+    };
+
+    $.fn.initFroala = function () {
+        var $froala = this;
+        var options = {
+            language: langs.ru.redactor.locale,
+            imageUploadURL: typeof urlUploadFroala !== 'undefined' ? urlUploadFroala : '/upload/froala/images',
+            htmlAllowComments: false,
+            imageInsertButtons: ['imageBack', '|', 'imageUpload', 'imageByURL'],
+            linkList: [{
+                text: window.location.hostname,
+                href: window.location.hostname,
+                target: '_blank',
+                rel: 'nofollow'
+            },],
+            toolbarButtons: [
+                'fullscreen',
+                '|',
+                'bold', 'italic', 'underline', 'strikeThrough',
+                '|',
+                'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote',
+                '|',
+                'insertLink', 'insertImage', 'insertVideo', 'insertTable',
+                '|',
+                'undo', 'redo',
+                '|',
+                'clearFormatting', 'selectAll',
+                '|',
+                'html'
+            ],
+            toolbarButtonsXS: [
+                'bold', 'italic', 'underline',
+                '|',
+                'align',
+                '|',
+                'undo', 'redo',
+            ],
+            toolbarButtonsSM: [
+                'bold', 'italic', 'underline', 'strikeThrough',
+                '|',
+                'paragraphFormat', 'align', 'formatOL', 'formatUL',
+                '|',
+                'undo', 'redo',  'html'
+            ],
+            toolbarButtonsMD: [
+                'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough',
+                '|',
+                'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote',
+                '|',
+                'insertLink', 'insertImage', 'insertVideo', 'insertTable', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'
+            ],
+            'quickInsertButtons': ['image', 'table', 'ul', 'ol'],
+        };
+        if ($froala.data('images-ajax')) {
+            options.imageManagerLoadURL = $froala.data('images-ajax');
+            options.imageInsertButtons.push('imageManager');
+        }
+        $froala.froalaEditor(options);
         return this;
     };
 
@@ -211,6 +271,7 @@ $(document).ready(function () {
 
         initRedactor();
         initRedactorJS();
+        initFroala();
         initDatatable(false);
         initPhoneMask();
         initMask();
@@ -233,7 +294,9 @@ $(document).ready(function () {
     init();
 
     function refresh() {
+        initRedactor();
         initRedactorJS();
+        initFroala();
         initDatatable(true);
         initPhoneMask();
         initMask();
@@ -272,6 +335,12 @@ $(document).ready(function () {
         });
     }
 
+    function initFroala() {
+        $('.js_panel_input-froala').each(function () {
+            $(this).initFroala();
+        });
+    }
+
     function uploadRedactorImages(file, $editor) {
         var model = $editor.data('model');
         data = new FormData();
@@ -292,12 +361,12 @@ $(document).ready(function () {
             success: function (data) {
                 var file = data['files'][0];
                 var path = file.path;
-                $editor.summernote('insertImage', path, function($image) {
+                $editor.summernote('insertImage', path, function ($image) {
                     $image.attr('data-filename', path);
-                    if(data.type) {
+                    if (data.type) {
                         $image.attr('data-type', data.type);
                     }
-                    if(data.params) {
+                    if (data.params) {
                         $image.attr('data-params', data.params);
                     }
                     $image.css('width', Math.min($editor.width(), $image.width()));
@@ -308,7 +377,7 @@ $(document).ready(function () {
 
     function initDatatable(refresh) {
         refresh = refresh || false;
-        if(refresh) {
+        if (refresh) {
             $('.js_panel_datatable').dataTable().fnDestroy();
         }
         $('.js_panel_datatable').each(function () {
@@ -415,7 +484,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".js_panel_input-select2-ajax").each(function() {
+    $(".js_panel_input-select2-ajax").each(function () {
         $(this).initAjaxSelect2();
     });
 
@@ -550,14 +619,14 @@ $(document).ready(function () {
                             var $help_block = '<span class="help-block">' + text + '</span>';
                             $error_block.append($help_block);
                         } else {
-                            if($form.data('message-success')) {
+                            if ($form.data('message-success')) {
                                 window.showNotification($form.data('message-success'), 'error');
                             } else {
                                 window.showNotification(text, 'error');
                             }
                         }
                     });
-                    if($form.data('message-error')) {
+                    if ($form.data('message-error')) {
                         window.showNotification($form.data('message-error'), 'error');
                     } else {
                         window.showNotification(langs.ru.form.error, 'error');
@@ -601,12 +670,12 @@ $(document).ready(function () {
     }
 
     function changeAjaxRowInput() {
-        if(!$(this).hasClass('js_panel_ajax-row-ignore')) {
+        if (!$(this).hasClass('js_panel_ajax-row-ignore')) {
             var $row = $(this).closest('tr');
             var link = $row.data('link');
             var dataObject = {};
             $row.find(':input').each(function () {
-                if(!$(this).hasClass('js_panel_ajax-row-ignore')) {
+                if (!$(this).hasClass('js_panel_ajax-row-ignore')) {
                     var name = $(this).attr('name');
                     var value = $(this).val();
                     if ($(this).is(':checkbox')) {

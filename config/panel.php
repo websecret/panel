@@ -11,6 +11,7 @@ return [
     'autocomplete_url' => 'autocomplete',
     'upload_url' => 'upload/images',
     'upload_redactor_url' => 'upload/redactor/images',
+    'upload_floara_url' => 'upload/floara/images',
 
     'address_view' => 'panel::partials.form.address',
     'addresses_view' => 'panel::partials.form.addresses',

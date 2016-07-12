@@ -11,6 +11,9 @@ elixir(function (mix) {
         resourcesFolder + 'css/font-awesome.css',
         resourcesFolder + 'css/plugins/dataTables/dataTables.bootstrap.css',
         resourcesFolder + 'css/plugins/dataTables/dataTables.tableTools.min.css',
+        resourcesFolder + 'css/plugins/froala/froala_editor.pkgd.css',
+        resourcesFolder + 'css/plugins/froala/froala_style.css',
+        resourcesFolder + 'css/plugins/froala/themes/*.css',
         resourcesFolder + 'css/plugins/**/*.css',
         resourcesFolder + 'css/animate.css',
         resourcesFolder + 'less/style.less'
@@ -35,6 +38,8 @@ elixir(function (mix) {
         resourcesFolder + 'js/plugins/redactor/redactor-all.min.js',
         resourcesFolder + 'js/plugins/redactor/plugins/*.js',
         resourcesFolder + 'js/plugins/redactor/langs/*.js',
+        resourcesFolder + 'js/plugins/froala/froala_editor.pkgd.min.js',
+        resourcesFolder + 'js/plugins/froala/plugins/*.js',
         resourcesFolder + 'js/plugins/**/*.js',
         resourcesFolder + 'js/helpers.js'
     ], publicFolder + 'js/panel.js');
