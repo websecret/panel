@@ -72,7 +72,7 @@ class UploadController extends Controller
         return response()->json($results);
     }
 
-    public function floaraImages(Request $request)
+    public function froalaImages(Request $request)
     {
         $imagesFolder = 'images/wysiwyg';
 
