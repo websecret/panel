@@ -60,7 +60,7 @@ class PanelServiceProvider extends ServiceProvider
         $router->post($uploadUrlRedactor, 'Websecret\Panel\Http\Controllers\UploadController@redactorImages')->name('panel::upload-redactor');
 
         $uploadUrlFroala = $config['upload_froala_url'];
-        $router->post($uploadUrlFloara, 'Websecret\Panel\Http\Controllers\UploadController@froalaImages')->name('panel::upload-froala');
+        $router->post($uploadUrlFroala, 'Websecret\Panel\Http\Controllers\UploadController@froalaImages')->name('panel::upload-froala');
     }
 
     private function handleMigrations()
