@@ -76,6 +76,18 @@ class PanelServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/views' => base_path('resources/views/vendor/panel'),
         ], 'views');
+
+        view()->composer('panel::partials.client-news', function ($view) {
+            $domain = explode('/', url('/'))[2];
+            try {
+                $json = file_get_contents('http://websecret.by/api/client-news?domain=' . $domain);
+                $data = json_decode($json);
+            } catch (\Exception $e) {
+                $data = [];
+            }
+
+            return $view->with(['articles' => $data]);
+        });
     }
 
     private function handleAssets()
