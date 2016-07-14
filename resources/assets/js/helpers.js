@@ -282,6 +282,7 @@ $(document).ready(function () {
         initTimepicker();
         initClockpicker();
         initAddable();
+        initImages();
 
         bootbox.setDefaults({
             locale: langs.ru.bootbox.locale,
@@ -306,12 +307,30 @@ $(document).ready(function () {
         initTimepicker();
         initClockpicker();
         initAddable();
+        initImages();
     }
 
     $(document).ajaxComplete(function () {
         refresh();
     });
 
+
+    function initImages() {
+        $('.js_panel_images-upload-wrapper').each(function() {
+            var $wrapper = $(this);
+            if($wrapper.find('tbody').length) {
+                var sortable = new Sortable($wrapper.find('tbody')[0], {
+                    draggable: "tr",
+                    onUpdate: function (evt) {
+                        var $cols = $wrapper.find('.js_panel_images-col').not('.js_panel_images-col-clone');
+                        $cols.each(function (i) {
+                            $(this).find('.js_panel_images-order').val(i);
+                        });
+                    }
+                });
+            }
+        });
+    }
 
     function initPhoneMask() {
         $('.js_panel_input-phone').inputmask('+375 (99) 999-99-99');
@@ -770,18 +789,9 @@ $(document).ready(function () {
         return false;
     }
 
-    function uploadImages($input, url, model, type, params, callback) {
+    function uploadImages($input, url, callback) {
         if ($input[0].files) {
             var data = new FormData();
-            data.append('model', model);
-            if ($.isArray(type)) {
-                $.each(type, function (key, value) {
-                    data.append('type[]', value);
-                });
-            } else {
-                data.append('type', type);
-            }
-            data.append('params', params);
             $.each($input[0].files, function (key, value) {
                 data.append('files[]', value);
             });
@@ -814,14 +824,11 @@ $(document).ready(function () {
         var $loading = $wrapper.find('.js_panel_images-loading-col');
         $loading.fadeIn(100);
 
-        var dataModel = $wrapper.data('model');
-        var dataType = $wrapper.data('type');
-        var dataParams = $wrapper.data('params');
         var dataMultiple = $wrapper.data('multiple');
         var dataUrl = $wrapper.data('url');
 
         var $row = $wrapper.find('.js_panel_images-row');
-        uploadImages($(this), dataUrl, dataModel, dataType, dataParams, function (uploaded) {
+        uploadImages($(this), dataUrl, function (uploaded) {
             if (uploaded.result == 'success') {
                 $.each(uploaded.files, function (i, file) {
                     if (!dataMultiple) {
@@ -831,11 +838,10 @@ $(document).ready(function () {
                     var $col = $col_clone.clone();
                     var $image = $col.find('.js_panel_images-img');
                     var $input = $col.find('.js_panel_images-path');
-                    var $main = $col.find('.js_panel_images-main');
                     var $zoom = $col.find('.js_panel_images-zoom');
-                    $image.attr('src', file.path);
-                    $zoom.attr('href', file.fullsize);
-                    $input.val(file.filename);
+                    $image.attr('src', file.link);
+                    $zoom.attr('href', file.link);
+                    $input.val(file.path);
                     $col.find(':input').prop('disabled', false);
                     $col.removeClass('js_panel_images-col-clone');
                     $col.insertBefore($col_clone);
