@@ -78,9 +78,9 @@ class UploadController extends Controller
 
     public function loadImage($model, $id, $type, $params, $path)
     {
-        $modelsPath = config('panel.models_path');
-        $modelClass = '\\' . $modelsPath . '\\' . studly_case($model);
-        $model = $modelClass::find($id);
+        $imageModel = config('panel.image_model');
+        $modelClass = $imageModel::slug2Model($model);
+        $model = $modelClass::findOrFail($id);
         $image = $model->images()->where('path', '=', $path)->where('type', '=', $type)->firstOrFail();
         return redirect($image->resize($params));
     }

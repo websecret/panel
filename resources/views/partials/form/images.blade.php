@@ -21,8 +21,8 @@
                 <td>
                     <div class="js_panel_images-wrapper">
                         <img class="js_panel_images-img" src="{{ $image->load() }}" alt=""/>
-                        <input class="js_panel_images-new" type="hidden" name="{{ $name }}{{ $nameAfter }}[is_new][{{ $imageKey }}]" value="{{ $image->order }}" data-name-before="{{ $name }}" data-name-after="{{ $nameAfter }}[is_new][{{ $imageKey }}]"/>
-                        <input class="js_panel_images-order" type="hidden" name="{{ $name }}{{ $nameAfter }}[order][{{ $imageKey }}]" value="{{ $imageKey }}" data-name-before="{{ $name }}" data-name-after="{{ $nameAfter }}[order][{{ $imageKey }}]"/>
+                        <input class="js_panel_images-new" type="hidden" name="{{ $name }}{{ $nameAfter }}[is_new][{{ $imageKey }}]" value="0" data-name-before="{{ $name }}" data-name-after="{{ $nameAfter }}[is_new][{{ $imageKey }}]"/>
+                        <input class="js_panel_images-order" type="hidden" name="{{ $name }}{{ $nameAfter }}[order][{{ $imageKey }}]" value="{{ $image->order }}" data-name-before="{{ $name }}" data-name-after="{{ $nameAfter }}[order][{{ $imageKey }}]"/>
                         <input class="js_panel_images-path" type="hidden" name="{{ $name }}{{ $nameAfter }}[path][{{ $imageKey }}]" value="{{ $image->path }}" data-name-before="{{ $name }}" data-name-after="{{ $nameAfter }}[path][{{ $imageKey }}]"/>
                         <input class="js_panel_images-main" type="radio" name="{{ $name }}{{ $nameAfter }}[main]" value="{{ $imageKey }}" {{ $image->main || !$isImageMultiple ? "checked='checked'" : '' }} data-name-before="{{ $name }}" data-name-after="{{ $nameAfter }}[main]"/>
                         @if($isImageMultiple)

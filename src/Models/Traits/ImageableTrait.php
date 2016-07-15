@@ -62,7 +62,7 @@ trait ImageableTrait
 
     public function getImagePath($type, $params = 'original', $image = null)
     {
-        $path = $this->imagesFolder . '/' . snake_case(class_basename(static::class)) . '/' . $this->id .  '/' . $type . '/' . $params;
+        $path = $this->imagesFolder . '/' . self::model2Slug() . '/' . $this->id . '/' . $type . '/' . $params;
         if($image) {
             $path = $path . '/' . $image;
         }
@@ -115,5 +115,18 @@ trait ImageableTrait
                 $this->images()->save($image);
             }
         }
+    }
+
+    public static function model2Slug()
+    {
+        $modelsPath = config('panel.models_path');
+        $class = static::class;
+        $slug = ltrim(str_replace($modelsPath, '', $class), '\\');
+        $slugElements = explode('\\', $slug);
+        $slugElements = array_map(function($value) {
+            return snake_case($value);
+        }, $slugElements);
+        $slug = implode('-', $slugElements);
+        return $slug;
     }
 }

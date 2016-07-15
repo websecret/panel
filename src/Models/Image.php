@@ -63,4 +63,17 @@ class Image extends Model
         return $newPathWithFile;
     }
 
+    public static function slug2Model($slug)
+    {
+        $modelsPath = config('panel.models_path');
+        $classElements = explode('-', $slug);
+        $classElements = array_map(function($value) {
+            return studly_case($value);
+        }, $classElements);
+        $class = implode('\\', $classElements);
+        $class = $modelsPath . '\\' . $class;
+        $class = ltrim($class, '\\');
+        return $class;
+    }
+
 }
