@@ -29,18 +29,13 @@ body {
 }
 
 .js_panel_images-row {
-  margin-left: -15px;
   .js_panel_images-col, .js_panel_images-loading-col {
-    margin-bottom: 15px;
-    margin-left: 15px;
-    display: inline-block;
-    vertical-align: top;
-    height: 150px;
-    position: relative;
     &-clone {
       display: none;
     }
     .js_panel_images-main {
+      margin: 0;
+      padding: 0;
       opacity: 0;
       top: 0;
       bottom: 0;
@@ -52,25 +47,40 @@ body {
       z-index: 10;
       cursor: pointer;
     }
+    .js_panel_images-main-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      font-size: 10px;
+      color: #FFF;
+      padding: 4px 6px;
+    }
     .js_panel_images-main:checked + .js_panel_images-wrapper {
       border-color: #1985ac;
     }
+    .js_panel_images-main:checked + .js_panel_images-main-info {
+      background: #18a689;
+    }
     .js_panel_images-wrapper {
+      border-radius: 3px;
+      border: 2px solid #2F4050;
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: left;
       background: #F6F6F6;
-      border: 1px #DDD solid;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
       overflow: hidden;
-      text-align: center;
       position: relative;
       img {
         max-width: 100%;
         width: auto;
-        max-height: 100%;
+        max-height: 120px;
         height: auto;
-        min-width: 100px;
-        min-height: 100px;
+        min-height: 120px;
+        min-width: 120px;
       }
       .js_panel_images-remove, .js_panel_images-zoom {
         z-index: 11;

@@ -19,6 +19,8 @@ class CreateImagesTable extends Migration
             $table->string('path');
             $table->string('type');
             $table->boolean('main')->default(0);
+            $table->text('description');
+            $table->integer('order')->default(0)->unsigned();
             $table->timestamps();
         });
     }

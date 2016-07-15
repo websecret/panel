@@ -9,58 +9,47 @@ use Illuminate\Routing\Controller;
 class UploadController extends Controller
 {
 
+    protected $imagesFolder = 'uploads/images';
+
     public function images(Request $request)
     {
         $files = $request->file('files');
 
         $rules = [
-            'file' => 'mimes:jpg,jpeg,png'
+            'files' => 'array'
         ];
-        foreach ($files as $file) {
-            $validation_files['file'] = $file;
-            $validator = Validator::make($validation_files, $rules);
-            if ($validator->fails()) {
-                return response()->json(['message' => $validator->messages()->first('file')]);
-            }
+        foreach ($files as $key => $file) {
+            $rules['files.' . $key] = 'image';
+        }
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->messages()->toArray()]);
         }
 
-        $model = $request->input('model');
-        $modelBasename = strtolower(class_basename($model));
-        $type = $request->input('type');
-        $params = $request->input('params');
+        $imagesFolder = $this->imagesFolder . '/temp';
 
         $results = [];
-
-        $imagesFolder = config('laravel-glide.source.path') . '/' . $modelBasename;
-
         foreach ($files as $key => $file) {
-
             do {
                 $filename = str_random() . '.' . $file->getClientOriginalExtension();
             } while (File::exists($imagesFolder . '/' . $filename));
             $file->move($imagesFolder, $filename);
-
             $results[] = [
-                'filename' => $modelBasename . '/' . $filename,
-                'path' => GlideImage::load($modelBasename . '/' . $filename, $model::getImageParams($type, $params))->getUrl(),
-                'fullsize' => GlideImage::load($modelBasename . '/' . $filename)->getUrl(),
+                'link' => '/' . $imagesFolder . '/' . $filename,
+                'path' => $imagesFolder . '/' . $filename,
             ];
         }
 
         return response()->json([
             'result' => 'success',
             'files' => $results,
-            'type' => $type,
-            'params' => $params,
         ]);
     }
 
     public function redactorImages(Request $request)
     {
-        $imagesFolder = 'images/wysiwyg/' . date('Y-m-d');
-
+        $imagesFolder = $this->imagesFolder . '/content/' . date('Y-m-d');
         $file = $request->file('file');
-
         do {
             $filename = str_random() . '.' . $file->getClientOriginalExtension();
         } while (File::exists($imagesFolder . '/' . $filename));
@@ -74,10 +63,8 @@ class UploadController extends Controller
 
     public function froalaImages(Request $request)
     {
-        $imagesFolder = 'images/wysiwyg/' . date('Y-m-d');
-
+        $imagesFolder = $this->imagesFolder . '/content/' . date('Y-m-d');
         $file = $request->file('file');
-
         do {
             $filename = str_random() . '.' . $file->getClientOriginalExtension();
         } while (File::exists($imagesFolder . '/' . $filename));
@@ -87,6 +74,15 @@ class UploadController extends Controller
             'link' => '/' . $imagesFolder . '/' . $filename,
         ];
         return response()->json($results);
+    }
+
+    public function loadImage($model, $id, $type, $params, $path)
+    {
+        $modelsPath = config('panel.models_path');
+        $modelClass = '\\' . $modelsPath . '\\' . studly_case($model);
+        $model = $modelClass::find($id);
+        $image = $model->images()->where('path', '=', $path)->where('type', '=', $type)->firstOrFail();
+        return redirect($image->resize($params));
     }
 
 }
