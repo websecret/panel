@@ -19,6 +19,8 @@ elixir(function (mix) {
         resourcesFolder + 'less/style.less'
     ], publicFolder + 'css/panel.css');
 
+    mix.babel(resourcesFolder + 'js/helpers.js', resourcesFolder + 'js/build.js');
+
     mix.scripts([
         resourcesFolder + 'js/jquery-2.2.2.js',
         resourcesFolder + 'js/bootstrap.js',
@@ -41,7 +43,7 @@ elixir(function (mix) {
         resourcesFolder + 'js/plugins/froala/froala_editor.pkgd.min.js',
         resourcesFolder + 'js/plugins/froala/plugins/*.js',
         resourcesFolder + 'js/plugins/**/*.js',
-        resourcesFolder + 'js/helpers.js'
+        resourcesFolder + 'js/build.js'
     ], publicFolder + 'js/panel.js');
 
     mix.copy([
