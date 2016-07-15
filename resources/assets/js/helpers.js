@@ -889,4 +889,49 @@ $(document).ready(function () {
     function clickFormAjaxSubmit() {
         $(this).closest('form').removeClass('js_panel_form-ajax-redirect');
     }
+
+    function clientArticles () {
+        let getReadIds = () => JSON.parse(localStorage.getItem('client-articles') || '[]');
+
+        let render = articles => {
+            let newIds = articles.filter(article => getReadIds().indexOf(article.entry_id) == -1)
+                .map(article => article.entry_id);
+
+            $('.js-panel-client-news').html(`
+                <a class="dropdown-toggle count-info js-client-news-link" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope"></i>
+                    ${ newIds.length ? `<span class="label label-warning">${ newIds.length }</span>` : '' }
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    ${articles.map(article => `
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="#" class="pull-left" style="padding: 10px 15px;">
+                                    <img alt="image" class="img-circle" src="${ article.avatar }" style="width: 50px; height: 50px;">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">${ article.entry_date }</small>
+                                    <strong>${ article.title }</strong>
+                                    <p>
+                                        ${ article.body_ru }
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                    `).join()}
+                </ul>
+            `);
+
+            $(document).on('click', '.js-client-news-link', function () {
+                localStorage.setItem('client-articles', JSON.stringify(getReadIds().concat(newIds)));
+            });
+        };
+
+        $.getJSON('http://websecret.by/api/client-news?domain=' + location.host, function (response) {
+            render(response);
+        });
+    }
+
+    clientArticles();
 });
