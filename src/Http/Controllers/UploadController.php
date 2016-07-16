@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 class UploadController extends Controller
 {
 
-    protected $imagesFolder = 'uploads/images';
+    protected $imagesFolder = 'uploads' . DIRECTORY_SEPARATOR . 'images';
 
     public function images(Request $request)
     {
@@ -26,17 +26,17 @@ class UploadController extends Controller
             return response()->json(['message' => $validator->messages()->toArray()]);
         }
 
-        $imagesFolder = $this->imagesFolder . '/temp';
+        $imagesFolder = $this->imagesFolder . DIRECTORY_SEPARATOR . 'temp';
 
         $results = [];
         foreach ($files as $key => $file) {
             do {
                 $filename = str_random() . '.' . $file->getClientOriginalExtension();
-            } while (File::exists($imagesFolder . '/' . $filename));
+            } while (File::exists($imagesFolder . DIRECTORY_SEPARATOR . $filename));
             $file->move($imagesFolder, $filename);
             $results[] = [
                 'link' => '/' . $imagesFolder . '/' . $filename,
-                'path' => $imagesFolder . '/' . $filename,
+                'path' => $imagesFolder . DIRECTORY_SEPARATOR . $filename,
             ];
         }
 

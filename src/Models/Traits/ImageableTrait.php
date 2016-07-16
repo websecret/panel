@@ -7,7 +7,7 @@ use GlideImage;
 
 trait ImageableTrait
 {
-    public $imagesFolder = 'uploads/images';
+    public $imagesFolder = 'uploads' . DIRECTORY_SEPARATOR . 'images';
 
     public function images()
     {
@@ -62,9 +62,9 @@ trait ImageableTrait
 
     public function getImagePath($type, $params = 'original', $image = null)
     {
-        $path = $this->imagesFolder . '/' . self::model2Slug() . '/' . $this->id . '/' . $type . '/' . $params;
+        $path = $this->imagesFolder . DIRECTORY_SEPARATOR . self::model2Slug() . DIRECTORY_SEPARATOR . $this->id . DIRECTORY_SEPARATOR . $type . DIRECTORY_SEPARATOR . $params;
         if ($image) {
-            $path = $path . '/' . $image;
+            $path = $path . DIRECTORY_SEPARATOR . $image;
         }
         return $path;
     }
@@ -99,11 +99,11 @@ trait ImageableTrait
                     $newPath = $this->getImagePath($type);
                     do {
                         $filename = str_random() . '.' . pathinfo($path, PATHINFO_EXTENSION);
-                    } while (File::exists($newPath . '/' . $filename));
+                    } while (File::exists($newPath . DIRECTORY_SEPARATOR . $filename));
                     if (!File::exists($newPath)) {
                         File::makeDirectory($newPath, 0777, true);
                     }
-                    File::copy($path, $newPath . '/' . $filename);
+                    File::copy($path, $newPath . DIRECTORY_SEPARATOR . $filename);
                     $path = $filename;
                 }
                 $image = new $imageClass();
