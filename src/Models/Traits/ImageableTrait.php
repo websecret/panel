@@ -63,7 +63,7 @@ trait ImageableTrait
     public function getImagePath($type, $params = 'original', $image = null)
     {
         $path = $this->imagesFolder . '/' . self::model2Slug() . '/' . $this->id . '/' . $type . '/' . $params;
-        if($image) {
+        if ($image) {
             $path = $path . '/' . $image;
         }
         return $path;
@@ -100,7 +100,7 @@ trait ImageableTrait
                     do {
                         $filename = str_random() . '.' . pathinfo($path, PATHINFO_EXTENSION);
                     } while (File::exists($newPath . '/' . $filename));
-                    if(!File::exists($newPath)) {
+                    if (!File::exists($newPath)) {
                         File::makeDirectory($newPath, 0777, true);
                     }
                     File::copy($path, $newPath . '/' . $filename);
@@ -123,7 +123,7 @@ trait ImageableTrait
         $class = static::class;
         $slug = ltrim(str_replace($modelsPath, '', $class), '\\');
         $slugElements = explode('\\', $slug);
-        $slugElements = array_map(function($value) {
+        $slugElements = array_map(function ($value) {
             return snake_case($value);
         }, $slugElements);
         $slug = implode('-', $slugElements);

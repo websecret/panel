@@ -30,16 +30,11 @@ class Image extends Model
 
     public function load($params = 'original')
     {
-        if (!$params) {
-            return $this->path;
-        }
         $model = $this->imageable;
         $path = $model->getImagePath($this->type, $params, $this->path);
 
         if (!File::exists($path)) {
-            if ($params == 'original') {
-                abort(404);
-            } else {
+            if ($params != 'original') {
                 $this->resize($params);
             }
         }
@@ -50,13 +45,13 @@ class Image extends Model
     {
         $model = $this->imageable;
         $path = $model->getImagePath($this->type, 'original', $this->path);
-        $paramsArray =  $model::getImageParams($this->type, $params);
-        if(empty($paramsArray)) {
+        $paramsArray = $model::getImageParams($this->type, $params);
+        if (empty($paramsArray)) {
             return $model->getImagePath($this->type, 'original', $this->path);
         }
         $newPath = $model->getImagePath($this->type, $params);
         $newPathWithFile = $model->getImagePath($this->type, $params, $this->path);
-        if(!File::exists($newPath)) {
+        if (!File::exists($newPath)) {
             File::makeDirectory($newPath, 0777, true);
         }
         GlideImage::load($path)->useAbsoluteSourceFilePath()->modify($paramsArray)->save($newPathWithFile);
@@ -67,7 +62,7 @@ class Image extends Model
     {
         $modelsPath = config('panel.models_path');
         $classElements = explode('-', $slug);
-        $classElements = array_map(function($value) {
+        $classElements = array_map(function ($value) {
             return studly_case($value);
         }, $classElements);
         $class = implode('\\', $classElements);
