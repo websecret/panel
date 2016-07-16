@@ -323,6 +323,7 @@ $(document).ready(function () {
                     draggable: "tr",
                     onUpdate: function (evt) {
                         reoderImages($wrapper);
+                        resetMainImage($wrapper);
                     }
                 });
             }
