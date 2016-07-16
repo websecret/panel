@@ -101,7 +101,7 @@ trait ImageableTrait
                         $filename = str_random() . '.' . pathinfo($path, PATHINFO_EXTENSION);
                     } while (File::exists($newPath . '/' . $filename));
                     if(!File::exists($newPath)) {
-                        File::makeDirectory($newPath, '777', true);
+                        File::makeDirectory($newPath, 0777, true);
                     }
                     File::copy($path, $newPath . '/' . $filename);
                     $path = $filename;

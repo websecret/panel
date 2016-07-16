@@ -57,7 +57,7 @@ class Image extends Model
         $newPath = $model->getImagePath($this->type, $params);
         $newPathWithFile = $model->getImagePath($this->type, $params, $this->path);
         if(!File::exists($newPath)) {
-            File::makeDirectory($newPath, '777', true);
+            File::makeDirectory($newPath, 0777, true);
         }
         GlideImage::load($path)->useAbsoluteSourceFilePath()->modify($paramsArray)->save($newPathWithFile);
         return $newPathWithFile;
