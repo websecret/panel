@@ -35,7 +35,7 @@ class Image extends Model
 
         if (!File::exists($path)) {
             if ($params != 'original') {
-                $this->resize($params);
+                $path = $this->resize($params);
             }
         }
         return '/' . $path;
