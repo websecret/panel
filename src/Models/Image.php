@@ -45,6 +45,9 @@ class Image extends Model
     {
         $model = $this->imageable;
         $path = $model->getImagePath($this->type, 'original', $this->path);
+        if (!File::exists($path)) {
+            return $path;
+        }
         $paramsArray = $model::getImageParams($this->type, $params);
         if (empty($paramsArray)) {
             return $model->getImagePath($this->type, 'original', $this->path);
