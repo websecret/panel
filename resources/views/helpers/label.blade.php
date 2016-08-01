@@ -1,9 +1,9 @@
 <span class="help-block">
     @if(is_array($text))
         @foreach($text as $value)
-            {{{ $value }}}<br/>
+            {!! $value !!}<br/>
         @endforeach
     @else
-        {{{ $text }}}
+        {!! $text !!}
     @endif
 </span>
