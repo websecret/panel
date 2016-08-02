@@ -96,7 +96,7 @@ trait ImageableTrait
                 $isNew = array_get($data, 'images.' . $type . '.is_new.' . $key, 1);
                 if (!$isMultiple) $isMain = 1;
                 if ($isNew) {
-                    $newPath = $this->getImagePath($type);
+                    $newPath = public_path($this->getImagePath($type));
                     do {
                         $filename = str_random() . '.' . pathinfo($path, PATHINFO_EXTENSION);
                     } while (File::exists($newPath . DIRECTORY_SEPARATOR . $filename));
