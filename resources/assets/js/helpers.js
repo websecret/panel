@@ -218,7 +218,7 @@ $(document).ready(function () {
             toolbarButtons: [
                 'fullscreen',
                 '|',
-                'bold', 'italic', 'underline', 'strikeThrough',
+                'bold', 'italic', 'underline', 'strikeThrough', 'color',
                 '|',
                 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote',
                 '|',
@@ -230,6 +230,16 @@ $(document).ready(function () {
                 '|',
                 'html'
             ],
+            colorsBackground: [
+                '#15E67F', '#E3DE8C', '#D8A076', '#D83762', '#76B6D8', 'REMOVE',
+                '#1C7A90', '#249CB8', '#4ABED9', '#FBD75B', '#FBE571', '#FFFFFF'
+            ],
+            colorsText: [
+                '#15E67F', '#E3DE8C', '#D8A076', '#D83762', '#76B6D8', 'REMOVE',
+                '#1C7A90', '#249CB8', '#4ABED9', '#FBD75B', '#FBE571', '#FFFFFF'
+            ],
+            colorsDefaultTab: 'background',
+            colorsStep: 6,
             toolbarButtonsXS: [
                 'bold', 'italic', 'underline',
                 '|',
