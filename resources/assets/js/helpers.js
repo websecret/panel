@@ -284,6 +284,8 @@ $(document).ready(function () {
         initAddable();
         initImages();
 
+        initSelect2Ajax();
+
         bootbox.setDefaults({
             locale: langs.ru.bootbox.locale,
             size: 'small',
@@ -308,6 +310,7 @@ $(document).ready(function () {
         initClockpicker();
         initAddable();
         initImages();
+        initSelect2Ajax();
     }
 
     $(document).ajaxComplete(function () {
@@ -503,9 +506,12 @@ $(document).ready(function () {
         }
     });
 
-    $(".js_panel_input-select2-ajax").each(function () {
-        $(this).initAjaxSelect2();
-    });
+
+    function initSelect2Ajax() {
+        $(".js_panel_input-select2-ajax").each(function () {
+            $(this).initAjaxSelect2();
+        });
+    }
 
     function initAutocomplete() {
         $('.js_panel_input-autocomplete').each(function () {
