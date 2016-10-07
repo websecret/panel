@@ -334,6 +334,7 @@ $(document).ready(function () {
         initAddable();
         initImages();
         initSelect2Ajax();
+        initAutocomplete();
     }
 
     $(document).ajaxComplete(function () {
@@ -650,6 +651,7 @@ $(document).ready(function () {
                             }
                         }
                     });
+                    if (data.message) window.showNotification(data.message, 'error');
                     if ($form.data('message-error')) {
                         window.showNotification($form.data('message-error'), 'error');
                     } else {
