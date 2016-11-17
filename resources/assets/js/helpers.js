@@ -257,7 +257,26 @@ $(document).ready(function () {
             options.imageManagerLoadURL = $froala.data('images-ajax');
             options.imageInsertButtons.push('imageManager');
         }
-        $froala.froalaEditor(options);
+        $froala
+            .on('froalaEditor.initialized', function (e, editor) {
+                if ($(this).data('atwho')) {
+                    var names = $(this).data('atwho').split(",");
+                    var config = {
+                        at: "$",
+                        data: names,
+                        limit: 200
+                    }
+
+                    editor.$el.atwho(config);
+
+                    editor.events.on('keydown', function (e) {
+                        if (e.which == $.FroalaEditor.KEYCODE.ENTER && editor.$el.atwho('isSelecting')) {
+                            return false;
+                        }
+                    }, true);
+                }
+            })
+            .froalaEditor(options);
         return this;
     };
 
