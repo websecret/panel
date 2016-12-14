@@ -448,7 +448,8 @@ $(document).ready(function () {
     function initDatepicker() {
         $('.js_panel_input-date').datepicker({
             format: langs.ru.datepicker.format,
-            todayHighlight: true
+            todayHighlight: true,
+            language: 'ru'
         });
     }
 
