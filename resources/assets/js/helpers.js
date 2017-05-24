@@ -267,6 +267,10 @@ $(document).ready(function () {
             options.imageManagerLoadURL = $froala.data('images-ajax');
             options.imageInsertButtons.push('imageManager');
         }
+        if ($froala.data('styles')) {
+            options.paragraphStyles = $froala.data('styles');
+            options.toolbarButtons.push('paragraphStyle')
+        }
         $froala.froalaEditor(options);
         return this;
     };
